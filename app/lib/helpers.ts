@@ -10,3 +10,9 @@ export const formatDateToUSDateString = (date: Date) => {
   const year = date.getFullYear();
   return `${month.toString().padStart(2, "0")}/${year}`;
 };
+
+export const millisecondsToYears = (milliseconds: number): number => {
+  const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
+  const years = Number((milliseconds / millisecondsPerYear).toFixed(1));
+  return years;
+};

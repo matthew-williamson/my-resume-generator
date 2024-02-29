@@ -33,6 +33,7 @@ export const experiences: Experience[] = [
     startDisplay: "10/2023",
     title: "Senior Software Engineer",
     company: ImagineLearning,
+    color: "#66CCFF",
     achievements: [
       "Improved developer and QA quality of life and efficiency by adding Prettier, ESLint, Storybook, CI/CD test automation, and fostering improved code review culture",
       "Researched and implemented a reusable React component printing system for our critical customer facing reports using third party libraries",
@@ -86,6 +87,7 @@ export const experiences: Experience[] = [
     startDisplay: "12/2022",
     title: "Senior Software Engineer",
     company: SavvyTrader,
+    color: "#3399FF",
     achievements: [
       "Implemented our standout chart events, reactions, links, and many more features which help us be a differentiator from competitors and drive growth",
       "Thriving in a fast paced start up environment, working directly with the CEO, product, and design to turn our vision into reality",
@@ -141,6 +143,7 @@ export const experiences: Experience[] = [
     endDisplay: "12/2022",
     title: "Senior Software Engineer",
     company: ImagineLearning,
+    color: "#0066CC",
     achievements: [
       "Mentored three junior developers into valuable and highly effective contributors",
       "Introduced the team to GitKraken, which improves developer efficiency and understanding of git",
@@ -196,6 +199,7 @@ export const experiences: Experience[] = [
     endDisplay: "03/2022",
     title: "Software Engineer II",
     company: GitKraken,
+    color: "#99CCFF",
     achievements: [
       "Built and maintained a world class Git GUI that I still love and use to this day",
       "Integrated with many third party APIs while building features including: Jira, Jira Cloud, GitHub, GitHub Enterprise, Trello, GitLab, GitLab Self-Managed, BitBucket, BitBucket Server, and Azure DevOps",
@@ -250,6 +254,7 @@ export const experiences: Experience[] = [
     endDisplay: "08/2019",
     title: "Software Engineer",
     company: SandhillsPublishing,
+    color: "#3366FF",
     achievements: [
       "Architected a Chrome Extension for a fleet of data miners to use to automate their business critical tasks, increasing efficiency by 90+%",
       "Mentored and oversaw onboarding of numerous junior developers and interns",
@@ -287,6 +292,7 @@ export const experiences: Experience[] = [
     endDisplay: "03/2018",
     title: "Software Engineer",
     company: CRC,
+    color: "#003399",
     achievements: [
       "Maintained VB6 legacy code",
       "Fixed numerous bugs and implemented numerous improvements on our printing system applications",

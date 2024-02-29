@@ -73,4 +73,5 @@ export interface Experience {
   company: Company;
   achievements: string[];
   skills: Skill[];
+  color: string;
 }
