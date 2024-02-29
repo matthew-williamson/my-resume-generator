@@ -314,4 +314,4 @@ export const experiences: Experience[] = [
       Skill.StartupEnvironment,
     ],
   },
-];
+].reverse();
