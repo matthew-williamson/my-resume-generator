@@ -1,6 +1,7 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
+import { Edit, Note } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
@@ -14,7 +15,14 @@ export default function OccupationHistory() {
       }}
       spacing={2}
     >
-      <Typography variant="h5">Occupation History</Typography>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ alignItems: "center", color: "#99CCFF" }}
+      >
+        <Edit />
+        <Typography variant="h5">Occupation History</Typography>
+      </Stack>
       {experiences.toReversed().map((e) => {
         return (
           <Stack
@@ -27,13 +35,15 @@ export default function OccupationHistory() {
           >
             <Stack spacing={1}>
               <Stack>
-                <Typography fontWeight={700}>{e.company.name}</Typography>
+                <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
+                  {e.company.name}
+                </Typography>
                 <Typography variant="caption">{e.title}</Typography>
                 <Typography variant="caption">
                   {e.startDisplay} - {e.endDisplay ?? "Current"}
                 </Typography>
               </Stack>
-              <Divider sx={{ backgroundColor: "white" }} />
+              <Divider sx={{ backgroundColor: "#99CCFF" }} />
               <Stack spacing={1}>
                 {e.achievements.map((a, index) => (
                   <Stack
@@ -42,7 +52,11 @@ export default function OccupationHistory() {
                     key={`${e.company.name}-${e.color}-achievement-${index}`}
                     sx={{ position: "relative" }}
                   >
-                    <Box sx={{ position: "absolute", top: -3 }}>○</Box>
+                    <Box
+                      sx={{ position: "absolute", top: -3, color: "#99CCFF" }}
+                    >
+                      ○
+                    </Box>
                     <Typography variant="caption" sx={{ pl: 1 }}>
                       {a}
                     </Typography>

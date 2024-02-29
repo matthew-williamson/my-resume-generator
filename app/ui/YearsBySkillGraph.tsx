@@ -146,7 +146,9 @@ export default function YearsBySkillGraph() {
           borderRadius: 2,
         }}
       >
-        <Typography variant="h5">Years of Experience by Skill</Typography>
+        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+          Years of Experience by Skill
+        </Typography>
         <Stack spacing={0.2} ref={skillGraphRef}>
           {legend}
           {skillsInExperiences.map((s) => (
