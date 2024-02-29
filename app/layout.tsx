@@ -4,9 +4,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Developer Arcade",
-  description:
-    "A fun and cheesey programming based Arcade using Next.js and React (designed, built, and deployed by Matt Williamson)",
+  title: "My Resume",
+  description: "A more hands on, visual approach to a traditional resume.",
 };
 
 export default function RootLayout({
