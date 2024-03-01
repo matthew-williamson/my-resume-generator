@@ -24,6 +24,11 @@ import { Skill } from "../lib/types";
 import useWindowSize from "./hooks/useWindowSize";
 import useWindowScroll from "./hooks/useWindowScroll";
 import { CalendarMonth, ShowChart, SortByAlpha } from "@mui/icons-material";
+import { VictoryChart } from "victory-chart";
+import { VictoryAxis } from "victory-axis";
+import { VictoryStack } from "victory-stack";
+import { VictoryBar } from "victory-bar";
+import { VictoryLabel, VictoryTheme } from "victory-core";
 
 const firstExperience = experiences[0];
 const lastExperience = experiences[experiences.length - 1];
@@ -40,9 +45,9 @@ const skillsInExperiences = _.uniq(
   }, [] as Skill[]),
 );
 
-const alphabeticalSortedSkills = [...skillsInExperiences].sort((a, b) =>
-  a > b ? 1 : -1,
-);
+const alphaSort = (a: Skill, b: Skill) => a > b ? 1 : -1;
+
+const timeSort = (a: Skill, b: Skill) => timeBySkill[a] < timeBySkill[b] ? 1 : -1;
 
 const timeBySkill = experiences.reduce(
   (acc, experience) => {
@@ -61,149 +66,16 @@ const timeBySkill = experiences.reduce(
   {} as Record<string, number>,
 );
 
-const timeSortedSkills = [...skillsInExperiences].sort((a, b) =>
-  timeBySkill[a] < timeBySkill[b] ? 1 : -1,
-);
-
-const SkillRow = ({
-  skill,
-  yearWidthInPixels,
-}: {
-  skill: Skill;
-  yearWidthInPixels: number;
-}) => {
-  const experiencesWithSkill = experiences.filter((e) =>
-    e.skills.includes(skill),
-  );
-
-  const barPieces = experiencesWithSkill.map((experience) => {
-    const endTimestamp = experience.endDate
-      ? experience.endDate.getTime()
-      : Date.now();
-    const yearsInMS = endTimestamp - experience.startDate.getTime();
-    const years = millisecondsToYears(yearsInMS);
-    const width = years * yearWidthInPixels;
-    return (
-      <Tooltip
-        key={`${experience.company.name}-${experience.color}-${skill}-tooltip`}
-        title={`${skill} experience at ${experience.company.name} for ${years} year${years === 1 ? "" : "s"}`}
-      >
-        <Box
-          sx={{
-            minWidth: `${width}px`,
-            height: 12,
-            backgroundColor: experience.color,
-            zIndex: 999,
-            cursor: "pointer",
-            ":hover": {
-              opacity: 0.9,
-            },
-          }}
-        />
-      </Tooltip>
-    );
-  });
-
-  return (
-    <Stack direction="row" key={`${skill}-row`}>
-      <Typography
-        variant="caption"
-        sx={{ width: 200, color: "#99CCFF" }}
-        className="skill-label"
-      >
-        {skill}
-      </Typography>
-      {barPieces}
-    </Stack>
-  );
-};
 
 export default function YearsBySkillGraph() {
-  const skillGraphRef = useRef<HTMLDivElement>(null);
   const windowSize = useWindowSize();
-  const scroll = useWindowScroll();
-  const [skillGraphBounds, setSkillGraphBounds] = useState<DOMRect>();
   const [initialWindowSize, setInitialWindowSize] = useState(0);
-
-  useEffect(() => {
-    if (!skillGraphRef.current) {
-      return;
-    }
-
-    setSkillGraphBounds(skillGraphRef.current.getBoundingClientRect());
-  }, [skillGraphRef, windowSize.width, scroll]);
-
   useEffect(() => {
     setInitialWindowSize(window.innerWidth);
   }, []);
+  const width = windowSize.width ?? initialWindowSize;
 
-  const yearWidthInPixels = useMemo(() => {
-    const width = windowSize.width ?? initialWindowSize;
-    const widthAvailable = width > 1000 ? width * 0.6 - 400 : width - 400;
-    return widthAvailable / totalYears;
-  }, [windowSize, scroll, skillGraphBounds, initialWindowSize]);
-
-  const legend = useMemo(() => {
-    const yearSegments = [];
-    for (let i = 0; i < totalYears; i += 1) {
-      yearSegments.push(
-        <Stack
-          key={`${i}-year-${yearWidthInPixels}`}
-          direction="row"
-          spacing={1}
-          sx={{ alignItems: "center" }}
-          className="year-label"
-        >
-          <Typography variant="caption" sx={{ width: yearWidthInPixels }}>
-            {i} Year{i !== 1 ? "s" : ""}
-          </Typography>
-        </Stack>,
-      );
-    }
-
-    return (
-      <Stack direction="row" sx={{ mt: 2 }}>
-        <Box sx={{ width: 200, display: "flex", height: 1 }} />
-        {yearSegments}
-      </Stack>
-    );
-  }, [yearWidthInPixels]);
-
-  const calculatedGrid = useMemo(() => {
-    if (!skillGraphBounds) {
-      return;
-    }
-
-    try {
-      const dividers = [];
-      const yearLabels = Array.from(
-        document.getElementsByClassName("year-label"),
-      );
-      for (const label of yearLabels) {
-        const labelBounds = label.getBoundingClientRect();
-        dividers.push(
-          <Divider
-            key={`${label.innerHTML}`}
-            sx={{
-              backgroundColor: "rgba(255, 255, 255, 0.16)",
-              position: "absolute",
-              left: `calc(${labelBounds.left}px - ${skillGraphBounds.left}px)`,
-              marginTop: `${labelBounds.height}px`,
-              top: `16px`,
-              height: `calc(${skillGraphBounds.height}px - ${labelBounds.height}px - 8px)`,
-              width: "1px",
-            }}
-          />,
-        );
-      }
-      return dividers;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  }, [skillGraphBounds]);
-
-  const [sort, setSort] = useState("alpha");
+  const [sort, setSort] = useState("years");
   const handleSortChange = useCallback(
     (event: React.MouseEvent, newSort: string) => {
       if (newSort) {
@@ -213,13 +85,19 @@ export default function YearsBySkillGraph() {
     [],
   );
 
-  const sortedSkills = useMemo(() => {
-    if (sort === "alpha") {
-      return alphabeticalSortedSkills;
-    }
+  let skillBars = [...skillsInExperiences].sort(sort === 'alpha' ? alphaSort : timeSort).map((skill) => {
+    return (
+      <VictoryBar
+        key={`${skill}-bar`}
+        style={{ data: { fill: "#99CCFF", width: 8 } }}
+        data={[{ x: skill, y: millisecondsToYears(timeBySkill[skill]) }]}
+      />
+    )
+  });
 
-    return timeSortedSkills;
-  }, [sort]);
+  if (width < 1000) {
+    skillBars = skillBars.reverse();
+  }
 
   return (
     <Stack
@@ -261,17 +139,20 @@ export default function YearsBySkillGraph() {
           </ToggleButton>
         </ToggleButtonGroup>
       </Stack>
-      <Stack
-        spacing={0.2}
-        ref={skillGraphRef}
-        sx={{ width: "100%", position: "relative" }}
-      >
-        {legend}
-        {sortedSkills.map((s) => (
-          <SkillRow skill={s} key={s} yearWidthInPixels={yearWidthInPixels} />
-        ))}
-        {calculatedGrid}
-      </Stack>
+      <Stack>
+      <VictoryChart
+    horizontal={width > 1000 ? false : true}
+    padding={{ top: 50, bottom: width > 1000 ? 200 : 50, left: width > 1000 ? 50 : 200, right: 50 }}
+    colorScale={"blue"}
+    height={width > 1000 ? 500 : 1000}
+    width={1000}
+
+  >
+    <VictoryAxis dependentAxis tickFormat={(tick) => `${tick}`} style={{ tickLabels: { fill:"#99CCFF"} }} />
+    <VictoryAxis tickLabelComponent={<VictoryLabel verticalAnchor="middle" textAnchor="end" />} style={{ tickLabels: { fill:"#99CCFF", angle: width > 1000 ? -80 : 0,  } }} />
+      {skillBars}
+  </VictoryChart>
+  </Stack>
     </Stack>
   );
 }

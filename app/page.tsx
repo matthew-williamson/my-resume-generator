@@ -20,13 +20,15 @@ export default function Page() {
   }, []);
   const width = windowSize.width ?? initialWindowSize;
 
+  if (!width) {
+    return <LinearProgress />
+  }
+
   return (
     <Stack gap={2} p={2}>
       <Header />
       <Notes />
-      {!width ? (
-        <LinearProgress />
-      ): (
+      <YearsBySkillGraph />
       <Stack
         spacing={2}
         direction={width > 1000 ? "row" : "column"}
@@ -35,9 +37,8 @@ export default function Page() {
         <OccupationHistory />
         <Stack spacing={2}>
           <PersonalityScores />
-          <YearsBySkillGraph />
         </Stack>
-      </Stack>)}
+      </Stack>
     </Stack>
   );
 }
