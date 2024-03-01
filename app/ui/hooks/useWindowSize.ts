@@ -5,8 +5,8 @@ const useWindowSize = () => {
     width: number;
     height: number;
   }>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width:  window?.innerWidth || 0,
+    height: window?.innerHeight || 0,
   });
 
   useEffect(() => {
