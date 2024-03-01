@@ -17,6 +17,7 @@ export default function PersonalityScores() {
         backgroundColor: "#1A1A1A",
         color: "white",
         height: "fit-content",
+        minWidth: "40%",
         p: 2,
         borderRadius: 2,
       }}

@@ -13,7 +13,7 @@ export default function Header() {
   const isSmallWidth = width < 600;
   return (
     <Stack
-      direction={ isSmallWidth ? "row" : "row"}
+      direction={isSmallWidth ? "row" : "row"}
       sx={{
         alignItems: "center",
         backgroundColor: "#1A1A1A",
@@ -24,11 +24,24 @@ export default function Header() {
       spacing={isSmallWidth ? 1 : 0}
     >
       <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-        <Avatar sx={{ width: isSmallWidth ? 50 : 100, height: isSmallWidth ? 50 : 100, border: "1px solid #99CCFF" }}>
-          <img src="./matt_williamson.jpg" width={isSmallWidth ? 50 : 100} alt="matt headshot" />
+        <Avatar
+          sx={{
+            width: isSmallWidth ? 50 : 100,
+            height: isSmallWidth ? 50 : 100,
+            border: "1px solid #99CCFF",
+          }}
+        >
+          <img
+            src="./matt_williamson.jpg"
+            width={isSmallWidth ? 50 : 100}
+            alt="matt headshot"
+          />
         </Avatar>
         <Stack>
-          <Typography variant={isSmallWidth ? "body1" : "h5"} sx={{ color: "#99CCFF" }}>
+          <Typography
+            variant={isSmallWidth ? "body1" : "h5"}
+            sx={{ color: "#99CCFF" }}
+          >
             Matthew Williamson
           </Typography>
           <Typography variant="caption">Senior Software Engineer</Typography>

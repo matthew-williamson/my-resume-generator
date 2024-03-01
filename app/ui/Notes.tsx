@@ -28,7 +28,8 @@ export default function Notes() {
           sx={{ color: "#99CCFF" }}
         >
           This UI was purpose-built from scratch by me using React, TypeScript,
-          Next.js, MUI, Victory Charts, HTML, and CSS as a way for me to demonstrate my ability.
+          Next.js, MUI, Victory Charts, HTML, and CSS as a way for me to
+          demonstrate my ability.
         </Typography>
         <Typography variant="caption">
           As I gain more experiences and skills, I find it increasingly

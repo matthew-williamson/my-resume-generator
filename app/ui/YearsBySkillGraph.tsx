@@ -45,9 +45,10 @@ const skillsInExperiences = _.uniq(
   }, [] as Skill[]),
 );
 
-const alphaSort = (a: Skill, b: Skill) => a > b ? 1 : -1;
+const alphaSort = (a: Skill, b: Skill) => (a > b ? 1 : -1);
 
-const timeSort = (a: Skill, b: Skill) => timeBySkill[a] < timeBySkill[b] ? 1 : -1;
+const timeSort = (a: Skill, b: Skill) =>
+  timeBySkill[a] < timeBySkill[b] ? 1 : -1;
 
 const timeBySkill = experiences.reduce(
   (acc, experience) => {
@@ -65,7 +66,6 @@ const timeBySkill = experiences.reduce(
   },
   {} as Record<string, number>,
 );
-
 
 export default function YearsBySkillGraph() {
   const windowSize = useWindowSize();
@@ -85,15 +85,17 @@ export default function YearsBySkillGraph() {
     [],
   );
 
-  let skillBars = [...skillsInExperiences].sort(sort === 'alpha' ? alphaSort : timeSort).map((skill) => {
-    return (
-      <VictoryBar
-        key={`${skill}-bar`}
-        style={{ data: { fill: "#99CCFF", width: 8 } }}
-        data={[{ x: skill, y: millisecondsToYears(timeBySkill[skill]) }]}
-      />
-    )
-  });
+  let skillBars = [...skillsInExperiences]
+    .sort(sort === "alpha" ? alphaSort : timeSort)
+    .map((skill) => {
+      return (
+        <VictoryBar
+          key={`${skill}-bar`}
+          style={{ data: { fill: "#99CCFF", width: 8 } }}
+          data={[{ x: skill, y: millisecondsToYears(timeBySkill[skill]) }]}
+        />
+      );
+    });
 
   if (width < 1000) {
     skillBars = skillBars.reverse();
@@ -140,19 +142,34 @@ export default function YearsBySkillGraph() {
         </ToggleButtonGroup>
       </Stack>
       <Stack>
-      <VictoryChart
-    horizontal={width > 1000 ? false : true}
-    padding={{ top: 50, bottom: width > 1000 ? 200 : 50, left: width > 1000 ? 50 : 200, right: 50 }}
-    colorScale={"blue"}
-    height={width > 1000 ? 500 : 1000}
-    width={1000}
-
-  >
-    <VictoryAxis dependentAxis tickFormat={(tick) => `${tick}`} style={{ tickLabels: { fill:"#99CCFF"} }} />
-    <VictoryAxis tickLabelComponent={<VictoryLabel verticalAnchor="middle" textAnchor="end" />} style={{ tickLabels: { fill:"#99CCFF", angle: width > 1000 ? -80 : 0,  } }} />
-      {skillBars}
-  </VictoryChart>
-  </Stack>
+        <VictoryChart
+          horizontal={width > 1000 ? false : true}
+          padding={{
+            top: 50,
+            bottom: width > 1000 ? 200 : 50,
+            left: width > 1000 ? 50 : 200,
+            right: 50,
+          }}
+          colorScale={"blue"}
+          height={width > 1000 ? 500 : 1000}
+          width={1000}
+        >
+          <VictoryAxis
+            dependentAxis
+            tickFormat={(tick) => `${tick}`}
+            style={{ tickLabels: { fill: "#99CCFF" } }}
+          />
+          <VictoryAxis
+            tickLabelComponent={
+              <VictoryLabel verticalAnchor="middle" textAnchor="end" />
+            }
+            style={{
+              tickLabels: { fill: "#99CCFF", angle: width > 1000 ? -80 : 0 },
+            }}
+          />
+          {skillBars}
+        </VictoryChart>
+      </Stack>
     </Stack>
   );
 }

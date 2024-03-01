@@ -21,24 +21,22 @@ export default function Page() {
   const width = windowSize.width ?? initialWindowSize;
 
   if (!width) {
-    return <LinearProgress />
+    return <LinearProgress />;
   }
 
   return (
     <Stack gap={2} p={2}>
       <Header />
-      <Notes />
-      <YearsBySkillGraph />
       <Stack
-        spacing={2}
-        direction={width > 1000 ? "row" : "column"}
         sx={{ justifyContent: "space-between" }}
+        direction={width < 1000 ? "column" : "row"}
+        spacing={2}
       >
-        <OccupationHistory />
-        <Stack spacing={2}>
-          <PersonalityScores />
-        </Stack>
+        <Notes />
+        <PersonalityScores />
       </Stack>
+      <YearsBySkillGraph />
+      <OccupationHistory />
     </Stack>
   );
 }
