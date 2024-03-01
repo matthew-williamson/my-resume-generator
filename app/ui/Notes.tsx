@@ -11,6 +11,7 @@ export default function Notes() {
         borderRadius: 2,
         border: "1px solid rgba(255, 255, 255, 0.12)",
         p: 2,
+        flex: 1
       }}
     >
       <Stack spacing={1}>

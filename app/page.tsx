@@ -30,7 +30,7 @@ export default function Page() {
       <Stack
         sx={{ justifyContent: "space-between" }}
         direction={width < 1000 ? "column" : "row"}
-        spacing={2}
+        gap={2}
       >
         <Notes />
         <PersonalityScores />

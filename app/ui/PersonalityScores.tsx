@@ -16,7 +16,6 @@ export default function PersonalityScores() {
       sx={{
         backgroundColor: "#1A1A1A",
         color: "white",
-        minWidth: 400,
         p: 2,
         borderRadius: 2,
         border: "1px solid rgba(255, 255, 255, 0.12)",
