@@ -38,7 +38,7 @@ const skillsInExperiences = _.uniq(
   }, [] as Skill[]),
 );
 
-const alphabeticalSortedSkills = skillsInExperiences.toSorted((a, b) =>
+const alphabeticalSortedSkills = [...skillsInExperiences].sort((a, b) =>
   a > b ? 1 : -1,
 );
 
@@ -59,7 +59,7 @@ const timeBySkill = experiences.reduce(
   {} as Record<string, number>,
 );
 
-const timeSortedSkills = skillsInExperiences.toSorted((a, b) =>
+const timeSortedSkills = [...skillsInExperiences].sort((a, b) =>
   timeBySkill[a] < timeBySkill[b] ? 1 : -1,
 );
 
@@ -124,7 +124,7 @@ export default function YearsBySkillGraph() {
     }
 
     setSkillGraphBounds(skillGraphRef.current.getBoundingClientRect());
-  }, [skillGraphRef.current, windowSize.width, scroll]);
+  }, [skillGraphRef, windowSize.width, scroll]);
 
   const yearWidthInPixels = useMemo(() => {
     const width = windowSize.width;
@@ -156,7 +156,7 @@ export default function YearsBySkillGraph() {
         {yearSegments}
       </Stack>
     );
-  }, [totalYears, yearWidthInPixels]);
+  }, [yearWidthInPixels]);
 
   const calculatedGrid = useMemo(() => {
     if (!skillGraphBounds) {
