@@ -23,7 +23,7 @@ export default function OccupationHistory() {
 
         <Typography variant="h5">Occupation History</Typography>
       </Stack>
-      {experiences.toReversed().map((e) => {
+      {[...experiences].reverse().map((e) => {
         return (
           <Stack
             key={`${e.company.name}-experience-card-${e.color}`}
