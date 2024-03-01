@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 
 const useWindowSize = () => {
@@ -25,7 +23,7 @@ const useWindowSize = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array ensures that this effect runs only once on component mount
+  }, []);
 
   return windowSize;
 };
