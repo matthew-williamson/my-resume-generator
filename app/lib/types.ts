@@ -4,6 +4,7 @@ export interface Company {
 }
 
 export enum Skill {
+  Testing = "Testing",
   React = "React",
   TypeScript = "TypeScript",
   JavaScript = "JavaScript",

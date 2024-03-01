@@ -9,6 +9,7 @@ import OccupationHistory from "./ui/OccupationHistory";
 import YearsBySkillGraph from "./ui/YearsBySkillGraph";
 import Notes from "./ui/Notes";
 import useWindowSize from "./ui/hooks/useWindowSize";
+import PersonalityScores from "./ui/PersonalityScores";
 
 export default function Page() {
   const windowSize = useWindowSize();
@@ -22,7 +23,10 @@ export default function Page() {
         sx={{ justifyContent: "space-between" }}
       >
         <OccupationHistory />
-        <YearsBySkillGraph />
+        <Stack spacing={2}>
+          <PersonalityScores />
+          <YearsBySkillGraph />
+        </Stack>
       </Stack>
     </Stack>
   );

@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
-import { Edit } from "@mui/icons-material";
+import { WorkRounded } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
@@ -19,7 +19,8 @@ export default function OccupationHistory() {
         spacing={1}
         sx={{ alignItems: "center", color: "#99CCFF" }}
       >
-        <Edit />
+        <WorkRounded />
+
         <Typography variant="h5">Occupation History</Typography>
       </Stack>
       {experiences.toReversed().map((e) => {

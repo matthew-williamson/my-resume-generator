@@ -27,6 +27,14 @@ export const CRC: Company = {
   location: Scottsdale,
 };
 
+export const bigFivePersonalityScores = [
+  { attribute: "Openness", rating: 79 },
+  { attribute: "Conscientiousness", rating: 60 },
+  { attribute: "Extroversion", rating: 75 },
+  { attribute: "Agreeableness", rating: 65 },
+  { attribute: "Neuroticism", rating: 40 },
+];
+
 export const experiences: Experience[] = [
   {
     startDate: new Date("10/1/2023"),

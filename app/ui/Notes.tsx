@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { Psychology } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 
 export default function Notes() {
   return (
@@ -19,7 +19,7 @@ export default function Notes() {
           spacing={1}
           sx={{ alignItems: "center", color: "#99CCFF" }}
         >
-          <Psychology />
+          <Edit />
           <Typography variant="h5">Purpose</Typography>
         </Stack>
         <Typography

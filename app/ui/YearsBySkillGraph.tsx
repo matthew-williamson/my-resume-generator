@@ -21,7 +21,7 @@ import { millisecondsToYears } from "../lib/helpers";
 import { Skill } from "../lib/types";
 import useWindowSize from "./hooks/useWindowSize";
 import useWindowScroll from "./hooks/useWindowScroll";
-import { CalendarMonth, SortByAlpha } from "@mui/icons-material";
+import { CalendarMonth, ShowChart, SortByAlpha } from "@mui/icons-material";
 
 const firstExperience = experiences[0];
 const lastExperience = experiences[experiences.length - 1];
@@ -62,9 +62,6 @@ const timeBySkill = experiences.reduce(
 const timeSortedSkills = skillsInExperiences.toSorted((a, b) =>
   timeBySkill[a] < timeBySkill[b] ? 1 : -1,
 );
-
-// TODO: clicking on blocks should open tooltip that displays which roles correspond
-// TODO: radar chart/web chart to show strengths
 
 const SkillRow = ({
   skill,
@@ -214,47 +211,56 @@ export default function YearsBySkillGraph() {
   }, [sort]);
 
   return (
+    <Stack
+      spacing={2}
+      sx={{
+        backgroundColor: "#1A1A1A",
+        color: "white",
+        height: "fit-content",
+        p: 2,
+        borderRadius: 2,
+      }}
+    >
       <Stack
-        spacing={2}
-        sx={{
-          backgroundColor: "#1A1A1A",
-          color: "white",
-          height: "fit-content",
-          p: 2,
-          borderRadius: 2,
-        }}
+        direction="row"
+        sx={{ alignItems: "center", justifyContent: "space-between" }}
       >
         <Stack
           direction="row"
-          sx={{ alignItems: "center", justifyContent: "space-between" }}
+          spacing={1}
+          sx={{ alignItems: "center", color: "#99CCFF" }}
         >
-          <Typography variant="h5" sx={{ color: "#99CCFF" }}>
-            Years of Experience by Skill
-          </Typography>
-          <ToggleButtonGroup
-            value={sort}
-            exclusive
-            onChange={handleSortChange}
-            sx={{ height: 28 }}
+          <ShowChart />
+          <Typography variant="h5">Skills x Years</Typography>
+        </Stack>
+        <ToggleButtonGroup
+          value={sort}
+          exclusive
+          onChange={handleSortChange}
+          sx={{ height: 28 }}
+        >
+          <ToggleButton
+            value="alpha"
+            sx={{ backgroundColor: "white", ":hover": { opacity: 0.9 } }}
           >
-            <ToggleButton
-              value="alpha"
-              sx={{ backgroundColor: "white", ":hover": { opacity: 0.9 } }}
-            >
-              <SortByAlpha />
-            </ToggleButton>
-            <ToggleButton value="years" sx={{ backgroundColor: "white" }}>
-              <CalendarMonth />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Stack>
-        <Stack spacing={0.2} ref={skillGraphRef} sx={{ width: "100%", position: 'relative' }}>
-          {legend}
-          {sortedSkills.map((s) => (
-            <SkillRow skill={s} key={s} yearWidthInPixels={yearWidthInPixels} />
-          ))}
-        {calculatedGrid}
-        </Stack>
+            <SortByAlpha />
+          </ToggleButton>
+          <ToggleButton value="years" sx={{ backgroundColor: "white" }}>
+            <CalendarMonth />
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Stack>
+      <Stack
+        spacing={0.2}
+        ref={skillGraphRef}
+        sx={{ width: "100%", position: "relative" }}
+      >
+        {legend}
+        {sortedSkills.map((s) => (
+          <SkillRow skill={s} key={s} yearWidthInPixels={yearWidthInPixels} />
+        ))}
+        {calculatedGrid}
+      </Stack>
+    </Stack>
   );
 }
