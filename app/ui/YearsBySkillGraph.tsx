@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Box,
   Divider,
@@ -129,7 +127,7 @@ export default function YearsBySkillGraph() {
   }, [skillGraphRef, windowSize.width, scroll]);
 
   const yearWidthInPixels = useMemo(() => {
-    const width = windowSize.width || 1000;
+    const width = window.innerWidth;
     const widthAvailable = width > 1000 ? width * 0.6 - 400 : width - 400;
     return widthAvailable / totalYears;
   }, [windowSize]);

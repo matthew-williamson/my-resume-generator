@@ -1,5 +1,3 @@
-"use client";
-
 import { Psychology } from "@mui/icons-material";
 import { Stack, Typography } from "@mui/material";
 import {
