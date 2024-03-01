@@ -1,5 +1,5 @@
 import { Psychology } from "@mui/icons-material";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import {
   VictoryChart,
   VictoryPolarAxis,
@@ -16,8 +16,7 @@ export default function PersonalityScores() {
       sx={{
         backgroundColor: "#1A1A1A",
         color: "white",
-        height: "fit-content",
-        minWidth: "40%",
+        minWidth: 400,
         p: 2,
         borderRadius: 2,
       }}
@@ -30,36 +29,38 @@ export default function PersonalityScores() {
         <Psychology />
         <Typography variant="h5">Big 5 Personality Scores</Typography>
       </Stack>
-      <VictoryChart
-        polar
-        animate={{ easing: "linear" }}
-        theme={VictoryTheme.material}
-      >
-        {bigFivePersonalityScores.map((dataPoint, index) => (
-          <VictoryPolarAxis
-            key={dataPoint.attribute}
-            dependentAxis
-            style={{
-              axisLabel: { padding: 13, fontSize: 12, fill: "#99CCFF" },
-              axis: { stroke: "none" },
-              grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 },
-            }}
-            tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
-            labelPlacement="perpendicular"
-            axisValue={index + 1}
-            label={dataPoint.attribute}
-            tickFormat={() => ""}
+      <Box height={350}>
+        <VictoryChart
+          polar
+          animate={{ easing: "linear" }}
+          theme={VictoryTheme.material}
+        >
+          {bigFivePersonalityScores.map((dataPoint, index) => (
+            <VictoryPolarAxis
+              key={dataPoint.attribute}
+              dependentAxis
+              style={{
+                axisLabel: { padding: 13, fontSize: 12, fill: "#99CCFF" },
+                axis: { stroke: "none" },
+                grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 },
+              }}
+              tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
+              labelPlacement="perpendicular"
+              axisValue={index + 1}
+              label={dataPoint.attribute}
+              tickFormat={() => ""}
+            />
+          ))}
+          <VictoryPolarAxis tickFormat={() => ""} />
+          <VictoryArea
+            data={bigFivePersonalityScores.map((d) => ({
+              x: d.attribute,
+              y: d.rating,
+            }))}
+            style={{ data: { fill: "rgba(153, 204, 255, 0.5)" } }}
           />
-        ))}
-        <VictoryPolarAxis tickFormat={() => ""} />
-        <VictoryArea
-          data={bigFivePersonalityScores.map((d) => ({
-            x: d.attribute,
-            y: d.rating,
-          }))}
-          style={{ data: { fill: "rgba(153, 204, 255, 0.5)" } }}
-        />
-      </VictoryChart>
+        </VictoryChart>
+      </Box>
     </Stack>
   );
 }

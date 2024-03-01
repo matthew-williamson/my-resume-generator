@@ -153,6 +153,7 @@ export default function YearsBySkillGraph() {
           colorScale={"blue"}
           height={width > 1000 ? 500 : 1000}
           width={1000}
+          animate={{ easing: "linear" }}
         >
           <VictoryAxis
             dependentAxis
