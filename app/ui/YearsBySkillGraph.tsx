@@ -129,7 +129,7 @@ export default function YearsBySkillGraph() {
   }, [skillGraphRef, windowSize.width, scroll]);
 
   const yearWidthInPixels = useMemo(() => {
-    const width = windowSize.width;
+    const width = windowSize.width || 1000;
     const widthAvailable = width > 1000 ? width * 0.6 - 400 : width - 400;
     return widthAvailable / totalYears;
   }, [windowSize]);

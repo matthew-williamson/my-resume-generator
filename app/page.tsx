@@ -19,7 +19,7 @@ export default function Page() {
       <Notes />
       <Stack
         spacing={2}
-        direction={windowSize.width > 1000 ? "row" : "column"}
+        direction={!windowSize.width || windowSize.width > 1000 ? "row" : "column"}
         sx={{ justifyContent: "space-between" }}
       >
         <OccupationHistory />
