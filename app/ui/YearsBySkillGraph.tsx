@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Divider,
@@ -104,7 +106,11 @@ const SkillRow = ({
 
   return (
     <Stack direction="row" key={`${skill}-row`}>
-      <Typography variant="caption" sx={{ width: 200, color: '#99CCFF' }} className="skill-label">
+      <Typography
+        variant="caption"
+        sx={{ width: 200, color: "#99CCFF" }}
+        className="skill-label"
+      >
         {skill}
       </Typography>
       {barPieces}
@@ -117,6 +123,7 @@ export default function YearsBySkillGraph() {
   const windowSize = useWindowSize();
   const scroll = useWindowScroll();
   const [skillGraphBounds, setSkillGraphBounds] = useState<DOMRect>();
+  const [initialWindowSize, setInitialWindowSize] = useState(0);
 
   useEffect(() => {
     if (!skillGraphRef.current) {
@@ -126,11 +133,15 @@ export default function YearsBySkillGraph() {
     setSkillGraphBounds(skillGraphRef.current.getBoundingClientRect());
   }, [skillGraphRef, windowSize.width, scroll]);
 
+  useEffect(() => {
+    setInitialWindowSize(window.innerWidth);
+  }, []);
+
   const yearWidthInPixels = useMemo(() => {
-    const width = window.innerWidth;
+    const width = windowSize.width ?? initialWindowSize;
     const widthAvailable = width > 1000 ? width * 0.6 - 400 : width - 400;
     return widthAvailable / totalYears;
-  }, [windowSize]);
+  }, [windowSize, scroll, skillGraphBounds, initialWindowSize]);
 
   const legend = useMemo(() => {
     const yearSegments = [];

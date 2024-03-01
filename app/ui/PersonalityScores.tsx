@@ -31,7 +31,7 @@ export default function PersonalityScores() {
       </Stack>
       <VictoryChart
         polar
-        animate={{ easing: 'linear' }}
+        animate={{ easing: "linear" }}
         theme={VictoryTheme.material}
       >
         {bigFivePersonalityScores.map((dataPoint, index) => (
@@ -39,13 +39,11 @@ export default function PersonalityScores() {
             key={dataPoint.attribute}
             dependentAxis
             style={{
-              axisLabel: { padding: 13, fontSize: 12, fill: '#99CCFF' },
+              axisLabel: { padding: 13, fontSize: 12, fill: "#99CCFF" },
               axis: { stroke: "none" },
               grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 },
             }}
-            tickLabelComponent={
-              <VictoryLabel labelPlacement="vertical" />
-            }
+            tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
             labelPlacement="perpendicular"
             axisValue={index + 1}
             label={dataPoint.attribute}
