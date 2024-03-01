@@ -28,7 +28,11 @@ export default function Header() {
       <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
         <Link
           variant="caption"
-          sx={{ color: "#99CCFF", cursor: "pointer", ':hover': { opacity: 0.8 }  }}
+          sx={{
+            color: "#99CCFF",
+            cursor: "pointer",
+            ":hover": { opacity: 0.8 },
+          }}
           href="https://www.linkedin.com/in/matthew-williamson-a63a88121/"
           target="_blank"
         >
@@ -36,7 +40,11 @@ export default function Header() {
         </Link>
         <Link
           variant="caption"
-          sx={{ color: "#99CCFF", cursor: "pointer", ':hover': { opacity: 0.8 } }}
+          sx={{
+            color: "#99CCFF",
+            cursor: "pointer",
+            ":hover": { opacity: 0.8 },
+          }}
           href="https://github.com/mlloydwilliamson1"
           target="_blank"
         >

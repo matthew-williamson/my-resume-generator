@@ -8,13 +8,19 @@ import Header from "./ui/Header";
 import OccupationHistory from "./ui/OccupationHistory";
 import YearsBySkillGraph from "./ui/YearsBySkillGraph";
 import Notes from "./ui/Notes";
+import useWindowSize from "./ui/hooks/useWindowSize";
 
 export default function Page() {
+  const windowSize = useWindowSize();
   return (
     <Stack gap={2} p={2}>
       <Header />
       <Notes />
-      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+      <Stack
+        spacing={2}
+        direction={windowSize.width > 1000 ? "row" : "column"}
+        sx={{ justifyContent: "space-between" }}
+      >
         <OccupationHistory />
         <YearsBySkillGraph />
       </Stack>

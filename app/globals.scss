@@ -1,4 +1,21 @@
 body {
   background: rgb(60, 60, 60);
   color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 0;
+}
+
+.MuiButtonBase-root.MuiToggleButton-root {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #99ccff;
+  border: 1px solid;
+}
+
+.Mui-selected {
+  background-color: rgba(153, 204, 255, 0.9) !important;
+  border: 1px solid #99ccff !important;
+}
+
+.MuiButtonBase-root.MuiToggleButton-root:hover {
+  opacity: 0.9;
 }

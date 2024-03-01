@@ -27,19 +27,17 @@ export default function Notes() {
           fontWeight={700}
           sx={{ color: "#99CCFF" }}
         >
-          This UI was built from scratch in one afternoon using React,
-          TypeScript, Next.js, MUI, HTML, and CSS as a way for me to demonstrate
-          my ability.
+          This UI was purpose-built from scratch by me using React, TypeScript,
+          Next.js, MUI, HTML, and CSS as a way for me to demonstrate my ability.
         </Typography>
         <Typography variant="caption">
           As I gain more experiences and skills, I find it increasingly
           difficult to write a succinct traditional resume that conveys the
           depth and breadth of my abilities. I also find it helpful to visualize
-          skills in terms of time, percentages, etc rather than just raw text.
-          This online resume is a way for me to not only TELL about my skills,
-          but also show them. Hope you enjoy!
+          skills with context rather than just raw text. This online resume is a
+          way for me to not only TELL about my skills, but also SHOW them. Hope
+          you enjoy!
         </Typography>
-        {/* <Link variant='caption' sx={{ color: '#99CCFF', cursor: 'pointer' }}>https://www.linkedin.com/in/matthew-williamson-a63a88121/</Link> */}
       </Stack>
     </Stack>
   );

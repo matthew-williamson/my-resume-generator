@@ -1,17 +1,16 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
-import { Edit, Note } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
     <Stack
       sx={{
         backgroundColor: "#1A1A1A",
-        width: "100%",
+        minWidth: "40%",
         borderRadius: 2,
         p: 2,
-        mr: 2,
       }}
       spacing={2}
     >

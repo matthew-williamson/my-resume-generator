@@ -213,7 +213,6 @@ export const experiences: Experience[] = [
       Skill.React,
       Skill.TypeScript,
       Skill.JavaScript,
-      Skill.MongoDB,
       Skill.EventDrivenArchitecture,
       Skill.EndToEndTesting,
       Skill.Cypress,
