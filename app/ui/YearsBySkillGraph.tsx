@@ -104,7 +104,7 @@ const SkillRow = ({
 
   return (
     <Stack direction="row" key={`${skill}-row`}>
-      <Typography variant="caption" sx={{ width: 200 }} className="skill-label">
+      <Typography variant="caption" sx={{ width: 200, color: '#99CCFF' }} className="skill-label">
         {skill}
       </Typography>
       {barPieces}
