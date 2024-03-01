@@ -110,20 +110,16 @@ export default function YearsBySkillGraph() {
         height: "fit-content",
         p: 2,
         borderRadius: 2,
+        border: "1px solid rgba(255, 255, 255, 0.12)",
       }}
     >
       <Stack
         direction="row"
         sx={{ alignItems: "center", justifyContent: "space-between" }}
       >
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ alignItems: "center", color: "#99CCFF" }}
-        >
-          <ShowChart />
-          <Typography variant="h5">Skills x Years</Typography>
-        </Stack>
+        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+          Skills x Years
+        </Typography>
         <ToggleButtonGroup
           value={sort}
           exclusive

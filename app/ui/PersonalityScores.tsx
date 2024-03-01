@@ -19,16 +19,12 @@ export default function PersonalityScores() {
         minWidth: 400,
         p: 2,
         borderRadius: 2,
+        border: "1px solid rgba(255, 255, 255, 0.12)",
       }}
     >
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ alignItems: "center", color: "#99CCFF" }}
-      >
-        <Psychology />
-        <Typography variant="h5">Big 5 Personality Scores</Typography>
-      </Stack>
+      <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+        Big 5 Personality Scores
+      </Typography>
       <Box height={350}>
         <VictoryChart
           polar

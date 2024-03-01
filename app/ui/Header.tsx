@@ -19,47 +19,50 @@ export default function Header() {
         backgroundColor: "#1A1A1A",
         justifyContent: "space-between",
         borderRadius: 2,
+        border: "1px solid rgba(255, 255, 255, 0.12)",
         p: 2,
       }}
       spacing={isSmallWidth ? 1 : 0}
     >
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{ alignItems: "center", justifyContent: "center" }}
+      >
         <Avatar
           sx={{
-            width: isSmallWidth ? 50 : 100,
-            height: isSmallWidth ? 50 : 100,
+            width: isSmallWidth ? 50 : 72,
+            height: isSmallWidth ? 50 : 72,
             border: "1px solid #99CCFF",
           }}
         >
           <img
             src="./matt_williamson.jpg"
-            width={isSmallWidth ? 50 : 100}
+            width={isSmallWidth ? 50 : 72}
             alt="matt headshot"
           />
         </Avatar>
         <Stack>
-          <Typography
-            variant={isSmallWidth ? "body1" : "h5"}
-            sx={{ color: "#99CCFF" }}
-          >
+          <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
             Matthew Williamson
           </Typography>
-          <Typography variant="caption">Senior Software Engineer</Typography>
+          <Typography variant="body2">Senior Software Engineer</Typography>
           <Typography variant="caption">Scottsdale, AZ</Typography>
         </Stack>
       </Stack>
-      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+      <Stack sx={{ alignItems: "center" }} spacing={0.5}>
         <Link
           variant="caption"
           sx={{
             color: "#99CCFF",
             cursor: "pointer",
             ":hover": { opacity: 0.8 },
+            display: "flex",
           }}
           href="https://www.linkedin.com/in/matthew-williamson-a63a88121/"
           target="_blank"
         >
-          <LinkedIn sx={{ fontSize: isSmallWidth ? 32 : 64 }} />
+          <LinkedIn sx={{ fontSize: 32 }} />
         </Link>
         <Link
           variant="caption"
@@ -67,11 +70,12 @@ export default function Header() {
             color: "#99CCFF",
             cursor: "pointer",
             ":hover": { opacity: 0.8 },
+            display: "flex",
           }}
           href="https://github.com/mlloydwilliamson1"
           target="_blank"
         >
-          <GitHub sx={{ fontSize: isSmallWidth ? 28 : 56 }} />
+          <GitHub sx={{ fontSize: 28 }} />
         </Link>
       </Stack>
     </Stack>

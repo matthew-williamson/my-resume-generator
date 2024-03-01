@@ -25,7 +25,7 @@ export default function Page() {
   }
 
   return (
-    <Stack gap={2} p={2}>
+    <Stack gap={2} p={2} sx={{ maxWidth: 1200, mx: "auto" }}>
       <Header />
       <Stack
         sx={{ justifyContent: "space-between" }}

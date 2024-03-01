@@ -1,5 +1,5 @@
 body {
-  background: rgb(60, 60, 60);
+  background: #262626;
   color: rgb(255, 255, 255);
   margin: 0;
   padding: 0;
@@ -13,6 +13,7 @@ body {
 
 .Mui-selected {
   background-color: rgba(153, 204, 255, 0.9) !important;
+  color: rgb(26, 26, 26) !important;
   border: 1px solid #99ccff !important;
 }
 

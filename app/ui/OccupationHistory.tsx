@@ -11,18 +11,14 @@ export default function OccupationHistory() {
         minWidth: "40%",
         borderRadius: 2,
         p: 2,
+        border: "1px solid rgba(255, 255, 255, 0.12)",
       }}
       spacing={2}
     >
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{ alignItems: "center", color: "#99CCFF" }}
-      >
-        <WorkRounded />
+      <Typography sx={{ color: "#99CCFF" }} variant="h5">
+        Occupation History
+      </Typography>
 
-        <Typography variant="h5">Occupation History</Typography>
-      </Stack>
       {[...experiences].reverse().map((e) => {
         return (
           <Stack
@@ -30,6 +26,7 @@ export default function OccupationHistory() {
             sx={{
               backgroundColor: "rgba(255, 255, 255, 0.05)",
               borderRadius: 2,
+              border: "1px solid rgba(255, 255, 255, 0.12)",
               p: 2,
             }}
           >
@@ -38,7 +35,7 @@ export default function OccupationHistory() {
                 <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
                   {e.company.name}
                 </Typography>
-                <Typography variant="caption">{e.title}</Typography>
+                <Typography variant="body2">{e.title}</Typography>
                 <Typography variant="caption">
                   {e.startDisplay} - {e.endDisplay ?? "Current"}
                 </Typography>
@@ -53,11 +50,11 @@ export default function OccupationHistory() {
                     sx={{ position: "relative" }}
                   >
                     <Box
-                      sx={{ position: "absolute", top: -3, color: "#99CCFF" }}
+                      sx={{ position: "absolute", top: -2, color: "#99CCFF" }}
                     >
                       ○
                     </Box>
-                    <Typography variant="caption" sx={{ pl: 1 }}>
+                    <Typography variant="body2" sx={{ pl: 1 }}>
                       {a}
                     </Typography>
                   </Stack>
