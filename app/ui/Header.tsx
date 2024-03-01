@@ -72,7 +72,7 @@ export default function Header() {
             ":hover": { opacity: 0.8 },
             display: "flex",
           }}
-          href="https://github.com/mlloydwilliamson1"
+          href="https://github.com/matthew-williamson"
           target="_blank"
         >
           <GitHub sx={{ fontSize: 28 }} />
