@@ -1,18 +1,17 @@
+"use client";
+
 import { Psychology } from "@mui/icons-material";
 import { Stack, Typography } from "@mui/material";
 import {
   VictoryChart,
   VictoryPolarAxis,
-  VictoryBar,
   VictoryTheme,
   VictoryArea,
-  VictoryGroup,
   VictoryLabel,
 } from "victory";
 import { bigFivePersonalityScores } from "../lib/constants";
 
 export default function PersonalityScores() {
-  const attributes = bigFivePersonalityScores.map((p) => p.attribute);
   return (
     <Stack
       spacing={2}
