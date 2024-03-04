@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Button,
+  CircularProgress,
   Divider,
   IconButton,
   Stack,
@@ -9,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import {
+  Check,
   DragHandle,
   HelpOutline,
   Pause,
@@ -16,7 +18,68 @@ import {
   RocketLaunch,
 } from "@mui/icons-material";
 import { ulid } from "ulid";
-import useWindowSize from "../hooks/useWindowSize";
+
+interface SpriteData {
+  id: string;
+  left?: number;
+  top?: number;
+}
+
+const INITIAL_TOP = 5;
+const MISSILE_OFFSET = 64;
+const HORIZONTAL_MOVE_SPEED = 10;
+const VERTICAL_MOVE_SPEED = 0.7;
+const GAME_UPDATE_RATE_IN_MS = 25;
+const INITIAL_SCORE = 0;
+const SPRITE_OFFSET = 28;
+const GAME_HEIGHT = 650;
+const INITIAL_POSITION = 0;
+const LEFT_BOUND = 0;
+const FULL_PAYLOAD = 3;
+const PAYLOAD_RELOAD_WAIT = 1000 * 3; // 3s in MS
+
+const initialInvaders: SpriteData[] = [];
+const initialMissiles: SpriteData[] = [];
+
+const Invader = ({ id, left, top }: SpriteData) => (
+  <PestControl
+    id={id}
+    className="invader-sprite"
+    sx={{
+      color: "#FFCCCC",
+      position: "absolute",
+      left,
+      top,
+      fontSize: `${SPRITE_OFFSET}px`,
+      transform: "rotate(180deg)",
+    }}
+  />
+);
+
+const Missile = ({ id, left, top }: SpriteData) => (
+  <DragHandle
+    id={id}
+    className="missile-sprite"
+    sx={{
+      transform: "rotate(90deg)",
+      position: "absolute",
+      left,
+      top,
+      fontSize: `${SPRITE_OFFSET / 2}px`,
+      color: "orange",
+    }}
+  />
+);
+
+const PayloadIndicator = ({ hasPayload }: { hasPayload?: boolean }) => (
+  <DragHandle
+    sx={{
+      transform: "rotate(90deg)",
+      fontSize: `${SPRITE_OFFSET / 2}px`,
+      color: hasPayload ? "#99CCFF" : "rgba(255, 255, 255, 0.12)",
+    }}
+  />
+);
 
 const generateRandomNumber = (upperBound: number) => {
   return Math.floor(Math.random() * upperBound); // Generates a random number between 0 (inclusive) and 501 (exclusive)
@@ -58,110 +121,102 @@ const TopRow = ({
   </Stack>
 );
 
-const BottomRow = ({ score }: { score: number }) => (
-  <Stack
-    direction="row"
-    sx={{
-      justifyContent: "space-between",
-      alignItems: "center",
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
-      px: 2,
-      height: 48,
-    }}
-  >
-    <Typography fontWeight={700} variant="body2" color="#99CCFF">
-      Score: {score}
-    </Typography>
-    <Tooltip
-      title={
-        <Stack spacing={1}>
-          <Typography variant="caption">
-            Bug Invaders was a fun challenge to see if I could build a
-            recreation of the classic Space Invaders game using nothing besides
-            the build-in React hooks and TypeScript. I used MUI for the
-            bug/player/missile sprites. Enjoy!
-          </Typography>
-          <Divider />
-          <Stack>
-            <Typography variant="caption">
-              - Left arrow key moves left
-            </Typography>
-            <Typography variant="caption">
-              - Right arrow key moves right
-            </Typography>
-            <Typography variant="caption">
-              - Shift key to fire missiles
-            </Typography>
-            <Typography variant="caption">
-              - Escape key to pause the game
-            </Typography>
-          </Stack>
-        </Stack>
-      }
+const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
+  const payloadIndicators = useMemo(() => {
+    const elements = [];
+    for (let i = 0; i < payload; i += 1) {
+      elements.push(<PayloadIndicator key={`payload-${i}`} hasPayload />);
+    }
+
+    while (elements.length < FULL_PAYLOAD) {
+      elements.push(
+        <PayloadIndicator key={`empty-payload-${elements.length}`} />
+      );
+    }
+
+    return (
+      <Stack direction="row" sx={{ alignItems: "center" }}>
+        <Typography fontWeight={700} variant="body2" color="#99CCFF">
+          Payload:
+        </Typography>
+        {elements}
+      </Stack>
+    );
+  }, [payload]);
+
+  return (
+    <Stack
+      direction="row"
+      sx={{
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        px: 2,
+        height: 48,
+      }}
     >
-      <HelpOutline
-        sx={{
-          color: "#99CCFF",
-          fontSize: "20px",
-          ":hover": { opacity: 0.8 },
-        }}
-      />
-    </Tooltip>
-  </Stack>
-);
+      <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+        <Typography fontWeight={700} variant="body2" color="#99CCFF">
+          Score: {score}
+        </Typography>
+        {payloadIndicators}
+      </Stack>
+      <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+        <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.25}>
+          {payload < FULL_PAYLOAD ? (
+            <Typography variant="caption" fontWeight={700} color="#99CCFF">
+              Reloading...
+            </Typography>
+          ) : null}
+        </Stack>
+        <Tooltip
+          title={
+            <Stack spacing={1}>
+              <Typography variant="caption">
+                Bug Invaders was a fun challenge to see if I could build a
+                recreation of the classic Space Invaders game using nothing
+                besides the build-in React hooks and TypeScript. I used MUI for
+                the bug/player/missile sprites. Enjoy!
+              </Typography>
+              <Divider />
+              <Stack>
+                <Typography variant="caption">
+                  - Left arrow key moves left
+                </Typography>
+                <Typography variant="caption">
+                  - Right arrow key moves right
+                </Typography>
+                <Typography variant="caption">
+                  - Shift key to fire missiles
+                </Typography>
+                <Typography variant="caption">
+                  - Escape key to pause the game
+                </Typography>
+                <Typography variant="caption">
+                  - Your ship has a standard payload of 3 missiles, and will be
+                  resupplied regularly (every 3 seconds). If you fire all 3
+                  quickly,
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  you will be defenseless against the oncoming bugs until you've
+                  been reloaded. Use them wisely!
+                </Typography>
+              </Stack>
+            </Stack>
+          }
+        >
+          <HelpOutline
+            sx={{
+              color: "#99CCFF",
+              fontSize: "20px",
+              ":hover": { opacity: 0.8 },
+            }}
+          />
+        </Tooltip>
+      </Stack>
+    </Stack>
+  );
+};
 
-interface SpriteData {
-  id: string;
-  left?: number;
-  top?: number;
-}
-
-const INITIAL_TOP = 5;
-const MISSILE_OFFSET = 64;
-const HORIZONTAL_MOVE_SPEED = 10;
-const VERTICAL_MOVE_SPEED = 0.7;
-const GAME_UPDATE_RATE_IN_MS = 15;
-const INITIAL_SCORE = 0;
-const SPRITE_OFFSET = 28;
-const GAME_HEIGHT = 650;
-const INITIAL_POSITION = 0;
-const LEFT_BOUND = 0;
-
-const Invader = ({ id, left, top }: SpriteData) => (
-  <PestControl
-    id={id}
-    className="invader-sprite"
-    sx={{
-      color: "#FFCCCC",
-      position: "absolute",
-      left,
-      top,
-      fontSize: `${SPRITE_OFFSET}px`,
-      transform: "rotate(180deg)",
-    }}
-  />
-);
-
-const Missile = ({ id, left, top }: SpriteData) => (
-  <DragHandle
-    id={id}
-    className="missile-sprite"
-    sx={{
-      transform: "rotate(90deg)",
-      position: "absolute",
-      left,
-      top,
-      fontSize: `${SPRITE_OFFSET / 2}px`,
-      color: "orange",
-    }}
-  />
-);
-
-const initialInvaders: SpriteData[] = [];
-const initialMissiles: SpriteData[] = [];
-
-// TODO: fix bug movement to be less erratic
-// TODO: implement "ammo"
 const SpaceInvaders = () => {
   const gameWindowRef = useRef<HTMLDivElement>(null);
   const playerSpriteRef = useRef<SVGSVGElement>(null);
@@ -174,6 +229,7 @@ const SpaceInvaders = () => {
   const [lastScore, setLastScore] = useState(INITIAL_SCORE);
   const [missiles, setMissiles] = useState<SpriteData[]>(initialMissiles);
   const [hasLost, setHasLost] = useState(false);
+  const [payload, setPayload] = useState(FULL_PAYLOAD);
 
   useEffect(() => {
     if (!hasLost) {
@@ -187,6 +243,7 @@ const SpaceInvaders = () => {
     );
     setScore(INITIAL_SCORE);
     setPlaying(false);
+    setPayload(FULL_PAYLOAD);
   }, [hasLost]);
 
   useEffect(() => {
@@ -205,6 +262,7 @@ const SpaceInvaders = () => {
     let moveRight = false;
     let loopHasLost = false;
     let loopMSTimer = 0;
+    let loopPayload = FULL_PAYLOAD;
 
     const handleKeyDown = (event: globalThis.KeyboardEvent) => {
       if (!playing) {
@@ -231,6 +289,10 @@ const SpaceInvaders = () => {
 
       // fire missiles
       if (event.key === "Shift") {
+        if (loopPayload === 0) {
+          return;
+        }
+
         // Get player position dynamically, not state based. Unfortunate, but it is what it is.
         const playerBounds = playerSpriteRef.current?.getBoundingClientRect();
         const gameWindowBounds = gameWindowRef.current?.getBoundingClientRect();
@@ -238,6 +300,9 @@ const SpaceInvaders = () => {
         if (!playerBounds || !gameWindowBounds) {
           return;
         }
+
+        loopPayload -= 1;
+        setPayload(loopPayload);
 
         setMissiles((prevMissiles) => [
           ...prevMissiles,
@@ -268,12 +333,18 @@ const SpaceInvaders = () => {
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
-    // This is the actual game loop
-    const intervalId: NodeJS.Timeout = setInterval(() => {
-      if (!playing) {
-        return;
-      }
+    if (!playing) {
+      return;
+    }
 
+    // Reload loop
+    const reloadLoop: NodeJS.Timeout = setInterval(() => {
+      loopPayload = FULL_PAYLOAD;
+      setPayload(loopPayload);
+    }, PAYLOAD_RELOAD_WAIT);
+
+    // This is the actual game loop
+    const gameLoop: NodeJS.Timeout = setInterval(() => {
       let addInvader = loopMSTimer === 0;
       // Before we do anything, see if we've hit enough time to add a new invader
       if (loopMSTimer < GAME_UPDATE_RATE_IN_MS * 150) {
@@ -304,12 +375,12 @@ const SpaceInvaders = () => {
           const invaderLeft = invaderBounds.x;
           const invaderTop = invaderBounds.y;
 
-          const invaderRightEdge = invaderLeft + SPRITE_OFFSET;
+          const invaderRightEdge = invaderLeft + invaderBounds.width;
           const invaderLeftEdge = invaderLeft;
           const invaderTopEdge = invaderTop;
-          const invaderBottomEdge = invaderTop + SPRITE_OFFSET;
+          const invaderBottomEdge = invaderTop + invaderBounds.height;
 
-          const missileMiddle = missileLeft + SPRITE_OFFSET / 2;
+          const missileMiddle = missileLeft + missileBounds.width / 2;
           const isWithinLeftToRight =
             missileMiddle >= invaderLeftEdge &&
             missileMiddle <= invaderRightEdge;
@@ -443,7 +514,8 @@ const SpaceInvaders = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
-      clearInterval(intervalId);
+      clearInterval(gameLoop);
+      clearInterval(reloadLoop);
     };
   }, [playing, hasLost]);
 
@@ -535,7 +607,7 @@ const SpaceInvaders = () => {
           }}
         />
       </Stack>
-      <BottomRow score={score} />
+      <BottomRow score={score} payload={payload} />
     </Stack>
   );
 
