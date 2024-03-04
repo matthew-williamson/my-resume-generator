@@ -613,7 +613,7 @@ const SpaceInvaders = () => {
 
   return (
     <Stack
-      spacing={2}
+      spacing={1}
       sx={{
         backgroundColor: "#1A1A1A",
         borderRadius: 2,
@@ -625,21 +625,24 @@ const SpaceInvaders = () => {
       <Typography variant="h5" sx={{ color: "#99CCFF" }}>
         Bug Invaders Game
       </Typography>
-      <Typography variant="body2">
-        Bug Invaders is a purely React/TypeScript reinvention of the class Space
-        Invaders game. I wrote this from scratch as a challenge to myself.
-      </Typography>
-      <Typography variant="body2">
-        {/*eslint-disable-next-line react/no-unescaped-entities*/}I wanted to
-        see if I could make a "continous" (i.e. not a turn based) game
-        performant and handle complicated state updates with nothing but
-        traditional React hooks. Enjoy!
-      </Typography>
-      <Typography variant="body2">
-        P.S.: If you want to modify the difficulty, all you have to do is resize
-        your window and reload the page. A wider window makes the game more
-        difficult, and a smaller window makes the game easier.
-      </Typography>
+      <Stack spacing={1}>
+        <Typography variant="body2">
+          Bug Invaders is a purely React/TypeScript reinvention of the class
+          Space Invaders game. I wrote this from scratch as a challenge to
+          myself.
+        </Typography>
+        <Typography variant="body2">
+          {/*eslint-disable-next-line react/no-unescaped-entities*/}I wanted to
+          see if I could make a "continous" (i.e. not a turn based) game
+          performant and handle complicated state updates with nothing but
+          traditional React hooks. Enjoy!
+        </Typography>
+        <Typography variant="body2">
+          P.S.: If you want to modify the difficulty, all you have to do is
+          resize your window and reload the page. A wider window makes the game
+          more difficult, and a smaller window makes the game easier.
+        </Typography>
+      </Stack>
       {game}
     </Stack>
   );
