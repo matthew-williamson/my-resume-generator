@@ -630,8 +630,9 @@ const SpaceInvaders = () => {
         Invaders game. I wrote this from scratch as a challenge to myself.
       </Typography>
       <Typography variant="body2">
-        I wanted to see if I could make a "continous" (i.e. not a turn based)
-        game performant and handle complicated state updates with nothing but
+        {/*eslint-disable-next-line react/no-unescaped-entities*/}I wanted to
+        see if I could make a "continous" (i.e. not a turn based) game
+        performant and handle complicated state updates with nothing but
         traditional React hooks. Enjoy!
       </Typography>
       <Typography variant="body2">
