@@ -11,6 +11,7 @@ import Notes from "./ui/Notes";
 import useWindowSize from "./ui/hooks/useWindowSize";
 import PersonalityScores from "./ui/PersonalityScores";
 import { useEffect, useState } from "react";
+import BugInvaders from "./ui/games/BugInvaders";
 
 export default function Page() {
   const windowSize = useWindowSize();
@@ -35,6 +36,7 @@ export default function Page() {
         <Notes />
         <PersonalityScores />
       </Stack>
+      <BugInvaders />
       <YearsBySkillGraph />
       <OccupationHistory />
     </Stack>

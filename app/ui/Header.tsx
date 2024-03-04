@@ -13,7 +13,7 @@ export default function Header() {
   const isSmallWidth = width < 600;
   return (
     <Stack
-      direction={isSmallWidth ? "row" : "row"}
+      direction="row"
       sx={{
         alignItems: "center",
         backgroundColor: "#1A1A1A",
@@ -22,7 +22,7 @@ export default function Header() {
         border: "1px solid rgba(255, 255, 255, 0.12)",
         p: 2,
       }}
-      spacing={isSmallWidth ? 1 : 0}
+      spacing={1}
     >
       <Stack
         direction="row"
@@ -36,6 +36,7 @@ export default function Header() {
             border: "1px solid #99CCFF",
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="./matt_williamson.jpg"
             width={isSmallWidth ? 50 : 72}
