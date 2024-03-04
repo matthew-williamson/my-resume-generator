@@ -558,7 +558,7 @@ const SpaceInvaders = () => {
                 </Stack>
               </Alert>
             ) : null}
-            {isMobile ? (
+            {!isMobile ? (
               <Button
                 sx={{ color: "#99CCFF", width: "fit-content" }}
                 variant="outlined"
