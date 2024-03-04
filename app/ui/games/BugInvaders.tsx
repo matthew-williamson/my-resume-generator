@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Button,
-  CircularProgress,
   Divider,
   IconButton,
   Stack,
@@ -10,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  Check,
   DragHandle,
   HelpOutline,
   Pause,
@@ -18,6 +16,7 @@ import {
   RocketLaunch,
 } from "@mui/icons-material";
 import { ulid } from "ulid";
+import { isMobile } from "react-device-detect";
 
 interface SpriteData {
   id: string;
@@ -172,13 +171,6 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
         <Tooltip
           title={
             <Stack spacing={1}>
-              <Typography variant="caption">
-                Bug Invaders was a fun challenge to see if I could build a
-                recreation of the classic Space Invaders game using nothing
-                besides the build-in React hooks and TypeScript. I used MUI for
-                the bug/player/missile sprites. Enjoy!
-              </Typography>
-              <Divider />
               <Stack>
                 <Typography variant="caption">
                   - Left arrow key moves left
@@ -566,16 +558,24 @@ const SpaceInvaders = () => {
                 </Stack>
               </Alert>
             ) : null}
-            <Button
-              sx={{ color: "#99CCFF", width: "fit-content" }}
-              variant="outlined"
-              onClick={() => {
-                setHasLost(false);
-                setPlaying(true);
-              }}
-            >
-              PLAY{hasLost ? " AGAIN" : ""}
-            </Button>
+            {!isMobile ? (
+              <Button
+                sx={{ color: "#99CCFF", width: "fit-content" }}
+                variant="outlined"
+                onClick={() => {
+                  setHasLost(false);
+                  setPlaying(true);
+                }}
+              >
+                PLAY{hasLost ? " AGAIN" : ""}
+              </Button>
+            ) : (
+              <Stack sx={{ width: "100%" }}>
+                <Typography variant="body2" color="#99CCFF">
+                  To play Bug Invaders, visit this site on a desktop browser!
+                </Typography>
+              </Stack>
+            )}
           </Stack>
         ) : null}
         {invaders.map((invader) => (
@@ -613,7 +613,7 @@ const SpaceInvaders = () => {
 
   return (
     <Stack
-      spacing={1}
+      spacing={2}
       sx={{
         backgroundColor: "#1A1A1A",
         borderRadius: 2,
@@ -622,6 +622,23 @@ const SpaceInvaders = () => {
         flex: 1,
       }}
     >
+      <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+        Bug Invaders Game
+      </Typography>
+      <Typography variant="body2">
+        Bug Invaders is a purely React/TypeScript reinvention of the class Space
+        Invaders game. I wrote this from scratch as a challenge to myself.
+      </Typography>
+      <Typography variant="body2">
+        I wanted to see if I could make a "continous" (i.e. not a turn based)
+        game performant and handle complicated state updates with nothing but
+        traditional React hooks. Enjoy!
+      </Typography>
+      <Typography variant="body2">
+        P.S.: If you want to modify the difficulty, all you have to do is resize
+        your window and reload the page. A wider window makes the game more
+        difficult, and a smaller window makes the game easier.
+      </Typography>
       {game}
     </Stack>
   );
