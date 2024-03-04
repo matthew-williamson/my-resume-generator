@@ -558,7 +558,7 @@ const SpaceInvaders = () => {
                 </Stack>
               </Alert>
             ) : null}
-            {!isMobile ? (
+            {isMobile ? (
               <Button
                 sx={{ color: "#99CCFF", width: "fit-content" }}
                 variant="outlined"
@@ -570,7 +570,7 @@ const SpaceInvaders = () => {
                 PLAY{hasLost ? " AGAIN" : ""}
               </Button>
             ) : (
-              <Stack sx={{ width: "100%" }}>
+              <Stack sx={{ width: "66%" }}>
                 <Typography variant="body2" color="#99CCFF">
                   To play Bug Invaders, visit this site on a desktop browser!
                 </Typography>
