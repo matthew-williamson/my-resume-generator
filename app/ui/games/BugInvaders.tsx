@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useKeyboardControls } from "../hooks/useKeyboardControls";
 import {
   Alert,
   Button,
@@ -19,8 +18,8 @@ import {
 import { ulid } from "ulid";
 import useWindowSize from "../hooks/useWindowSize";
 
-const generateRandomNumber = () => {
-  return Math.floor(Math.random() * 501); // Generates a random number between 0 (inclusive) and 501 (exclusive)
+const generateRandomNumber = (upperBound: number) => {
+  return Math.floor(Math.random() * upperBound); // Generates a random number between 0 (inclusive) and 501 (exclusive)
 };
 
 const TopRow = ({
@@ -119,14 +118,13 @@ interface SpriteData {
 
 const INITIAL_TOP = 5;
 const MISSILE_OFFSET = 64;
-const HORIZONTAL_MOVE_SPEED = 5;
-const VERTICAL_MOVE_SPEED = 0.9;
-const GAME_UPDATE_RATE_IN_MS = 10;
+const HORIZONTAL_MOVE_SPEED = 10;
+const VERTICAL_MOVE_SPEED = 0.7;
+const GAME_UPDATE_RATE_IN_MS = 15;
 const INITIAL_SCORE = 0;
 const SPRITE_OFFSET = 28;
-const GAME_WINDOW = 500;
-const INITIAL_POSITION = GAME_WINDOW / 2 - SPRITE_OFFSET / 2;
-const RIGHT_BOUND = GAME_WINDOW - SPRITE_OFFSET;
+const GAME_HEIGHT = 650;
+const INITIAL_POSITION = 0;
 const LEFT_BOUND = 0;
 
 const Invader = ({ id, left, top }: SpriteData) => (
@@ -163,13 +161,6 @@ const initialInvaders: SpriteData[] = [];
 const initialMissiles: SpriteData[] = [];
 
 const SpaceInvaders = () => {
-  const windowSize = useWindowSize();
-  const [initialWindowSize, setInitialWindowSize] = useState(0);
-  useEffect(() => {
-    setInitialWindowSize(window.innerWidth);
-  }, []);
-  const width = windowSize.width ?? initialWindowSize;
-
   const gameWindowRef = useRef<HTMLDivElement>(null);
   const playerSpriteRef = useRef<SVGSVGElement>(null);
 
@@ -189,7 +180,9 @@ const SpaceInvaders = () => {
 
     setMissiles(initialMissiles);
     setInvaders(initialInvaders);
-    setPlayerPosition(INITIAL_POSITION);
+    setPlayerPosition(
+      (gameWindowRef.current?.getBoundingClientRect().width || 0) / 2
+    );
     setScore(INITIAL_SCORE);
     setPlaying(false);
   }, [hasLost]);
@@ -237,10 +230,10 @@ const SpaceInvaders = () => {
       // fire missiles
       if (event.key === "Shift") {
         // Get player position dynamically, not state based. Unfortunate, but it is what it is.
-        const playerPositionData =
-          playerSpriteRef.current?.getBoundingClientRect();
+        const playerBounds = playerSpriteRef.current?.getBoundingClientRect();
+        const gameWindowBounds = gameWindowRef.current?.getBoundingClientRect();
 
-        if (!playerPositionData) {
+        if (!playerBounds || !gameWindowBounds) {
           return;
         }
 
@@ -248,8 +241,8 @@ const SpaceInvaders = () => {
           ...prevMissiles,
           {
             id: ulid(),
-            left: playerPositionData.left,
-            top: playerPositionData.top - MISSILE_OFFSET,
+            left: playerBounds.x - gameWindowBounds.x + SPRITE_OFFSET / 2,
+            top: GAME_HEIGHT - 64 - MISSILE_OFFSET,
           },
         ]);
         return;
@@ -281,7 +274,7 @@ const SpaceInvaders = () => {
 
       let addInvader = loopMSTimer === 0;
       // Before we do anything, see if we've hit enough time to add a new invader
-      if (loopMSTimer < GAME_UPDATE_RATE_IN_MS * 100) {
+      if (loopMSTimer < GAME_UPDATE_RATE_IN_MS * 150) {
         loopMSTimer += GAME_UPDATE_RATE_IN_MS;
       } else {
         loopMSTimer = 0;
@@ -300,14 +293,14 @@ const SpaceInvaders = () => {
       const missilesToRemove: Element[] = [];
       for (const missile of missileElements) {
         const missileBounds = missile.getBoundingClientRect();
-        const missileLeft = missileBounds.left;
-        const missileTop = missileBounds.top;
+        const missileLeft = missileBounds.x;
+        const missileTop = missileBounds.y;
 
         // check if any missiles have hit any invaders
         const hitInvader = invaderElements.find((invader) => {
           const invaderBounds = invader.getBoundingClientRect();
-          const invaderLeft = invaderBounds.left;
-          const invaderTop = invaderBounds.top;
+          const invaderLeft = invaderBounds.x;
+          const invaderTop = invaderBounds.y;
 
           const invaderRightEdge = invaderLeft + SPRITE_OFFSET;
           const invaderLeftEdge = invaderLeft;
@@ -344,10 +337,12 @@ const SpaceInvaders = () => {
             : LEFT_BOUND
         );
       } else if (moveRight) {
+        const { width = 0 } =
+          gameWindowRef.current?.getBoundingClientRect() || {};
         setPlayerPosition((prevPosition) =>
-          prevPosition + HORIZONTAL_MOVE_SPEED <= RIGHT_BOUND
+          prevPosition + HORIZONTAL_MOVE_SPEED <= width - SPRITE_OFFSET
             ? prevPosition + HORIZONTAL_MOVE_SPEED
-            : RIGHT_BOUND
+            : width - SPRITE_OFFSET
         );
       }
 
@@ -360,10 +355,10 @@ const SpaceInvaders = () => {
         }
 
         return prevMissiles.reduce((acc, missile) => {
-          const newTop = (missile.top || 0) - VERTICAL_MOVE_SPEED * 5;
+          const newTop = (missile.top || 0) - VERTICAL_MOVE_SPEED * 8;
           // Did this missile fly out of bounds?
           if (
-            newTop < gameBounds.top - MISSILE_OFFSET ||
+            newTop < 0 ||
             missilesToRemove.some(
               (missileToRemove) =>
                 missileToRemove.getAttribute("id") === missile.id
@@ -386,7 +381,7 @@ const SpaceInvaders = () => {
 
         const newInvaders = prevInvaders.reduce((acc, invader) => {
           const newTop = (invader.top || 0) + VERTICAL_MOVE_SPEED * 2;
-          if (newTop > gameBounds.top + 350) {
+          if (newTop > GAME_HEIGHT - 100) {
             loopHasLost = true;
             return acc;
           }
@@ -405,13 +400,15 @@ const SpaceInvaders = () => {
           const movement =
             leftOrRightFactor * HORIZONTAL_MOVE_SPEED * randomNumber;
           let newLeft = (invader.left || 0) + movement;
+          const { width = 0 } =
+            gameWindowRef.current?.getBoundingClientRect() || {};
 
           newLeft =
-            newLeft <= RIGHT_BOUND
+            newLeft <= width - SPRITE_OFFSET
               ? newLeft >= LEFT_BOUND
                 ? newLeft
                 : LEFT_BOUND
-              : RIGHT_BOUND;
+              : width - SPRITE_OFFSET;
 
           acc.push({
             id: invader.id,
@@ -426,7 +423,9 @@ const SpaceInvaders = () => {
           newInvaders.push({
             id: ulid(),
             top: INITIAL_TOP,
-            left: generateRandomNumber(),
+            left: generateRandomNumber(
+              gameWindowRef.current?.getBoundingClientRect().width || 0
+            ),
           });
         }
 
@@ -446,44 +445,15 @@ const SpaceInvaders = () => {
     };
   }, [playing, hasLost]);
 
-  const gameComponents = (
-    <>
-      {invaders.map((invader) => (
-        <Invader
-          key={invader.id}
-          id={invader.id}
-          left={invader.left}
-          top={invader.top}
-        />
-      ))}
-      {missiles.map((missile) => (
-        <Missile
-          key={missile.id}
-          left={missile.left}
-          top={missile.top}
-          id={missile.id}
-        />
-      ))}
-      <RocketLaunch
-        ref={playerSpriteRef}
-        id="player-sprite"
-        sx={{
-          color: "#99CCFF",
-          position: "absolute",
-          bottom: INITIAL_TOP,
-          left: playerPosition,
-          fontSize: "28px",
-          transform: "rotate(-45deg)",
-        }}
-      />
-    </>
-  );
+  useEffect(() => {
+    const width = gameWindowRef.current?.getBoundingClientRect().width || 0;
+    setPlayerPosition((width - SPRITE_OFFSET) / 2);
+  }, [gameWindowRef]);
 
   const game = (
     <Stack
       sx={{
-        width: GAME_WINDOW,
-        height: GAME_WINDOW,
+        height: GAME_HEIGHT,
         justifyContent: "space-between",
       }}
     >
@@ -495,7 +465,7 @@ const SpaceInvaders = () => {
           height: "100%",
           justifyContent: "center",
           position: "relative",
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
         ref={gameWindowRef}
       >
@@ -534,7 +504,34 @@ const SpaceInvaders = () => {
             </Button>
           </Stack>
         ) : null}
-        {gameComponents}
+        {invaders.map((invader) => (
+          <Invader
+            key={invader.id}
+            id={invader.id}
+            left={invader.left}
+            top={invader.top}
+          />
+        ))}
+        {missiles.map((missile) => (
+          <Missile
+            key={missile.id}
+            left={missile.left}
+            top={missile.top}
+            id={missile.id}
+          />
+        ))}
+        <RocketLaunch
+          ref={playerSpriteRef}
+          id="player-sprite"
+          sx={{
+            color: "#99CCFF",
+            position: "absolute",
+            bottom: INITIAL_TOP,
+            left: playerPosition,
+            fontSize: "28px",
+            transform: "rotate(-45deg)",
+          }}
+        />
       </Stack>
       <BottomRow score={score} />
     </Stack>
