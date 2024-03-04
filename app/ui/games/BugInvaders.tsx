@@ -160,6 +160,8 @@ const Missile = ({ id, left, top }: SpriteData) => (
 const initialInvaders: SpriteData[] = [];
 const initialMissiles: SpriteData[] = [];
 
+// TODO: fix bug movement to be less erratic
+// TODO: implement "ammo"
 const SpaceInvaders = () => {
   const gameWindowRef = useRef<HTMLDivElement>(null);
   const playerSpriteRef = useRef<SVGSVGElement>(null);
@@ -465,7 +467,7 @@ const SpaceInvaders = () => {
           height: "100%",
           justifyContent: "center",
           position: "relative",
-          // overflow: "hidden",
+          overflow: "hidden",
         }}
         ref={gameWindowRef}
       >
