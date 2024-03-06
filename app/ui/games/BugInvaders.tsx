@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
@@ -187,10 +188,8 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
                 <Typography variant="caption">
                   - Your ship has a standard payload of 3 missiles, and will be
                   resupplied regularly (every 3 seconds). If you fire all 3
-                  quickly,
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  you will be defenseless against the oncoming bugs until you've
-                  been reloaded. Use them wisely!
+                  quickly, you will be defenseless against the oncoming bugs
+                  until you've been reloaded. Use them wisely!
                 </Typography>
               </Stack>
             </Stack>
