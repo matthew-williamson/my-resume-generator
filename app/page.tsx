@@ -38,13 +38,10 @@ export default function Page() {
         <PersonalityScores />
       </Stack>
       <BugInvaders />
-      <SkillGraph type={ChartType.FrontEnd} label="Front End Skills x Years" />
-      <SkillGraph type={ChartType.BackEnd} label="Back End Skills x Years" />
-      <SkillGraph
-        type={ChartType.General}
-        label="General Technical Skills x Years"
-      />
-      <SkillGraph type={ChartType.Soft} label="Soft Skills x Years" />
+      <SkillGraph type={ChartType.FrontEnd} label="Front End x Years" />
+      <SkillGraph type={ChartType.BackEnd} label="Back End x Years" />
+      <SkillGraph type={ChartType.General} label="General x Years" />
+      <SkillGraph type={ChartType.Soft} label="Soft x Years" />
       <OccupationHistory />
     </Stack>
   );
