@@ -180,7 +180,7 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
                   - Right arrow key moves right
                 </Typography>
                 <Typography variant="caption">
-                  - Shift key to fire missiles
+                  - Space bar to fire missiles
                 </Typography>
                 <Typography variant="caption">
                   - Escape key to pause the game
@@ -279,7 +279,9 @@ const SpaceInvaders = () => {
       }
 
       // fire missiles
-      if (event.key === "Shift") {
+      if (event.key === " ") {
+        event.preventDefault();
+        event.stopPropagation();
         if (loopPayload === 0) {
           return;
         }
