@@ -16,6 +16,7 @@ export enum Skill {
   MVC = "MVC",
   SQL = "SQL",
   DynamoDB = "DynamoDB",
+  Communication = "Communication",
   SecretsManager = "SecretsManager",
   EventDrivenArchitecture = "Event Driven Architecture",
   MicroserviceArchitecture = "Microservice Architecture",
@@ -31,6 +32,7 @@ export enum Skill {
   HTML = "HTML",
   CSS = "CSS",
   SASS = "SASS",
+  SaaS = "SaaS",
   Git = "Git",
   Mentorship = "Mentorship",
   Leadership = "Leadership",
@@ -63,6 +65,22 @@ export enum Skill {
   Webpack = "Webpack",
   Figma = "Figma",
   Jira = "Jira",
+  Docker = "Docker",
+  Kubernetes = "Kubernetes",
+  ProblemSolving = "Problem Solving",
+  AttentionToDetail = "Attention to Detail",
+  Empathy = "Empathy",
+  TimeManagement = "Time Management",
+  Adaptability = "Adaptability",
+  ConflictResolution = "Conflict Resolution",
+  ContinuousLearning = "Continuous Learning",
+}
+
+export enum ChartType {
+  FrontEnd = "FrontEnd",
+  BackEnd = "BackEnd",
+  Soft = "Soft",
+  General = "General",
 }
 
 export interface Experience {
@@ -73,6 +91,9 @@ export interface Experience {
   title: string;
   company: Company;
   achievements: string[];
-  skills: Skill[];
-  color: string;
+  frontEndSkills: Skill[];
+  backEndSkills: Skill[];
+  generalTechnicalSkills: Skill[];
+  softSkills: Skill[];
+  id: number;
 }

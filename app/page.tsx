@@ -1,17 +1,18 @@
 "use client";
 
-import { LinearProgress, Skeleton, Stack } from "@mui/material";
+import { LinearProgress, Stack } from "@mui/material";
 
 import "./globals.scss";
 
 import Header from "./ui/Header";
 import OccupationHistory from "./ui/OccupationHistory";
-import YearsBySkillGraph from "./ui/YearsBySkillGraph";
 import Notes from "./ui/Notes";
 import useWindowSize from "./ui/hooks/useWindowSize";
 import PersonalityScores from "./ui/PersonalityScores";
 import { useEffect, useState } from "react";
 import BugInvaders from "./ui/games/BugInvaders";
+import SkillGraph from "./ui/SkillGraph";
+import { ChartType } from "./lib/types";
 
 export default function Page() {
   const windowSize = useWindowSize();
@@ -37,7 +38,13 @@ export default function Page() {
         <PersonalityScores />
       </Stack>
       <BugInvaders />
-      <YearsBySkillGraph />
+      <SkillGraph type={ChartType.FrontEnd} label="Front End Skills x Years" />
+      <SkillGraph type={ChartType.BackEnd} label="Back End Skills x Years" />
+      <SkillGraph
+        type={ChartType.General}
+        label="General Technical Skills x Years"
+      />
+      <SkillGraph type={ChartType.Soft} label="Soft Skills x Years" />
       <OccupationHistory />
     </Stack>
   );

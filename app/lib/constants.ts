@@ -1,4 +1,7 @@
+import exp from "constants";
+import { calculateTimeBySkill, millisecondsToYears } from "./helpers";
 import { Company, Experience, Skill } from "./types";
+import _ from "lodash";
 
 const Scottsdale = "Scottsdale, AZ";
 
@@ -41,7 +44,7 @@ export const experiences: Experience[] = [
     startDisplay: "10/2023",
     title: "Senior Software Engineer",
     company: ImagineLearning,
-    color: "#66CCFF",
+    id: 1,
     achievements: [
       "Build and maintain SaaS products with React and TypeScript",
       "Introduced Storybook, Prettier, Cypress, and more to team",
@@ -51,41 +54,55 @@ export const experiences: Experience[] = [
       "Integrate with GraphQL APIs and REST APIs",
       "Create highly reusable, robust, scalable, testable code",
     ],
-    skills: [
+    frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
       Skill.JavaScript,
-      Skill.CSharp,
-      Skill.SQL,
-      Skill.EventDrivenArchitecture,
-      Skill.EndToEndTesting,
-      Skill.Cypress,
       Skill.Jest,
-      Skill.UnitTesting,
+      Skill.Cypress,
       Skill.Redux,
       Skill.TailwindCSS,
       Skill.HTML,
       Skill.CSS,
       Skill.SASS,
-      Skill.Git,
-      Skill.Mentorship,
-      Skill.Leadership,
-      Skill.LargeScaleSystems,
-      Skill.APIDevelopment,
       Skill.APIIntegration,
-      Skill.REST,
-      Skill.GraphQL,
-      Skill.CICD,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
       Skill.WebAppDevelopment,
-      Skill.AgileScrum,
-      Skill.FrontEnd,
       Skill.Webpack,
       Skill.Storybook,
+    ],
+    backEndSkills: [
+      Skill.CSharp,
+      Skill.SQL,
+      Skill.EventDrivenArchitecture,
+      Skill.APIDevelopment,
+      Skill.MicroserviceArchitecture,
+      Skill.REST,
+      Skill.GraphQL,
+    ],
+    generalTechnicalSkills: [
+      Skill.CodeReviews,
+      Skill.EndToEndTesting,
+      Skill.UnitTesting,
+      Skill.Git,
+      Skill.SaaS,
+      Skill.LargeScaleSystems,
+      Skill.CICD,
+      Skill.AgileScrum,
       Skill.Figma,
       Skill.Jira,
-      Skill.BackEnd,
+    ],
+    softSkills: [
+      Skill.Mentorship,
+      Skill.Leadership,
+      Skill.TeamworkandCollaboration,
+      Skill.Communication,
+      Skill.PairProgramming,
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.ContinuousLearning,
     ],
   },
   {
@@ -93,7 +110,7 @@ export const experiences: Experience[] = [
     startDisplay: "12/2022",
     title: "Senior Software Engineer",
     company: SavvyTrader,
-    color: "#3399FF",
+    id: 2,
     achievements: [
       "Build and maintain React and TypeScript FE (a portfolio sharing platform)",
       "Build and deploy mobile apps with Capacitor JS",
@@ -105,42 +122,56 @@ export const experiences: Experience[] = [
       "Create highly reusable, robust, scalable, testable code",
       "Data visualization using Highcharts, Victory Charts",
     ],
-    skills: [
+    frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
       Skill.JavaScript,
-      Skill.SQL,
-      Skill.DynamoDB,
-      Skill.AWS,
-      Skill.EventDrivenArchitecture,
-      Skill.EndToEndTesting,
       Skill.Jest,
-      Skill.UnitTesting,
       Skill.Redux,
       Skill.HTML,
       Skill.CSS,
       Skill.SASS,
-      Skill.Git,
-      Skill.Leadership,
-      Skill.LargeScaleSystems,
-      Skill.APIDevelopment,
       Skill.APIIntegration,
-      Skill.REST,
-      Skill.StartupEnvironment,
-      Skill.AI,
-      Skill.ChatGPTFeatures,
       Skill.MUI,
-      Skill.CICD,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
       Skill.WebAppDevelopment,
-      Skill.MobileAppDevelopment,
       Skill.CapacitorJS,
-      Skill.NodeJS,
-      Skill.FrontEnd,
-      Skill.BackEnd,
       Skill.Webpack,
       Skill.Storybook,
+    ],
+    backEndSkills: [
+      Skill.SQL,
+      Skill.DynamoDB,
+      Skill.AWS,
+      Skill.EventDrivenArchitecture,
+      Skill.MicroserviceArchitecture,
+      Skill.APIDevelopment,
+      Skill.REST,
+      Skill.NodeJS,
+    ],
+    generalTechnicalSkills: [
+      Skill.UnitTesting,
+      Skill.Git,
+      Skill.LargeScaleSystems,
+      Skill.SaaS,
+      Skill.AI,
+      Skill.ChatGPTFeatures,
+      Skill.CICD,
+      Skill.CodeReviews,
+      Skill.MobileAppDevelopment,
+      Skill.AgileScrum,
+    ],
+    softSkills: [
+      Skill.Leadership,
+      Skill.StartupEnvironment,
+      Skill.TeamworkandCollaboration,
+      Skill.Communication,
+      Skill.PairProgramming,
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.ContinuousLearning,
     ],
   },
   {
@@ -150,7 +181,7 @@ export const experiences: Experience[] = [
     endDisplay: "12/2022",
     title: "Senior Software Engineer",
     company: ImagineLearning,
-    color: "#0066CC",
+    id: 3,
     achievements: [
       "Use React and TypeScript to build and maintain education software",
       "Integrate with third party or internal APIs (both GraphQL and REST)",
@@ -158,41 +189,54 @@ export const experiences: Experience[] = [
       "Mentor junior developers",
       "Participate in high level architectural discussions about direction of engineering",
     ],
-    skills: [
+    frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
       Skill.JavaScript,
-      Skill.CSharp,
-      Skill.SQL,
-      Skill.EventDrivenArchitecture,
-      Skill.EndToEndTesting,
-      Skill.Cypress,
       Skill.Jest,
+      Skill.Cypress,
+      Skill.EndToEndTesting,
       Skill.UnitTesting,
       Skill.Redux,
       Skill.TailwindCSS,
       Skill.HTML,
       Skill.CSS,
       Skill.SASS,
-      Skill.Git,
-      Skill.Mentorship,
-      Skill.Leadership,
-      Skill.LargeScaleSystems,
-      Skill.APIDevelopment,
       Skill.APIIntegration,
-      Skill.REST,
-      Skill.GraphQL,
-      Skill.CICD,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
       Skill.WebAppDevelopment,
-      Skill.AgileScrum,
-      Skill.FrontEnd,
       Skill.Webpack,
       Skill.Storybook,
+    ],
+    backEndSkills: [
+      Skill.CSharp,
+      Skill.SQL,
+      Skill.EventDrivenArchitecture,
+      Skill.APIDevelopment,
+      Skill.REST,
+      Skill.GraphQL,
+    ],
+    generalTechnicalSkills: [
+      Skill.SaaS,
+      Skill.Git,
+      Skill.AgileScrum,
+      Skill.LargeScaleSystems,
+      Skill.CICD,
+      Skill.CodeReviews,
       Skill.Figma,
       Skill.Jira,
-      Skill.BackEnd,
+    ],
+    softSkills: [
+      Skill.Mentorship,
+      Skill.Leadership,
+      Skill.Communication,
+      Skill.TeamworkandCollaboration,
+      Skill.PairProgramming,
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.ContinuousLearning,
     ],
   },
   {
@@ -202,7 +246,7 @@ export const experiences: Experience[] = [
     endDisplay: "03/2022",
     title: "Software Engineer II",
     company: GitKraken,
-    color: "#99CCFF",
+    id: 4,
     achievements: [
       "Built and maintained a world class Git GUI (desktop app) using React, JavaScript + Flow, Node.js, Electron, and TypeScript",
       "Integrated with numerous Git provider APIs",
@@ -211,41 +255,58 @@ export const experiences: Experience[] = [
       "Mentored junior developers and interns",
       "Left as one of the top 3 all time contributors",
     ],
-    skills: [
+    frontEndSkills: [
+      Skill.ContinuousLearning,
       Skill.React,
       Skill.TypeScript,
       Skill.JavaScript,
       Skill.EventDrivenArchitecture,
       Skill.EndToEndTesting,
       Skill.Cypress,
-      Skill.AWS,
       Skill.Jest,
       Skill.UnitTesting,
       Skill.Redux,
       Skill.ReduxSaga,
-      Skill.Mentorship,
-      Skill.Leadership,
       Skill.HTML,
       Skill.CSS,
       Skill.SASS,
-      Skill.Git,
-      Skill.APIDevelopment,
       Skill.APIIntegration,
-      Skill.StartupEnvironment,
-      Skill.REST,
-      Skill.GraphQL,
-      Skill.CICD,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
-      Skill.NodeJS,
-      Skill.DesktopAppDevelopment,
-      Skill.AgileScrum,
-      Skill.FrontEnd,
-      Skill.BackEnd,
+      Skill.Figma,
       Skill.Webpack,
       Skill.Electron,
+    ],
+    backEndSkills: [
+      Skill.EventDrivenArchitecture,
+      Skill.APIDevelopment,
+      Skill.REST,
+      Skill.GraphQL,
+      Skill.NodeJS,
       Skill.MongoDB,
-      Skill.Figma,
+    ],
+    generalTechnicalSkills: [
+      Skill.AWS,
+      Skill.Git,
+      Skill.CICD,
+      Skill.CodeReviews,
+      Skill.DesktopAppDevelopment,
+      Skill.AgileScrum,
+      Skill.Docker,
+      Skill.Kubernetes,
+    ],
+    softSkills: [
+      Skill.Mentorship,
+      Skill.Leadership,
+      Skill.Communication,
+      Skill.StartupEnvironment,
+      Skill.TeamworkandCollaboration,
+      Skill.PairProgramming,
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.ConflictResolution,
+      Skill.ContinuousLearning,
     ],
   },
   {
@@ -255,33 +316,47 @@ export const experiences: Experience[] = [
     endDisplay: "08/2019",
     title: "Software Engineer",
     company: SandhillsPublishing,
-    color: "#3366FF",
+    id: 5,
     achievements: [
       "Built and maintained SaaS and internal solutions with JavaScript, VB.NET, C#.NET, SQL, and MVC architectures",
       "Mentored and onboarded multiple engineers",
       "Developed an internal efficiency boosting Chrome Extension using JavaScript",
     ],
-    skills: [
+    frontEndSkills: [
       Skill.JavaScript,
+      Skill.MVC,
+      Skill.HTML,
+      Skill.CSS,
+      Skill.APIIntegration,
+      Skill.WebAppDevelopment,
+    ],
+    backEndSkills: [
       Skill.CSharp,
       Skill.VBNET,
       Skill.ASPNET,
-      Skill.MVC,
       Skill.SQL,
-      Skill.HTML,
-      Skill.CSS,
-      Skill.Mentorship,
-      Skill.LargeScaleSystems,
-      Skill.APIIntegration,
       Skill.APIDevelopment,
       Skill.REST,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
-      Skill.WebAppDevelopment,
       Skill.StoredProcedures,
+    ],
+    generalTechnicalSkills: [
+      Skill.LargeScaleSystems,
+      Skill.SaaS,
+      Skill.CodeReviews,
       Skill.AgileScrum,
-      Skill.FrontEnd,
-      Skill.BackEnd,
+    ],
+    softSkills: [
+      Skill.Mentorship,
+      Skill.TeamworkandCollaboration,
+      Skill.Communication,
+      Skill.Leadership,
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.ConflictResolution,
+      Skill.ContinuousLearning,
     ],
   },
   {
@@ -291,24 +366,76 @@ export const experiences: Experience[] = [
     endDisplay: "03/2018",
     title: "Software Engineer",
     company: CRC,
-    color: "#003399",
+    id: 6,
     achievements: [
       "Built and maintained code in C#.NET, SQL, and VB6",
       "Customer facing updates and support",
       "Fixed numerous field and internal bugs",
     ],
-    skills: [
-      Skill.VB6,
+    frontEndSkills: [Skill.VB6, Skill.HTML, Skill.CSS],
+    backEndSkills: [
       Skill.VBNET,
       Skill.ASPNET,
       Skill.SQL,
-      Skill.HTML,
-      Skill.CSS,
-      Skill.TeamworkandCollaboration,
-      Skill.CodeReviews,
       Skill.StoredProcedures,
-      Skill.FrontEnd,
+    ],
+    generalTechnicalSkills: [Skill.CodeReviews],
+    softSkills: [
+      Skill.AttentionToDetail,
+      Skill.Empathy,
+      Skill.TimeManagement,
+      Skill.ProblemSolving,
+      Skill.Adaptability,
+      Skill.TeamworkandCollaboration,
+      Skill.Communication,
       Skill.StartupEnvironment,
+      Skill.ContinuousLearning,
     ],
   },
 ].reverse();
+
+export const frontEndSkillsInExperiences = _.uniq(
+  experiences.reduce((acc, e) => {
+    acc.push(...e.frontEndSkills);
+    return acc;
+  }, [] as Skill[])
+);
+
+export const backEndSkillsInExperiences = _.uniq(
+  experiences.reduce((acc, e) => {
+    acc.push(...e.backEndSkills);
+    return acc;
+  }, [] as Skill[])
+);
+
+export const generalTechnicalSkillsInExperiences = _.uniq(
+  experiences.reduce((acc, e) => {
+    acc.push(...e.generalTechnicalSkills);
+    return acc;
+  }, [] as Skill[])
+);
+
+export const softSkillsInExperiences = _.uniq(
+  experiences.reduce((acc, e) => {
+    acc.push(...e.softSkills);
+    return acc;
+  }, [] as Skill[])
+);
+
+export const frontEndTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
+  experiences,
+  "frontEndSkills"
+);
+
+export const backEndTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
+  experiences,
+  "backEndSkills"
+);
+
+export const generalTechnicalTimeBySkill: Record<Skill, number> =
+  calculateTimeBySkill(experiences, "generalTechnicalSkills");
+
+export const softTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
+  experiences,
+  "softSkills"
+);

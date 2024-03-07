@@ -1,4 +1,3 @@
-import { Psychology } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 import {
   VictoryChart,

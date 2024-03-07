@@ -1,7 +1,6 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
-import { WorkRounded } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
@@ -22,7 +21,7 @@ export default function OccupationHistory() {
       {[...experiences].reverse().map((e) => {
         return (
           <Stack
-            key={`${e.company.name}-experience-card-${e.color}`}
+            key={`${e.company.name}-experience-card-${e.id}`}
             sx={{
               backgroundColor: "rgba(255, 255, 255, 0.05)",
               borderRadius: 2,
@@ -46,7 +45,7 @@ export default function OccupationHistory() {
                   <Stack
                     direction="row"
                     spacing={1}
-                    key={`${e.company.name}-${e.color}-achievement-${index}`}
+                    key={`${e.company.name}-${e.id}-achievement-${index}`}
                     sx={{ position: "relative" }}
                   >
                     <Box
