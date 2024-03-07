@@ -69,6 +69,7 @@ export const experiences: Experience[] = [
       Skill.WebAppDevelopment,
       Skill.Webpack,
       Skill.Storybook,
+      Skill.Figma,
     ],
     backEndSkills: [
       Skill.CSharp,
@@ -87,7 +88,6 @@ export const experiences: Experience[] = [
       Skill.LargeScaleSystems,
       Skill.CICD,
       Skill.AgileScrum,
-      Skill.Figma,
       Skill.Jira,
     ],
     softSkills: [
@@ -148,7 +148,6 @@ export const experiences: Experience[] = [
       Skill.NodeJS,
     ],
     generalTechnicalSkills: [
-      Skill.UnitTesting,
       Skill.Git,
       Skill.LargeScaleSystems,
       Skill.SaaS,
@@ -205,6 +204,7 @@ export const experiences: Experience[] = [
       Skill.WebAppDevelopment,
       Skill.Webpack,
       Skill.Storybook,
+      Skill.Figma,
     ],
     backEndSkills: [
       Skill.CSharp,
@@ -221,7 +221,6 @@ export const experiences: Experience[] = [
       Skill.LargeScaleSystems,
       Skill.CICD,
       Skill.CodeReviews,
-      Skill.Figma,
       Skill.Jira,
     ],
     softSkills: [
