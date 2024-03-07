@@ -627,7 +627,7 @@ const SpaceInvaders = () => {
       </Typography>
       <Stack spacing={1}>
         <Typography variant="body2">
-          Bug Invaders is a purely React/TypeScript reinvention of the class
+          Bug Invaders is a purely React/TypeScript reinvention of the classic
           Space Invaders game. I wrote this from scratch as a challenge to
           myself.
         </Typography>
