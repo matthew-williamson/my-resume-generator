@@ -81,7 +81,6 @@ export const experiences: Experience[] = [
     ],
     generalTechnicalSkills: [
       Skill.CodeReviews,
-      Skill.EndToEndTesting,
       Skill.UnitTesting,
       Skill.Git,
       Skill.SaaS,
