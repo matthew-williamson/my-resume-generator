@@ -69,6 +69,7 @@ export const experiences: Experience[] = [
       Skill.WebAppDevelopment,
       Skill.Webpack,
       Skill.Storybook,
+      Skill.UnitTesting,
       Skill.Figma,
     ],
     backEndSkills: [
@@ -82,7 +83,6 @@ export const experiences: Experience[] = [
     ],
     generalTechnicalSkills: [
       Skill.CodeReviews,
-      Skill.UnitTesting,
       Skill.Git,
       Skill.SaaS,
       Skill.LargeScaleSystems,
