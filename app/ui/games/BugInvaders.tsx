@@ -207,6 +207,67 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
   );
 };
 
+const generateInvaderMovementPattern = (
+  initialLeft: number,
+  gameWidth: number
+) => {
+  const randomNumber = Math.random();
+
+  const leftBound = Math.max(
+    LEFT_BOUND, // literal left bound
+    initialLeft - 100 * randomNumber + 20
+  );
+
+  const rightBound = Math.min(
+    gameWidth - SPRITE_OFFSET, // literal right bound
+    initialLeft + 100 * randomNumber + 20
+  );
+
+  const movementSpeed = HORIZONTAL_MOVE_SPEED / 3;
+
+  const direction = randomNumber <= 0.7 ? -1 : 1;
+
+  return {
+    leftBound,
+    rightBound,
+    movementSpeed,
+    direction,
+  };
+};
+
+let movementDataByInvaderId: Record<string, any> = {};
+
+const calculateMovement = (
+  invaderId: string,
+  invaderLeft = 0,
+  gameWidth = 0
+) => {
+  if (!movementDataByInvaderId[invaderId]) {
+    movementDataByInvaderId[invaderId] = generateInvaderMovementPattern(
+      invaderLeft,
+      gameWidth
+    );
+  }
+
+  const { direction, leftBound, rightBound, movementSpeed } =
+    movementDataByInvaderId[invaderId];
+
+  const movement = direction * movementSpeed;
+
+  let newLeft = invaderLeft + movement;
+
+  if (direction === -1 && invaderLeft + movement <= leftBound) {
+    // will we hit the left wall
+    newLeft = leftBound;
+    movementDataByInvaderId[invaderId].direction = direction * -1;
+  } else if (direction === 1 && invaderLeft + movement >= rightBound) {
+    newLeft = rightBound;
+    movementDataByInvaderId[invaderId].direction = direction * -1;
+  }
+
+  return newLeft;
+};
+
 const SpaceInvaders = () => {
   const gameWindowRef = useRef<HTMLDivElement>(null);
   const playerSpriteRef = useRef<SVGSVGElement>(null);
@@ -228,6 +289,7 @@ const SpaceInvaders = () => {
 
     setMissiles(initialMissiles);
     setInvaders(initialInvaders);
+    movementDataByInvaderId = {};
     setPlayerPosition(
       (gameWindowRef.current?.getBoundingClientRect().width || 0) / 2
     );
@@ -240,9 +302,7 @@ const SpaceInvaders = () => {
     setHighScore((prevHighScore) =>
       prevHighScore > score ? prevHighScore : score
     );
-    if (score) {
-      setLastScore(score);
-    }
+    setLastScore(score);
   }, [score]);
 
   // Game state controller
@@ -457,23 +517,15 @@ const SpaceInvaders = () => {
                 invaderToRemove.getAttribute("id") === invader.id
             )
           ) {
+            delete movementDataByInvaderId[invader.id];
             return acc;
           }
 
-          const randomNumber = Math.random();
-          const leftOrRightFactor = randomNumber <= 0.7 ? -1 : 1;
-          const movement =
-            leftOrRightFactor * HORIZONTAL_MOVE_SPEED * randomNumber;
-          let newLeft = (invader.left || 0) + movement;
-          const { width = 0 } =
-            gameWindowRef.current?.getBoundingClientRect() || {};
-
-          newLeft =
-            newLeft <= width - SPRITE_OFFSET
-              ? newLeft >= LEFT_BOUND
-                ? newLeft
-                : LEFT_BOUND
-              : width - SPRITE_OFFSET;
+          const newLeft = calculateMovement(
+            invader.id,
+            invader.left,
+            gameBounds.width
+          );
 
           acc.push({
             id: invader.id,
