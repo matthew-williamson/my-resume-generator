@@ -14,6 +14,8 @@ import {
   Pause,
   PestControl,
   RocketLaunch,
+  VolumeOff,
+  VolumeUp,
 } from "@mui/icons-material";
 import { ulid } from "ulid";
 import { isMobile } from "react-device-detect";
@@ -120,7 +122,17 @@ const TopRow = ({
   </Stack>
 );
 
-const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
+const BottomRow = ({
+  score,
+  payload,
+  volumeOff,
+  setVolumeOff,
+}: {
+  score: number;
+  payload: number;
+  volumeOff: boolean;
+  setVolumeOff: (volumeOff: boolean) => void;
+}) => {
   const payloadIndicators = useMemo(() => {
     const elements = [];
     for (let i = 0; i < payload; i += 1) {
@@ -168,6 +180,25 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
             </Typography>
           ) : null}
         </Stack>
+        <IconButton onClick={() => setVolumeOff(!volumeOff)}>
+          {!volumeOff ? (
+            <VolumeUp
+              sx={{
+                color: "#99CCFF",
+                fontSize: "20px",
+                ":hover": { opacity: 0.8 },
+              }}
+            />
+          ) : (
+            <VolumeOff
+              sx={{
+                color: "#99CCFF",
+                fontSize: "20px",
+                ":hover": { opacity: 0.8 },
+              }}
+            />
+          )}
+        </IconButton>
         <Tooltip
           title={
             <Stack spacing={1}>
@@ -185,10 +216,11 @@ const BottomRow = ({ score, payload }: { score: number; payload: number }) => {
                   - Escape key to pause the game
                 </Typography>
                 <Typography variant="caption">
-                  - Your ship has a standard payload of 3 missiles, and will be
-                  resupplied regularly (every 3 seconds). If you fire all 3
-                  quickly, you will be defenseless against the oncoming bugs
-                  until you've been reloaded. Use them wisely!
+                  - Your ship is equipped with a plasma cannon that that has a
+                  cooldown of 3 seconds. It can fire 3 blasts within any 3
+                  second window. If you fire all 3 quickly, you will be
+                  defenseless against the oncoming bugs until the cannon
+                  recharges. Use your cannon wisely!
                 </Typography>
               </Stack>
             </Stack>
@@ -279,10 +311,11 @@ const SpaceInvaders = () => {
   const [playerPosition, setPlayerPosition] = useState(INITIAL_POSITION);
   const [score, setScore] = useState(INITIAL_SCORE);
   const [highScore, setHighScore] = useState(INITIAL_SCORE);
-  const [lastScore, setLastScore] = useState(INITIAL_SCORE);
+  const [roundScore, setRoundScore] = useState(INITIAL_SCORE);
   const [missiles, setMissiles] = useState<SpriteData[]>(initialMissiles);
   const [hasLost, setHasLost] = useState(false);
   const [payload, setPayload] = useState(FULL_PAYLOAD);
+  const [volumeOff, setVolumeOff] = useState(false);
 
   useEffect(() => {
     if (!hasLost) {
@@ -304,7 +337,6 @@ const SpaceInvaders = () => {
     setHighScore((prevHighScore) =>
       prevHighScore > score ? prevHighScore : score
     );
-    setLastScore(score);
   }, [score]);
 
   // Game state controller
@@ -366,6 +398,15 @@ const SpaceInvaders = () => {
             top: GAME_HEIGHT - 64 - MISSILE_OFFSET,
           },
         ]);
+
+        if (!volumeOff) {
+          const laserSound = new Audio("./laser.mp3");
+          laserSound.volume = 0.1;
+          laserSound.play();
+          setTimeout(() => {
+            laserSound.pause();
+          }, 500);
+        }
         return;
       }
     };
@@ -449,11 +490,18 @@ const SpaceInvaders = () => {
           // Remove both missile and invader
           invadersToRemove.push(hitInvader);
           missilesToRemove.push(missile);
+
+          if (!volumeOff) {
+            const explosionSound = new Audio("./explosion.mp3");
+            explosionSound.volume = 0.25;
+            explosionSound.play();
+          }
         }
       }
 
       if (scoreModifier) {
         setScore((prevScore) => prevScore + scoreModifier);
+        setRoundScore((prevScore) => prevScore + scoreModifier);
       }
 
       // Handle player sprite movement
@@ -563,7 +611,7 @@ const SpaceInvaders = () => {
       clearInterval(gameLoop);
       clearInterval(reloadLoop);
     };
-  }, [playing, hasLost]);
+  }, [playing, hasLost, volumeOff]);
 
   useEffect(() => {
     const width = gameWindowRef.current?.getBoundingClientRect().width || 0;
@@ -612,7 +660,7 @@ const SpaceInvaders = () => {
                     THE BUG MADE IT TO PRODUCTION!
                   </Typography>
                   <Typography fontWeight={700} variant="caption">
-                    ROUND SCORE: {lastScore}
+                    ROUND SCORE: {roundScore}
                   </Typography>
                   <Typography fontWeight={700} variant="caption">
                     HIGH SCORE: {highScore}
@@ -625,6 +673,10 @@ const SpaceInvaders = () => {
                 sx={{ color: "#99CCFF", width: "fit-content" }}
                 variant="outlined"
                 onClick={() => {
+                  if (hasLost) {
+                    setRoundScore(0);
+                  }
+
                   setHasLost(false);
                   setPlaying(true);
                 }}
@@ -669,7 +721,12 @@ const SpaceInvaders = () => {
           }}
         />
       </Stack>
-      <BottomRow score={score} payload={payload} />
+      <BottomRow
+        score={score}
+        payload={payload}
+        volumeOff={volumeOff}
+        setVolumeOff={setVolumeOff}
+      />
     </Stack>
   );
 
