@@ -213,14 +213,16 @@ const generateInvaderMovementPattern = (
 ) => {
   const randomNumber = Math.random();
 
+  const randomLargeNumber = 100 * randomNumber;
+
   const leftBound = Math.max(
     LEFT_BOUND, // literal left bound
-    initialLeft - 100 * randomNumber + 20
+    initialLeft - randomLargeNumber - 30
   );
 
   const rightBound = Math.min(
     gameWidth - SPRITE_OFFSET, // literal right bound
-    initialLeft + 100 * randomNumber + 20
+    initialLeft + randomLargeNumber + 30
   );
 
   const movementSpeed = HORIZONTAL_MOVE_SPEED / 3;
