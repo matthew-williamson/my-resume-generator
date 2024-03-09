@@ -527,7 +527,6 @@ const SpaceInvaders = () => {
       <Stack
         sx={{
           alignItems: "center",
-          backgroundColor: "black",
           height: "100%",
           justifyContent: "center",
           position: "relative",
@@ -535,6 +534,15 @@ const SpaceInvaders = () => {
         }}
         ref={gameWindowRef}
       >
+        <Stack
+          sx={{
+            backgroundImage: `url("stars.gif")`,
+            height: "100%",
+            position: "absolute",
+            width: "100%",
+            opacity: 0.4,
+          }}
+        ></Stack>
         {!playing ? (
           <Stack
             sx={{ justifyContent: "center", alignItems: "center" }}
