@@ -148,7 +148,7 @@ const BottomRow = ({
     return (
       <Stack direction="row" sx={{ alignItems: "center" }}>
         <Typography fontWeight={700} variant="body2" color="#99CCFF">
-          Payload:
+          Cannon:
         </Typography>
         {elements}
       </Stack>
@@ -176,7 +176,7 @@ const BottomRow = ({
         <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.25}>
           {payload < FULL_PAYLOAD ? (
             <Typography variant="caption" fontWeight={700} color="#99CCFF">
-              Reloading...
+              Recharging...
             </Typography>
           ) : null}
         </Stack>
