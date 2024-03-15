@@ -1,16 +1,11 @@
-import { GitHub, LinkedIn } from "@mui/icons-material";
-import { Avatar, Link, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import useWindowSize from "./hooks/useWindowSize";
+import { GitHub, LinkedIn, QrCode } from "@mui/icons-material";
+import { Avatar, Link, Modal, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import QRCodeReact from "qrcode.react";
 
 export default function Header() {
-  const windowSize = useWindowSize();
-  const [initialWindowSize, setInitialWindowSize] = useState(0);
-  useEffect(() => {
-    setInitialWindowSize(window.innerWidth);
-  }, []);
-  const width = windowSize.width ?? initialWindowSize;
-  const isSmallWidth = width < 600;
+  const [showQRCode, setShowQRCode] = useState(false);
+
   return (
     <Stack
       direction="row"
@@ -31,17 +26,13 @@ export default function Header() {
       >
         <Avatar
           sx={{
-            width: isSmallWidth ? 50 : 72,
-            height: isSmallWidth ? 50 : 72,
+            width: 84,
+            height: 84,
             border: "1px solid #99CCFF",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="./matt_williamson.jpg"
-            width={isSmallWidth ? 50 : 72}
-            alt="matt headshot"
-          />
+          <img src="./matt_williamson.jpg" width={84} alt="matt headshot" />
         </Avatar>
         <Stack>
           <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
@@ -78,7 +69,42 @@ export default function Header() {
         >
           <GitHub sx={{ fontSize: 28 }} />
         </Link>
+        <QrCode
+          sx={{
+            fontSize: 30,
+            cursor: "pointer",
+            color: "#99CCFF",
+            ":hover": { opacity: 0.8 },
+          }}
+          onClick={() => setShowQRCode(true)}
+        />
       </Stack>
+      {showQRCode ? (
+        <Modal open={showQRCode} onClose={() => setShowQRCode(false)}>
+          <Stack
+            sx={{
+              height: "100vh",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onClick={() => setShowQRCode(false)}
+          >
+            <Stack
+              sx={{
+                p: 4,
+                backgroundColor: "rgba(26, 26, 26, 0.9)",
+                borderRadius: "8px",
+              }}
+            >
+              <QRCodeReact
+                size={250}
+                value="https://matt-williamson.netlify.app"
+              />
+            </Stack>
+          </Stack>
+        </Modal>
+      ) : null}
     </Stack>
   );
 }

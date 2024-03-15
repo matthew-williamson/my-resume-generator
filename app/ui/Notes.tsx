@@ -11,7 +11,7 @@ export default function Notes() {
         borderRadius: 2,
         border: "1px solid rgba(255, 255, 255, 0.12)",
         p: 2,
-        flex: 1
+        flex: 1,
       }}
     >
       <Stack spacing={1}>
@@ -44,7 +44,7 @@ export default function Notes() {
         <Stack direction="row" spacing={1} sx={{ position: "relative" }}>
           <Box sx={{ position: "absolute", top: -3, color: "#99CCFF" }}>○</Box>
           <Typography variant="body2" sx={{ pl: 1 }}>
-            Ability to mentor junior developers.
+            Ability to mentor junior developers and grow with my team.
           </Typography>
         </Stack>
         <Stack direction="row" spacing={1} sx={{ position: "relative" }}>
@@ -65,6 +65,13 @@ export default function Notes() {
           <Typography variant="body2" sx={{ pl: 1 }}>
             Knowing what I am working on is business critical or customer
             critical.
+          </Typography>
+        </Stack>
+        <Stack direction="row" spacing={1} sx={{ position: "relative" }}>
+          <Box sx={{ position: "absolute", top: -3, color: "#99CCFF" }}>○</Box>
+          <Typography variant="body2" sx={{ pl: 1 }}>
+            Teammates that care: about themselves, about me, about the company,
+            about what we are achieving together.
           </Typography>
         </Stack>
         <Stack direction="row" spacing={1} sx={{ position: "relative" }}>
