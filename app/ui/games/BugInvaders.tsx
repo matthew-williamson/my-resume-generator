@@ -754,7 +754,7 @@ const SpaceInvaders = () => {
           {/*eslint-disable-next-line react/no-unescaped-entities*/}I wanted to
           see if I could make a "continous" (i.e. not a turn based) game
           performant and handle complicated state updates with nothing but
-          traditional React hooks. Enjoy!
+          traditional React hooks.
         </Typography>
         <Typography variant="body2">
           P.S.: If you want to modify the difficulty, all you have to do is

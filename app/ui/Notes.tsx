@@ -19,9 +19,9 @@ export default function Notes() {
           Purpose
         </Typography>
         <Typography variant="body2" sx={{ color: "#99CCFF" }}>
-          This UI was purpose-built from scratch by me using React, TypeScript,
-          Next.js, MUI, Victory Charts, HTML, and CSS as a way for me to
-          demonstrate my ability.
+          This web app was purpose-built from scratch by me using React,
+          TypeScript, Next.js, MUI, Victory Charts, HTML, and CSS as a way for
+          me to demonstrate my ability.
         </Typography>
         <Typography variant="body2">
           As I gain more experiences and skills, I find it increasingly
