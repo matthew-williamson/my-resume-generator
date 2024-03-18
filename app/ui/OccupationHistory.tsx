@@ -37,7 +37,7 @@ export default function OccupationHistory() {
                   </Typography>
                 </Stack>
                 <Divider sx={{ backgroundColor: "#99CCFF" }} />
-                <Stack spacing={1}>
+                <Stack spacing={2}>
                   {e.achievements.map((a, index) => (
                     <Stack
                       direction="row"

@@ -749,7 +749,7 @@ const SpaceInvaders = () => {
         </Typography>
       }
     >
-      <Stack spacing={1} sx={{ pb: 2 }}>
+      <Stack spacing={2} sx={{ pb: 2 }}>
         <Typography variant="body2">
           <Highlight text="Bug Invaders" /> is a purely React reinvention of the
           classic Space Invaders game. I wrote this from scratch as a{" "}
