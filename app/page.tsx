@@ -10,7 +10,7 @@ import AboutMe from "./ui/AboutMe";
 import BugInvaders from "./ui/games/BugInvaders";
 import SkillGraph from "./ui/SkillGraph";
 import { ChartType } from "./lib/types";
-import RoleIdeals from "./ui/RoleIdeals";
+import WorkplaceIdeals from "./ui/WorkplaceIdeals";
 
 export default function Page() {
   return (
@@ -21,7 +21,7 @@ export default function Page() {
     >
       <Header />
       <AboutMe />
-      <RoleIdeals />
+      <WorkplaceIdeals />
       <BugInvaders />
       <SkillGraph type={ChartType.FrontEnd} label="Front End x Years" />
       <SkillGraph type={ChartType.BackEnd} label="Back End x Years" />

@@ -80,7 +80,7 @@ const Chart = ({
           <VictoryBar
             key={`${skill}-bar`}
             barWidth={barWidth}
-            style={{ data: { fill: "rgba(153, 204, 255, 0.4)" } }}
+            style={{ data: { fill: "rgba(153, 204, 255, 0.5)" } }}
             data={[{ x: skill, y: timeBySkill[skill] }]}
             labelComponent={
               <VictoryTooltip

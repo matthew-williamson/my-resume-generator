@@ -3,16 +3,19 @@ import CollapsibleSection from "./shared/CollapsibleSection";
 import BulletPoint from "./shared/BulletPoint";
 import Highlight from "./shared/Highlight";
 
-export default function RoleIdeals() {
+export default function WorkplaceIdeals() {
   return (
     <CollapsibleSection
       header={
         <Typography variant="h5" sx={{ color: "#99CCFF" }}>
-          Role Ideals
+          Workplace Ideals
         </Typography>
       }
     >
       <Stack spacing={2}>
+        <Typography variant="body2">
+          What I look for in my ideal workplace:
+        </Typography>
         <BulletPoint
           text={
             <>

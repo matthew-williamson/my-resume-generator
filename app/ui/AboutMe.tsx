@@ -28,13 +28,12 @@ export default function AboutMe() {
           <Highlight text="internal only systems" />.
         </Typography>
         <Typography variant="body2">
-          As a <Highlight text="team player" />, I place a high value on{" "}
-          <Highlight text="collaborative" /> and{" "}
-          <Highlight text="fast paced environments" />. My goal is to step into
-          the "people" side of engineering and become a{" "}
-          <Highlight text="manager" />. Nothing brings me more satisfaction than
-          helping other engineers achieve their goals, and achieving goals
-          collectively as a team.
+          My goal is to become a{" "}
+          <Highlight text="Software Engineering Manager" />. As a{" "}
+          <Highlight text="team player" />, I feel the most satisfaction from my
+          work by helping my teammates achieve their goals. I place a high value
+          on <Highlight text="collaborative" /> environments. The most rewarding
+          solutions are the ones built as a <Highlight text="team" />.
         </Typography>
         <Typography variant="body2">
           I consider myself a professional <Highlight text="problem solver" />.
