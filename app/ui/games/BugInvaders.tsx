@@ -114,9 +114,7 @@ const TopRow = ({
       <IconButton
         sx={{
           color: "#99CCFF !important",
-          ":hover": {
-            opacity: 0.7,
-          },
+          ":hover": { color: "rgba(190, 253, 200, 0.6)" },
         }}
         onClick={() => setPlaying(false)}
       >
@@ -194,7 +192,7 @@ const BottomRow = ({
               sx={{
                 color: "#99CCFF",
                 fontSize: "20px",
-                ":hover": { opacity: 0.8 },
+                ":hover": { color: "rgba(190, 253, 200, 0.6)" },
               }}
             />
           ) : (
@@ -202,7 +200,7 @@ const BottomRow = ({
               sx={{
                 color: "#99CCFF",
                 fontSize: "20px",
-                ":hover": { opacity: 0.8 },
+                ":hover": { color: "rgba(190, 253, 200, 0.6)" },
               }}
             />
           )}
@@ -238,7 +236,7 @@ const BottomRow = ({
             sx={{
               color: "#99CCFF",
               fontSize: "20px",
-              ":hover": { opacity: 0.8 },
+              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
             }}
           />
         </Tooltip>
@@ -678,7 +676,15 @@ const SpaceInvaders = () => {
             ) : null}
             {!isMobile ? (
               <Button
-                sx={{ color: "#99CCFF", width: "fit-content" }}
+                sx={{
+                  color: "#99CCFF",
+                  width: "fit-content",
+                  borderColor: "inherit",
+                  ":hover": {
+                    color: "rgba(190, 253, 200, 0.6)",
+                    borderColor: "inherit",
+                  },
+                }}
                 variant="outlined"
                 onClick={() => {
                   if (hasLost) {

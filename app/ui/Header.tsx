@@ -18,7 +18,7 @@ export default function Header() {
           width: "calc(100% - 32px)",
           backgroundColor: "#262626",
           top: 0,
-          zIndex: 99999,
+          zIndex: 1200,
         }}
       />
       <Stack
@@ -44,7 +44,7 @@ export default function Header() {
           borderRadius: 2,
           border: "1px solid rgba(255, 255, 255, 0.12)",
           p: 2,
-          zIndex: 99999,
+          zIndex: 1200,
         }}
         spacing={1}
       >
@@ -77,7 +77,7 @@ export default function Header() {
             sx={{
               color: "#99CCFF",
               cursor: "pointer",
-              ":hover": { opacity: 0.8 },
+              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
               display: "flex",
             }}
             href="https://www.linkedin.com/in/matthew-williamson-a63a88121/"
@@ -90,7 +90,7 @@ export default function Header() {
             sx={{
               color: "#99CCFF",
               cursor: "pointer",
-              ":hover": { opacity: 0.8 },
+              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
               display: "flex",
             }}
             href="https://github.com/matthew-williamson"
@@ -103,7 +103,7 @@ export default function Header() {
               fontSize: 30,
               cursor: "pointer",
               color: "#99CCFF",
-              ":hover": { opacity: 0.8 },
+              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
             }}
             onClick={() => setShowQRCode(true)}
           />

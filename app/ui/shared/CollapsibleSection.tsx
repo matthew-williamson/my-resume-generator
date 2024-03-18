@@ -35,7 +35,7 @@ export default function CollapsibleSection({
           sx={{
             color: "#99CCFF",
             p: 0.25,
-            ":hover": { opacity: 0.9 },
+            ":hover": { color: "rgba(190, 253, 200, 0.6)" },
             height: 32,
           }}
           onClick={() => setIsCollapsed(!isCollapsed)}
