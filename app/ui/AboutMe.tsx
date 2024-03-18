@@ -32,10 +32,10 @@ export default function AboutMe() {
           the "people" side of engineering and become a{" "}
           <Highlight text="manager" />. Nothing brings me more satisfaction than
           helping other engineers achieve their goals, and achieving goals
-          collectively as a team. I consider myself a professional{" "}
-          <Highlight text="problem solver" />.
+          collectively as a team.
         </Typography>
         <Typography variant="body2">
+          I consider myself a professional <Highlight text="problem solver" />.
           My tech stack of choice to tackle problems and provide solutions would
           include{" "}
           <Highlight text="TypeScript and/or JavaScript, React, Cloud Infrastructure like AWS or Azure, SQL and/or NoSQL, and Node" />
