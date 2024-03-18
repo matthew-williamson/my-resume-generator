@@ -67,7 +67,9 @@ export default function Header() {
             <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
               Matthew Williamson
             </Typography>
-            <Typography variant="body2">Senior Software Engineer</Typography>
+            <Typography variant="body2" color="rgba(190, 253, 200, 0.75)">
+              Senior Software Engineer
+            </Typography>
             <Typography variant="caption">Scottsdale, AZ</Typography>
           </Stack>
         </Stack>
