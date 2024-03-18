@@ -1,16 +1,13 @@
-import {
-  Box,
-  Divider,
-  IconButton,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Divider, Link, Stack, Tooltip, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
 import CollapsibleSection from "./shared/CollapsibleSection";
 import BulletPoint from "./shared/BulletPoint";
-import { NetworkCell, OpenInNew } from "@mui/icons-material";
+import {
+  HelpOutline,
+  OpenInNew,
+  QuestionMarkRounded,
+} from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
@@ -63,12 +60,15 @@ export default function OccupationHistory() {
                       <OpenInNew sx={{ fontSize: "28px" }} />
                     </Link>
                   ) : (
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "rgba(255,255,255, 0.32)" }}
-                    >
-                      DEFUNCT
-                    </Typography>
+                    <Tooltip title="DEFUNCT">
+                      <HelpOutline
+                        sx={{
+                          fontSize: "30px",
+                          color: "rgba(255,255,255,0.32)",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </Tooltip>
                   )}
                 </Stack>
                 <Divider sx={{ backgroundColor: "#99CCFF" }} />
