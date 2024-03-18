@@ -1,18 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CollapsibleSection from "./shared/CollapsibleSection";
-import useWindowSize from "./hooks/useWindowSize";
-import { useEffect, useState } from "react";
 import BulletPoint from "./shared/BulletPoint";
 import Highlight from "./shared/Highlight";
 
 export default function RoleIdeals() {
-  const windowSize = useWindowSize();
-  const [initialWindowSize, setInitialWindowSize] = useState(0);
-  useEffect(() => {
-    setInitialWindowSize(window.innerWidth);
-  }, []);
-  const width = windowSize.width ?? initialWindowSize;
-
   return (
     <CollapsibleSection
       header={
