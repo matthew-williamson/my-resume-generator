@@ -38,7 +38,7 @@ export default function OccupationHistory() {
                   </Typography>
                 </Stack>
                 <Divider sx={{ backgroundColor: "#99CCFF" }} />
-                <Stack spacing={2}>
+                <Stack spacing={1}>
                   {e.achievements.map((a, index) => (
                     <BulletPoint
                       key={`${e.company.name}-${e.id}-achievement-${index}`}
