@@ -757,9 +757,11 @@ const SpaceInvaders = () => {
           <Highlight text="challenge to myself" />. I wanted to see if I could
           make a "continous" game <Highlight text="performant" /> and handle{" "}
           <Highlight text="complicated state updates" /> with nothing but
-          standard <Highlight text="React hooks" />. If you want to modify the{" "}
-          <Highlight text="difficulty" />, all you have to do is{" "}
-          <Highlight text="resize" />
+          standard <Highlight text="React hooks" />.
+        </Typography>
+        <Typography variant="body2">
+          If you want to modify the <Highlight text="difficulty" />, all you
+          have to do is <Highlight text="resize" />
           your window and reload the page. A wider window makes the game more
           difficult.
         </Typography>
