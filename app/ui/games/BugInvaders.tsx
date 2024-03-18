@@ -213,7 +213,7 @@ const BottomRow = ({
                   - Right arrow key moves right
                 </Typography>
                 <Typography variant="caption">
-                  - Space bar to fire missiles
+                  - Space bar to fire cannon
                 </Typography>
                 <Typography variant="caption">
                   - Escape key to pause the game
