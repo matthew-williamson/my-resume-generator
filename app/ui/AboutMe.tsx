@@ -12,7 +12,7 @@ export default function AboutMe() {
         </Typography>
       }
     >
-      <Stack spacing={1}>
+      <Stack spacing={2}>
         <Typography variant="body2">
           My name is <Highlight text="Matthew Williamson" />, and welcome to my{" "}
           <Highlight text="living resume" />.
