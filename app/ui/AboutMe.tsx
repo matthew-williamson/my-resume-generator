@@ -32,15 +32,8 @@ export default function AboutMe() {
           the "people" side of engineering and become a{" "}
           <Highlight text="manager" />. Nothing brings me more satisfaction than
           helping other engineers achieve their goals, and achieving goals
-          collectively as a team.
-        </Typography>
-        <Typography variant="body2">
-          I consider myself a professional <Highlight text="problem solver" />{" "}
-          more than a professional "coder". Coding is just a tool you can use to
-          solve real world problems and provide value. Many aspects of the SDLC
-          don't include coding at all. The majority of a software engineers role
-          is actually communication. With each other, with stakeholders, with
-          customers.
+          collectively as a team. I consider myself a professional{" "}
+          <Highlight text="problem solver" />.
         </Typography>
         <Typography variant="body2">
           My tech stack of choice to tackle problems and provide solutions would
