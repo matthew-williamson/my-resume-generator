@@ -28,7 +28,11 @@ export default function CollapsibleSection({
           cursor: "pointer",
           p: 2,
         }}
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsCollapsed(!isCollapsed);
+        }}
       >
         {header}
         <IconButton
@@ -38,7 +42,6 @@ export default function CollapsibleSection({
             ":hover": { color: "rgba(190, 253, 200, 0.6)" },
             height: 32,
           }}
-          onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
             <ExpandMore sx={{ fontSize: 32 }} />

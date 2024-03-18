@@ -36,10 +36,11 @@ export default function AboutMe() {
         </Typography>
         <Typography variant="body2">
           I consider myself a professional <Highlight text="problem solver" />{" "}
-          more than a professional "coder". Coding is just a tool to solve real
-          world problems and provide value. There are a lot of aspects of being
-          a software engineer that don't involve coding all: most of the SDLC is
-          NOT coding related.
+          more than a professional "coder". Coding is just a tool you can use to
+          solve real world problems and provide value. Many aspects of the SDLC
+          don't include coding at all. The majority of a software engineers role
+          is actually communication. With each other, with stakeholders, with
+          customers.
         </Typography>
         <Typography variant="body2">
           My tech stack of choice to tackle problems and provide solutions would

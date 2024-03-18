@@ -107,9 +107,6 @@ const TopRow = ({
       height: 48,
     }}
   >
-    <Typography fontWeight={700} color="#99CCFF">
-      Bug Invaders
-    </Typography>
     {playing ? (
       <IconButton
         sx={{
@@ -699,7 +696,7 @@ const SpaceInvaders = () => {
               </Button>
             ) : (
               <Stack sx={{ width: "66%" }}>
-                <Typography variant="body2" color="#99CCFF">
+                <Typography variant="body2" color="rgba(190, 253, 200, 1)">
                   To play Bug Invaders, visit this site on a desktop browser!
                 </Typography>
               </Stack>
