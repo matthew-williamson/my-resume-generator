@@ -21,7 +21,7 @@ export default function RoleIdeals() {
         </Typography>
       }
     >
-      <Stack spacing={1}>
+      <Stack spacing={2}>
         <BulletPoint
           text={
             <>
