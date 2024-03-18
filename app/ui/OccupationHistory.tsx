@@ -1,8 +1,16 @@
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { experiences } from "../lib/constants";
 import CollapsibleSection from "./shared/CollapsibleSection";
 import BulletPoint from "./shared/BulletPoint";
+import { NetworkCell, OpenInNew } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (
@@ -26,16 +34,39 @@ export default function OccupationHistory() {
               }}
             >
               <Stack spacing={1}>
-                <Stack>
-                  <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
-                    {e.company.name}
-                  </Typography>
-                  <Typography variant="body2" color="rgba(190, 253, 200, 1)">
-                    {e.title}
-                  </Typography>
-                  <Typography variant="caption">
-                    {e.startDisplay} - {e.endDisplay ?? "Current"}
-                  </Typography>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "space-between" }}
+                >
+                  <Stack spacing={0.25}>
+                    <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
+                      {e.company.name}
+                    </Typography>
+                    <Typography variant="body2" color="rgba(190, 253, 200, 1)">
+                      {e.title}
+                    </Typography>
+                    <Typography variant="caption">
+                      {e.startDisplay} - {e.endDisplay ?? "Current"}
+                    </Typography>
+                  </Stack>
+                  {e.url ? (
+                    <Link
+                      href={e.url}
+                      sx={{
+                        color: "#99CCFF",
+                        cursor: "pointer",
+                        ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+                        display: "flex",
+                      }}
+                      target="_blank"
+                    >
+                      <OpenInNew sx={{ fontSize: "28px" }} />
+                    </Link>
+                  ) : (
+                    <Typography sx={{ color: "rgba(255,255,255, 0.32)" }}>
+                      DEFUNCT
+                    </Typography>
+                  )}
                 </Stack>
                 <Divider sx={{ backgroundColor: "#99CCFF" }} />
                 <Stack spacing={2}>

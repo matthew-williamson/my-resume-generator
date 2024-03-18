@@ -96,4 +96,5 @@ export interface Experience {
   generalTechnicalSkills: Skill[];
   softSkills: Skill[];
   id: number;
+  url?: string;
 }

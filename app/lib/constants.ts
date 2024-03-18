@@ -45,6 +45,7 @@ export const experiences: Experience[] = [
     title: "Senior Software Engineer",
     company: ImagineLearning,
     id: 1,
+    url: "https://www.imaginelearning.com/",
     achievements: [
       "Build and maintain education SaaS web applications with React and TypeScript",
       "Improved code quality by introducing team to Storybook, Prettier, Cypress, and more",
@@ -115,6 +116,7 @@ export const experiences: Experience[] = [
     title: "Senior Software Engineer",
     company: SavvyTrader,
     id: 2,
+    url: "https://savvytrader.com/",
     achievements: [
       "Design, build, and maintain a greenfield portfolio sharing platform SaaS web application with React and TypeScript",
       "Build and deploy mobile app versions with Capacitor JS",
@@ -187,6 +189,7 @@ export const experiences: Experience[] = [
     title: "Senior Software Engineer",
     company: ImagineLearning,
     id: 3,
+    url: "https://www.imaginelearning.com/",
     achievements: [
       "Build and maintain education SaaS web applications with React and TypeScript",
       "Improved code quality by introducing team to Storybook, Prettier, Cypress, and more",
@@ -259,6 +262,7 @@ export const experiences: Experience[] = [
     title: "Software Engineer II",
     company: GitKraken,
     id: 4,
+    url: "https://www.gitkraken.com/",
     achievements: [
       "Built and maintained a world class Git GUI (desktop app) using React, JavaScript + Flow, Node.js, Electron, and TypeScript",
       "Integrated with numerous Git provider APIs",
@@ -331,6 +335,7 @@ export const experiences: Experience[] = [
     title: "Software Engineer",
     company: SandhillsPublishing,
     id: 5,
+    url: "https://sandhills.com/",
     achievements: [
       "Built and maintained SaaS web app and internal solutions with JavaScript, VB.NET, C#.NET, SQL, and MVC architectures",
       "Mentored and onboarded multiple engineers",
