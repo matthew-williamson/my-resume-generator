@@ -6,13 +6,14 @@ import "./globals.scss";
 
 import Header from "./ui/Header";
 import OccupationHistory from "./ui/OccupationHistory";
-import Notes from "./ui/Notes";
+import AboutMe from "./ui/AboutMe";
 import useWindowSize from "./ui/hooks/useWindowSize";
 import PersonalityScores from "./ui/PersonalityScores";
 import { useEffect, useState } from "react";
 import BugInvaders from "./ui/games/BugInvaders";
 import SkillGraph from "./ui/SkillGraph";
 import { ChartType } from "./lib/types";
+import RoleIdeals from "./ui/RoleIdeals";
 
 export default function Page() {
   const windowSize = useWindowSize();
@@ -33,14 +34,8 @@ export default function Page() {
       sx={{ maxWidth: 1200, mx: "auto", position: "relative" }}
     >
       <Header />
-      <Stack
-        sx={{ justifyContent: "space-between" }}
-        direction={width < 1000 ? "column" : "row"}
-        gap={2}
-      >
-        <Notes />
-        <PersonalityScores />
-      </Stack>
+      <AboutMe />
+      <RoleIdeals />
       <BugInvaders />
       <SkillGraph type={ChartType.FrontEnd} label="Front End x Years" />
       <SkillGraph type={ChartType.BackEnd} label="Back End x Years" />

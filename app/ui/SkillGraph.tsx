@@ -27,6 +27,7 @@ import { VictoryAxis } from "victory-axis";
 import { VictoryBar } from "victory-bar";
 import { VictoryLabel } from "victory-core";
 import { VictoryTooltip } from "victory";
+import CollapsibleSection from "./shared/CollapsibleSection";
 
 const Chart = ({
   type,
@@ -157,42 +158,50 @@ export default function SkillGraph({
   );
 
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        backgroundColor: "#1A1A1A",
-        color: "white",
-        height: "fit-content",
-        p: 2,
-        borderRadius: 2,
-        border: "1px solid rgba(255, 255, 255, 0.12)",
-      }}
-    >
-      <Stack
-        direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between" }}
-      >
+    <CollapsibleSection
+      header={
         <Typography variant="h5" sx={{ color: "#99CCFF" }}>
           {label}
         </Typography>
-        <ToggleButtonGroup
-          value={sort}
-          exclusive
-          onChange={handleSortChange}
-          sx={{ height: 28 }}
+      }
+    >
+      <Stack
+        spacing={2}
+        sx={{
+          backgroundColor: "#1A1A1A",
+          color: "white",
+          height: "fit-content",
+          p: 2,
+          borderRadius: 2,
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+        }}
+      >
+        <Stack
+          direction="row"
+          sx={{
+            justifyContent: "end",
+            width: "100%",
+          }}
         >
-          <ToggleButton
-            value="alpha"
-            sx={{ backgroundColor: "white", ":hover": { opacity: 0.9 } }}
+          <ToggleButtonGroup
+            value={sort}
+            exclusive
+            onChange={handleSortChange}
+            sx={{ height: 28 }}
           >
-            <SortByAlpha />
-          </ToggleButton>
-          <ToggleButton value="years" sx={{ backgroundColor: "white" }}>
-            <CalendarMonth />
-          </ToggleButton>
-        </ToggleButtonGroup>
+            <ToggleButton
+              value="alpha"
+              sx={{ backgroundColor: "white", ":hover": { opacity: 0.9 } }}
+            >
+              <SortByAlpha />
+            </ToggleButton>
+            <ToggleButton value="years" sx={{ backgroundColor: "white" }}>
+              <CalendarMonth />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Stack>
+        <Chart type={type} sort={sort} />
       </Stack>
-      <Chart type={type} sort={sort} />
-    </Stack>
+    </CollapsibleSection>
   );
 }

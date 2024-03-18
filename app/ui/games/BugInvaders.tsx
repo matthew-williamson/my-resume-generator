@@ -19,6 +19,8 @@ import {
 } from "@mui/icons-material";
 import { ulid } from "ulid";
 import { isMobile } from "react-device-detect";
+import CollapsibleSection from "../shared/CollapsibleSection";
+import Highlight from "../shared/Highlight";
 
 interface SpriteData {
   id: string;
@@ -731,39 +733,39 @@ const SpaceInvaders = () => {
   );
 
   return (
-    <Stack
-      spacing={1}
-      sx={{
-        backgroundColor: "#1A1A1A",
-        borderRadius: 2,
-        border: "1px solid rgba(255, 255, 255, 0.12)",
-        p: 2,
-        flex: 1,
-      }}
+    <CollapsibleSection
+      header={
+        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+          Bug Invaders
+        </Typography>
+      }
     >
-      <Typography variant="h5" sx={{ color: "#99CCFF" }}>
-        Bug Invaders Game
-      </Typography>
-      <Stack spacing={1}>
+      <Stack spacing={1} sx={{ pb: 1 }}>
         <Typography variant="body2">
-          Bug Invaders is a purely React/TypeScript reinvention of the classic
-          Space Invaders game. I wrote this from scratch as a challenge to
-          myself.
+          <Highlight text="Bug Invaders" /> is a purely React reinvention of the
+          classic Space Invaders game. I wrote this from scratch as a{" "}
+          <Highlight
+            text="challenge
+          to myself"
+          />
+          .
         </Typography>
         <Typography variant="body2">
           {/*eslint-disable-next-line react/no-unescaped-entities*/}I wanted to
-          see if I could make a "continous" (i.e. not a turn based) game
-          performant and handle complicated state updates with nothing but
-          traditional React hooks.
+          see if I could make a "continous" (i.e. not a turn based) game{" "}
+          <Highlight text="performant" /> and handle{" "}
+          <Highlight text="complicated state updates" /> with nothing but
+          standard <Highlight text="React hooks" />.
         </Typography>
         <Typography variant="body2">
-          P.S.: If you want to modify the difficulty, all you have to do is
-          resize your window and reload the page. A wider window makes the game
-          more difficult, and a smaller window makes the game easier.
+          If you want to modify the <Highlight text="difficulty" />, all you
+          have to do is <Highlight text="resize" />
+          your window and reload the page. A wider window makes the game more
+          difficult.
         </Typography>
       </Stack>
       {game}
-    </Stack>
+    </CollapsibleSection>
   );
 };
 
