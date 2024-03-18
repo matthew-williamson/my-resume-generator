@@ -752,8 +752,8 @@ const SpaceInvaders = () => {
       {game}
       <Stack spacing={2} sx={{ pt: 2 }}>
         <Typography variant="body2">
-          <Highlight text="Bug Invaders" /> is a purely React reinvention of the
-          classic Space Invaders game. I wrote it from scratch as a{" "}
+          <Highlight text="Bug Invaders" /> is my take on the classic Space
+          Invaders game. I wrote it from scratch as a{" "}
           <Highlight text="challenge to myself" />. I wanted to see if I could
           make a "continous" game <Highlight text="performant" /> and handle{" "}
           <Highlight text="complicated state updates" /> with nothing but
@@ -761,9 +761,8 @@ const SpaceInvaders = () => {
         </Typography>
         <Typography variant="body2">
           If you want to modify the <Highlight text="difficulty" />, all you
-          have to do is <Highlight text="resize" />
-          your window and reload the page. A wider window makes the game more
-          difficult.
+          have to do is resize your window and reload the page. A wider window
+          makes the game more difficult.
         </Typography>
       </Stack>
     </CollapsibleSection>
