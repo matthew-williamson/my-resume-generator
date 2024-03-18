@@ -63,7 +63,10 @@ export default function OccupationHistory() {
                       <OpenInNew sx={{ fontSize: "28px" }} />
                     </Link>
                   ) : (
-                    <Typography sx={{ color: "rgba(255,255,255, 0.32)" }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "rgba(255,255,255, 0.32)" }}
+                    >
                       DEFUNCT
                     </Typography>
                   )}
