@@ -29,7 +29,9 @@ export default function OccupationHistory() {
                   <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
                     {e.company.name}
                   </Typography>
-                  <Typography variant="body2">{e.title}</Typography>
+                  <Typography variant="body2" color="rgba(190, 253, 200, 1)">
+                    {e.title}
+                  </Typography>
                   <Typography variant="caption">
                     {e.startDisplay} - {e.endDisplay ?? "Current"}
                   </Typography>

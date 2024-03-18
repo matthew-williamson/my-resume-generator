@@ -8,7 +8,7 @@ export default function AboutMe() {
     <CollapsibleSection
       header={
         <Typography variant="h5" sx={{ color: "#99CCFF" }}>
-          About Me
+          About
         </Typography>
       }
     >

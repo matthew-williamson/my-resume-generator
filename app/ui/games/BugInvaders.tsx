@@ -79,7 +79,9 @@ const PayloadIndicator = ({ hasPayload }: { hasPayload?: boolean }) => (
     sx={{
       transform: "rotate(90deg)",
       fontSize: `${SPRITE_OFFSET / 2}px`,
-      color: hasPayload ? "#99CCFF" : "rgba(255, 255, 255, 0.12)",
+      color: hasPayload
+        ? "rgba(190, 253, 200, 1)"
+        : "rgba(255, 255, 255, 0.12)",
     }}
   />
 );
@@ -177,7 +179,11 @@ const BottomRow = ({
       <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
         <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.25}>
           {payload < FULL_PAYLOAD ? (
-            <Typography variant="caption" fontWeight={700} color="#99CCFF">
+            <Typography
+              variant="caption"
+              fontWeight={700}
+              color="rgba(190, 253, 200, 1)"
+            >
               Recharging...
             </Typography>
           ) : null}
@@ -714,7 +720,7 @@ const SpaceInvaders = () => {
           ref={playerSpriteRef}
           id="player-sprite"
           sx={{
-            color: "#99CCFF",
+            color: "rgba(190, 253, 200, 1)",
             position: "absolute",
             bottom: INITIAL_TOP,
             left: playerPosition,
@@ -740,7 +746,7 @@ const SpaceInvaders = () => {
         </Typography>
       }
     >
-      <Stack spacing={1} sx={{ pb: 1 }}>
+      <Stack spacing={1} sx={{ pb: 2 }}>
         <Typography variant="body2">
           <Highlight text="Bug Invaders" /> is a purely React reinvention of the
           classic Space Invaders game. I wrote this from scratch as a{" "}

@@ -80,16 +80,16 @@ const Chart = ({
           <VictoryBar
             key={`${skill}-bar`}
             barWidth={barWidth}
-            style={{ data: { fill: "#99CCFF" } }}
+            style={{ data: { fill: "rgba(153, 204, 255, 0.4)" } }}
             data={[{ x: skill, y: timeBySkill[skill] }]}
             labelComponent={
               <VictoryTooltip
                 flyoutStyle={{
-                  stroke: "#99CCFF",
+                  stroke: "rgba(190, 253, 200, 0.16)",
                   fill: "rgba(0, 0, 0, 0.16)",
                 }}
                 style={{
-                  stroke: "#99CCFF",
+                  stroke: "rgba(190, 253, 200, 1)",
                 }}
               />
             }
@@ -120,9 +120,9 @@ const Chart = ({
           dependentAxis
           tickFormat={(tick) => `${tick}`}
           style={{
-            tickLabels: { fill: "#99CCFF" },
-            axis: { stroke: "rgba(153, 204, 255, 0.16)" },
-            grid: { stroke: "rgba(153, 204, 255, 0.16)", strokeWidth: 1.5 },
+            tickLabels: { fill: "rgba(190, 253, 200, 0.75)" },
+            axis: { stroke: "rgba(190, 253, 200, 0.16)" },
+            grid: { stroke: "rgba(190, 253, 200, 0.16)", strokeWidth: 1.5 },
           }}
         />
         <VictoryAxis
@@ -130,8 +130,8 @@ const Chart = ({
             <VictoryLabel verticalAnchor="middle" textAnchor="end" />
           }
           style={{
-            tickLabels: { fill: "#99CCFF", angle: -80 },
-            axis: { stroke: "rgba(153, 204, 255, 0.16)" },
+            tickLabels: { fill: "rgba(190, 253, 200, 0.75)", angle: -80 },
+            axis: { stroke: "rgba(190, 253, 200, 0.16)" },
           }}
         />
         {skillBars}
@@ -168,19 +168,15 @@ export default function SkillGraph({
       <Stack
         spacing={2}
         sx={{
-          backgroundColor: "#1A1A1A",
-          color: "white",
           height: "fit-content",
-          p: 2,
-          borderRadius: 2,
-          border: "1px solid rgba(255, 255, 255, 0.12)",
         }}
       >
         <Stack
           direction="row"
           sx={{
             justifyContent: "end",
-            width: "100%",
+            pr: 2,
+            pt: 2,
           }}
         >
           <ToggleButtonGroup
