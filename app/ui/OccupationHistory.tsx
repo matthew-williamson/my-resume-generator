@@ -2,6 +2,7 @@ import { Box, Divider, Stack, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
 import CollapsibleSection from "./shared/CollapsibleSection";
+import BulletPoint from "./shared/BulletPoint";
 
 export default function OccupationHistory() {
   return (
@@ -39,21 +40,10 @@ export default function OccupationHistory() {
                 <Divider sx={{ backgroundColor: "#99CCFF" }} />
                 <Stack spacing={2}>
                   {e.achievements.map((a, index) => (
-                    <Stack
-                      direction="row"
-                      spacing={1}
+                    <BulletPoint
                       key={`${e.company.name}-${e.id}-achievement-${index}`}
-                      sx={{ position: "relative" }}
-                    >
-                      <Box
-                        sx={{ position: "absolute", top: -2, color: "#99CCFF" }}
-                      >
-                        ○
-                      </Box>
-                      <Typography variant="body2" sx={{ pl: 1 }}>
-                        {a}
-                      </Typography>
-                    </Stack>
+                      text={a}
+                    />
                   ))}
                 </Stack>
               </Stack>
