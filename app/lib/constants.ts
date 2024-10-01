@@ -1,9 +1,14 @@
-import exp from "constants";
-import { calculateTimeBySkill, millisecondsToYears } from "./helpers";
+import { calculateTimeBySkill } from "./helpers";
 import { Company, Experience, Skill } from "./types";
 import _ from "lodash";
 
 const Scottsdale = "Scottsdale, AZ";
+const Tempe = "Tempe, AZ";
+
+export const Carvana: Company = {
+  name: "Carvana",
+  location: Tempe
+}
 
 export const ImagineLearning: Company = {
   name: "Imagine Learning",
@@ -40,25 +45,22 @@ export const bigFivePersonalityScores = [
 
 export const experiences: Experience[] = [
   {
-    startDate: new Date("10/1/2023"),
-    startDisplay: "10/2023",
+    startDate: new Date("04/1/2024"),
+    startDisplay: "04/2024",
     title: "Senior Software Engineer",
-    company: ImagineLearning,
+    company: Carvana,
     id: 1,
-    url: "https://www.imaginelearning.com/",
+    url: "https://carvana.com/",
     achievements: [
-      "Build and maintain education SaaS web applications with React and TypeScript",
-      "Improved code quality by introducing team to Storybook, Prettier, Cypress, and more",
-      "Develop and maintain micro front-ends",
-      "Provide best practice guidance on Git, React, and TypeScript",
-      "Turn loose requirements and Figma mocks into reality",
-      "Integrate with GraphQL APIs and REST APIs",
-      "Create highly reusable, robust, scalable, testable code",
-      "Improve PR culture with thoughtful feedback and fostering a space for continued learning and growth",
-      "Mentor junior developers",
-      "Participate in high level architectural discussions about direction of engineering",
-      "Assist QA teams by guiding Cypress test automation development",
-      "Collaborate with product, management, and teammates to navigate new solutions and deadlines",
+      "Mentor junior and senior level software engineers",
+      "Participate in high level engineering strategy and design sessions",
+      "Collaborate with product and project management to turn loose requirements into reality",
+      "Continously iterate and improve upon our main NX monorepo",
+      "Level up QA/QE team members by teaching them TypeScript from the ground up",
+      "Full stack development on React/TypeScript web applications and C#.NET backend APIs and services",
+      "DevOps duties including instantiating new pipelines and CI/CD",
+      "Perform code reviews ensuring high quality coding standards and practices are adhered to",
+      "Implemented our first ever MFE host application",
     ],
     frontEndSkills: [
       Skill.React,
@@ -66,38 +68,39 @@ export const experiences: Experience[] = [
       Skill.JavaScript,
       Skill.Jest,
       Skill.Cypress,
+      Skill.Playwright,
       Skill.Redux,
-      Skill.TailwindCSS,
       Skill.HTML,
       Skill.CSS,
       Skill.SASS,
       Skill.APIIntegration,
+      Skill.MUI,
       Skill.WebAppDevelopment,
+      Skill.SaaS,
       Skill.Storybook,
       Skill.UnitTesting,
-      Skill.Figma,
-      Skill.SaaS,
     ],
     backEndSkills: [
-      Skill.CSharp,
       Skill.SQL,
       Skill.EventDrivenArchitecture,
-      Skill.APIDevelopment,
       Skill.MicroserviceArchitecture,
-      Skill.REST,
-      Skill.GraphQL,
+      Skill.APIDevelopment,
+      Skill.REST
     ],
     generalTechnicalSkills: [
       Skill.Webpack,
-      Skill.CodeReviews,
+      Skill.NX,
       Skill.Git,
+      Skill.AzureDevops,
       Skill.LargeScaleSystems,
+      Skill.AI,
+      Skill.ChatGPTFeatures,
       Skill.CICD,
+      Skill.CodeReviews,
+      Skill.MobileAppDevelopment,
       Skill.AgileScrum,
-      Skill.Jira,
     ],
     softSkills: [
-      Skill.Mentorship,
       Skill.Leadership,
       Skill.TeamworkandCollaboration,
       Skill.Communication,
@@ -113,6 +116,8 @@ export const experiences: Experience[] = [
   {
     startDate: new Date("12/1/2022"),
     startDisplay: "12/2022",
+    endDate: new Date("04/1/2024"),
+    endDisplay: "04/2024",
     title: "Senior Software Engineer",
     company: SavvyTrader,
     id: 2,
@@ -121,12 +126,12 @@ export const experiences: Experience[] = [
       "Design, build, and maintain a greenfield portfolio sharing platform SaaS web application with React and TypeScript",
       "Build and deploy mobile app versions with Capacitor JS",
       "Build and maintain TypeScript and Node.js BE using Dynamo and SQL databases",
-      "BE is 100% microservice architecture",
-      "Infrastructure is 100% AWS cloud solution based (Lambda, API Gateway, CloudWatch, RDS, DynamoDB, S3, EventBridge, etc)",
+      "Microservice architecture in the BE",
+      "AWS infrastructure (Lambda, API Gateway, CloudWatch, RDS, DynamoDB, S3, EventBridge, etc)",
       "Architected multiple differentiator AI features using OpenAI/OpenAPI",
       "Created one of the first 50 ChatGPT Plugins",
       "Integrate with both internal and external APIs",
-      "Create highly reusable, robust, scalable, testable code",
+      "Write highly reusable, robust, scalable, testable code",
       "Data visualization and manipulation using Highcharts, Victory Charts",
     ],
     frontEndSkills: [
@@ -161,6 +166,7 @@ export const experiences: Experience[] = [
       Skill.Git,
       Skill.LargeScaleSystems,
       Skill.AI,
+      Skill.NX,
       Skill.ChatGPTFeatures,
       Skill.CICD,
       Skill.CodeReviews,
@@ -202,6 +208,7 @@ export const experiences: Experience[] = [
       "Mentor junior developers",
       "Participate in high level architectural discussions about direction of engineering",
       "Assist QA in Cypress automation development",
+      "Collaborate with product, management, and teammates to navigate new solutions and deadlines",
     ],
     frontEndSkills: [
       Skill.React,

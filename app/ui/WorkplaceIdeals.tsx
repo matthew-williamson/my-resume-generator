@@ -19,7 +19,7 @@ export default function WorkplaceIdeals() {
         <BulletPoint
           text={
             <>
-              <Highlight text="Collaborative" /> environment
+              <Highlight text="Collaborative" /> environment, I can't level up or help level up without it
             </>
           }
         />
@@ -43,7 +43,7 @@ export default function WorkplaceIdeals() {
         <BulletPoint
           text={
             <>
-              Ideally a <Highlight text="fast paced" /> environment
+              Fast paced <Highlight text="fast paced" />, I have a startup mindset
             </>
           }
         />

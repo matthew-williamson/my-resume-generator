@@ -74,6 +74,9 @@ export enum Skill {
   Adaptability = "Adaptability",
   ConflictResolution = "Conflict Resolution",
   ContinuousLearning = "Continuous Learning",
+  Playwright = "Playwright",
+  AzureDevops = "Azure Devops",
+  NX = "NX"
 }
 
 export enum ChartType {
