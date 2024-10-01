@@ -19,7 +19,7 @@ export default function WorkplaceIdeals() {
         <BulletPoint
           text={
             <>
-              <Highlight text="Collaborative" /> environment, I can't level up or help level up without it
+              <Highlight text="Collaborative" /> environment, I cannot level up or help level up without it
             </>
           }
         />
