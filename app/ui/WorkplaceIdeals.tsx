@@ -43,7 +43,7 @@ export default function WorkplaceIdeals() {
         <BulletPoint
           text={
             <>
-              Fast paced <Highlight text="fast paced" />, I have a startup mindset
+              <Highlight text="Fast paced" />, I have a startup mindset
             </>
           }
         />
