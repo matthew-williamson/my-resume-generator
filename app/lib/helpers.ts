@@ -24,7 +24,7 @@ export const alphaSort = (a: Skill, b: Skill) => (a > b ? 1 : -1);
 export const timeSort = (
   a: Skill,
   b: Skill,
-  timeBySkill: Record<Skill, number>
+  timeBySkill: Record<Skill, number>,
 ) => (timeBySkill[a] < timeBySkill[b] ? 1 : -1);
 
 export const calculateTimeBySkill = (
@@ -33,20 +33,23 @@ export const calculateTimeBySkill = (
     | "frontEndSkills"
     | "backEndSkills"
     | "generalTechnicalSkills"
-    | "softSkills"
+    | "softSkills",
 ) =>
-  experiences.reduce((acc, experience) => {
-    const endTimestamp = experience.endDate
-      ? experience.endDate.getTime()
-      : Date.now();
-    const years = millisecondsToYears(
-      endTimestamp - experience.startDate.getTime()
-    );
-    experience[skillSet].forEach((skill) => {
-      if (!acc[skill]) {
-        acc[skill] = 0;
-      }
-      acc[skill] += years;
-    });
-    return acc;
-  }, {} as Record<Skill, number>);
+  experiences.reduce(
+    (acc, experience) => {
+      const endTimestamp = experience.endDate
+        ? experience.endDate.getTime()
+        : Date.now();
+      const years = millisecondsToYears(
+        endTimestamp - experience.startDate.getTime(),
+      );
+      experience[skillSet].forEach((skill) => {
+        if (!acc[skill]) {
+          acc[skill] = 0;
+        }
+        acc[skill] += years;
+      });
+      return acc;
+    },
+    {} as Record<Skill, number>,
+  );

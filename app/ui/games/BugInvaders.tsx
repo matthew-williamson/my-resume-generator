@@ -140,7 +140,7 @@ const BottomRow = ({
 
     while (elements.length < FULL_PAYLOAD) {
       elements.push(
-        <PayloadIndicator key={`empty-payload-${elements.length}`} />
+        <PayloadIndicator key={`empty-payload-${elements.length}`} />,
       );
     }
 
@@ -244,7 +244,7 @@ const BottomRow = ({
 
 const generateInvaderMovementPattern = (
   initialLeft: number,
-  gameWidth: number
+  gameWidth: number,
 ) => {
   const randomNumber = Math.random();
 
@@ -252,12 +252,12 @@ const generateInvaderMovementPattern = (
 
   const leftBound = Math.max(
     LEFT_BOUND, // literal left bound
-    initialLeft - randomLargeNumber - 30
+    initialLeft - randomLargeNumber - 30,
   );
 
   const rightBound = Math.min(
     gameWidth - SPRITE_OFFSET, // literal right bound
-    initialLeft + randomLargeNumber + 30
+    initialLeft + randomLargeNumber + 30,
   );
 
   const movementSpeed = HORIZONTAL_MOVE_SPEED / 3;
@@ -277,12 +277,12 @@ let movementDataByInvaderId: Record<string, any> = {};
 const calculateMovement = (
   invaderId: string,
   invaderLeft = 0,
-  gameWidth = 0
+  gameWidth = 0,
 ) => {
   if (!movementDataByInvaderId[invaderId]) {
     movementDataByInvaderId[invaderId] = generateInvaderMovementPattern(
       invaderLeft,
-      gameWidth
+      gameWidth,
     );
   }
 
@@ -329,7 +329,7 @@ const SpaceInvaders = () => {
     setInvaders(initialInvaders);
     movementDataByInvaderId = {};
     setPlayerPosition(
-      (gameWindowRef.current?.getBoundingClientRect().width || 0) / 2
+      (gameWindowRef.current?.getBoundingClientRect().width || 0) / 2,
     );
     setScore(INITIAL_SCORE);
     setPlaying(false);
@@ -338,7 +338,7 @@ const SpaceInvaders = () => {
 
   useEffect(() => {
     setHighScore((prevHighScore) =>
-      prevHighScore > score ? prevHighScore : score
+      prevHighScore > score ? prevHighScore : score,
     );
   }, [score]);
 
@@ -452,10 +452,10 @@ const SpaceInvaders = () => {
       }
 
       const missileElements = Array.from(
-        document.getElementsByClassName("missile-sprite")
+        document.getElementsByClassName("missile-sprite"),
       );
       const invaderElements = Array.from(
-        document.getElementsByClassName("invader-sprite")
+        document.getElementsByClassName("invader-sprite"),
       );
 
       // Check dynamically if any collisions have happened in this round of looping.
@@ -512,7 +512,7 @@ const SpaceInvaders = () => {
         setPlayerPosition((prevPosition) =>
           prevPosition - HORIZONTAL_MOVE_SPEED >= LEFT_BOUND
             ? prevPosition - HORIZONTAL_MOVE_SPEED
-            : LEFT_BOUND
+            : LEFT_BOUND,
         );
       } else if (moveRight) {
         const { width = 0 } =
@@ -520,7 +520,7 @@ const SpaceInvaders = () => {
         setPlayerPosition((prevPosition) =>
           prevPosition + HORIZONTAL_MOVE_SPEED <= width - SPRITE_OFFSET
             ? prevPosition + HORIZONTAL_MOVE_SPEED
-            : width - SPRITE_OFFSET
+            : width - SPRITE_OFFSET,
         );
       }
 
@@ -539,7 +539,7 @@ const SpaceInvaders = () => {
             newTop < 0 ||
             missilesToRemove.some(
               (missileToRemove) =>
-                missileToRemove.getAttribute("id") === missile.id
+                missileToRemove.getAttribute("id") === missile.id,
             )
           ) {
             return acc;
@@ -567,7 +567,7 @@ const SpaceInvaders = () => {
           if (
             invadersToRemove.some(
               (invaderToRemove) =>
-                invaderToRemove.getAttribute("id") === invader.id
+                invaderToRemove.getAttribute("id") === invader.id,
             )
           ) {
             delete movementDataByInvaderId[invader.id];
@@ -577,7 +577,7 @@ const SpaceInvaders = () => {
           const newLeft = calculateMovement(
             invader.id,
             invader.left,
-            gameBounds.width
+            gameBounds.width,
           );
 
           acc.push({
@@ -594,7 +594,7 @@ const SpaceInvaders = () => {
             id: ulid(),
             top: INITIAL_TOP,
             left: generateRandomNumber(
-              gameWindowRef.current?.getBoundingClientRect().width || 0
+              gameWindowRef.current?.getBoundingClientRect().width || 0,
             ),
           });
         }

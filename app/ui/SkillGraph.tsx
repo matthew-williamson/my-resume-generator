@@ -73,7 +73,7 @@ const Chart = ({
 
     let skillBars = [...skillsInExperiences]
       .sort(
-        sort === "alpha" ? alphaSort : (a, b) => timeSort(a, b, timeBySkill)
+        sort === "alpha" ? alphaSort : (a, b) => timeSort(a, b, timeBySkill),
       )
       .map((skill) => {
         return (
@@ -154,7 +154,7 @@ export default function SkillGraph({
         setSort(newSort);
       }
     },
-    []
+    [],
   );
 
   return (

@@ -7,8 +7,8 @@ const Tempe = "Tempe, AZ";
 
 export const Carvana: Company = {
   name: "Carvana",
-  location: Tempe
-}
+  location: Tempe,
+};
 
 export const ImagineLearning: Company = {
   name: "Imagine Learning",
@@ -85,7 +85,7 @@ export const experiences: Experience[] = [
       Skill.EventDrivenArchitecture,
       Skill.MicroserviceArchitecture,
       Skill.APIDevelopment,
-      Skill.REST
+      Skill.REST,
     ],
     generalTechnicalSkills: [
       Skill.Webpack,
@@ -421,38 +421,38 @@ export const frontEndSkillsInExperiences = _.uniq(
   experiences.reduce((acc, e) => {
     acc.push(...e.frontEndSkills);
     return acc;
-  }, [] as Skill[])
+  }, [] as Skill[]),
 );
 
 export const backEndSkillsInExperiences = _.uniq(
   experiences.reduce((acc, e) => {
     acc.push(...e.backEndSkills);
     return acc;
-  }, [] as Skill[])
+  }, [] as Skill[]),
 );
 
 export const generalTechnicalSkillsInExperiences = _.uniq(
   experiences.reduce((acc, e) => {
     acc.push(...e.generalTechnicalSkills);
     return acc;
-  }, [] as Skill[])
+  }, [] as Skill[]),
 );
 
 export const softSkillsInExperiences = _.uniq(
   experiences.reduce((acc, e) => {
     acc.push(...e.softSkills);
     return acc;
-  }, [] as Skill[])
+  }, [] as Skill[]),
 );
 
 export const frontEndTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
   experiences,
-  "frontEndSkills"
+  "frontEndSkills",
 );
 
 export const backEndTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
   experiences,
-  "backEndSkills"
+  "backEndSkills",
 );
 
 export const generalTechnicalTimeBySkill: Record<Skill, number> =
@@ -460,5 +460,5 @@ export const generalTechnicalTimeBySkill: Record<Skill, number> =
 
 export const softTimeBySkill: Record<Skill, number> = calculateTimeBySkill(
   experiences,
-  "softSkills"
+  "softSkills",
 );

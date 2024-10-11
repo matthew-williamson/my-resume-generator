@@ -31,15 +31,15 @@ export default function AboutMe() {
         </Typography>
         <Typography variant="body2">
           My immediate goal is to become a{" "}
-          <Highlight text="Software Engineering Manager" />.
-          The most satisfied I feel from work is when I get to{" "}
+          <Highlight text="Software Engineering Manager" />. The most satisfied
+          I feel from work is when I get to{" "}
           <Highlight text="help my teammates level up" />. I place a high value
           on <Highlight text="collaborative" /> environments.
         </Typography>
         <Typography variant="body2">
-          I consider myself a professional <Highlight text="problem solver" /> more than any specific type of engineer.
-          My tech stack of choice to tackle problems and provide solutions would
-          include{" "}
+          I consider myself a professional <Highlight text="problem solver" />{" "}
+          more than any specific type of engineer. My tech stack of choice to
+          tackle problems and provide solutions would include{" "}
           <Highlight text="TypeScript and/or JavaScript, React, Node, Cloud Infrastructure like AWS or Azure, SQL and/or NoSQL, and Git" />
           .
         </Typography>
