@@ -6,6 +6,7 @@ import Highlight from "./shared/Highlight";
 export default function AboutMe() {
   return (
     <CollapsibleSection
+      open
       header={
         <Typography variant="h5" sx={{ color: "#99CCFF" }}>
           About

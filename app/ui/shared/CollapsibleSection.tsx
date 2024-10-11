@@ -1,23 +1,25 @@
-import { Expand, ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Divider, IconButton, Stack } from "@mui/material";
 import { useState } from "react";
 
 interface CollapsibleSectionProps {
+  open?: boolean;
   header: any;
   children: any;
 }
 export default function CollapsibleSection({
+  open = false,
   header,
   children,
 }: CollapsibleSectionProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isOpen, setIsOpen] = useState(open);
   return (
     <Stack
       sx={{
         backgroundColor: "#1A1A1A",
         borderRadius: 2,
         border: "1px solid rgba(255, 255, 255, 0.12)",
-        flex: 1,
+        flex: 1
       }}
     >
       <Stack
@@ -27,11 +29,14 @@ export default function CollapsibleSection({
           justifyContent: "space-between",
           cursor: "pointer",
           p: 2,
+          ':hover': {
+            opacity: 0.8
+          }
         }}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setIsCollapsed(!isCollapsed);
+          setIsOpen(!isOpen);
         }}
       >
         {header}
@@ -43,14 +48,14 @@ export default function CollapsibleSection({
             height: 32,
           }}
         >
-          {isCollapsed ? (
+          {!isOpen ? (
             <ExpandMore sx={{ fontSize: 32 }} />
           ) : (
             <ExpandLess sx={{ fontSize: 32 }} />
           )}
         </IconButton>
       </Stack>
-      {isCollapsed ? null : (
+      {!isOpen ? null : (
         <>
           <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.12)" }} />
           <Box sx={{ p: 2 }}>{children}</Box>
