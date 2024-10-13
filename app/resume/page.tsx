@@ -2,90 +2,102 @@
 
 import { Avatar, Box, Divider, Paper, Stack, Typography } from "@mui/material";
 import QRCode from "qrcode.react";
-import PersonalityScores from "../ui/PersonalityScores";
 import { experiences } from "../lib/constants";
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 import { chunkExperiences } from "../lib/helpers";
 import { Experience } from "../lib/types";
-import { useReactToPrint } from 'react-to-print';
+import BulletPoint from "../ui/shared/BulletPoint";
+import {
+  AccountBoxOutlined,
+  EditOutlined,
+  SchoolOutlined,
+  TrendingUpOutlined,
+  WorkOutline,
+} from "@mui/icons-material";
 
-interface SkillProps {
-  label: string;
-  years: number;
-}
-
-const skills = [
-  { label: "React", years: 6 },
-  { label: "TypeScript", years: 6 },
-  { label: "JavaScript", years: 7 },
-  { label: "Node.js", years: 6 },
-  { label: "C#", years: 4 },
-  { label: ".NET", years: 4 },
-  { label: "Integration Testing", years: 5 },
-  { label: "Unit Testing", years: 5 },
-  { label: "SaaS", years: 5 },
-  { label: "REST", years: 6 },
-  { label: "GraphQL", years: 4 },
-  { label: "SQL", years: 3 },
-  { label: "NoSQL", years: 4 },
-  { label: "Agile", years: 5 },
-  { label: "HTML/CSS", years: 7 },
-  { label: "Git", years: 6 },
-  { label: "API Integration", years: 6 },
-  { label: "Storybook", years: 4 },
-  { label: "Event Driven", years: 3 },
-  { label: "Microservices", years: 4 },
-  { label: "Microfrontends", years: 2 },
-  { label: "AWS/Azure DevOps", years: 4 },
-  { label: "Cloud Infrastructure", years: 4 },
-  { label: 'CSS/HTML', years: 8 }
+const topSkills = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "C#/.NET",
+  "Git",
+  "API Integration",
+  "REST APIs",
+  "Integration Testing",
+  "Unit Testing",
+  "Storybook",
+  "SaaS Web Apps",
+  "Responsive UI",
+  "Leadership/Mentorship",
 ];
 
-const Skill = ({ label, years }: SkillProps) => (
-  <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-    <Typography variant="body2">{label}</Typography>
-    <Typography variant="body2">{years} years</Typography>
-  </Stack>
-);
+const otherSkills = [
+  "Electron Desktop Apps",
+  "GraphQL",
+  "SQL/NoSQL",
+  "Microservices",
+  "Event-Driven Systems",
+  "Microfrontends",
+  "Azure DevOps Cloud",
+  "AWS Cloud",
+  "Redux/Redux Saga",
+  "Data Visualization/Graphing",
+  "Mobile App Development",
+  "Responsive UI",
+  "Chrome Extensions",
+  "Code Reviews",
+  "Figma",
+  "Jira",
+];
 
-const Skills = skills.map(({ label, years }) => (
-  <Skill key={label} label={label} years={years} />
+const TopSkills = topSkills.map((skill) => (
+  <Typography variant="body2" key={skill}>
+    {skill}
+  </Typography>
 ));
+
+const OtherSkills = otherSkills.map((skill) => (
+  <Typography variant="body2" key={skill}>
+    {skill}
+  </Typography>
+));
+
+const primary = "rgba(204, 102, 51, 0.75)";
+const primaryFull = "rgba(76, 100, 51, 1)";
 
 interface SectionProps extends PropsWithChildren {
   header: string;
+  icon?: ReactElement;
 }
-const Section = ({ header, children }: SectionProps) => (
-  <Paper>
+const Section = ({ header, icon, children }: SectionProps) => (
+  <Box
+    sx={{
+      borderRadius: "4px",
+      border: header ? "1px solid rgba(0, 0, 0, 0.1)" : `3px solid ${primary}`,
+    }}
+  >
     <Stack>
-      <Stack
-        sx={{
-          backgroundColor: "rgba(0, 100, 120, 0.5)",
-          p: 1,
-          borderRadius: "4px 4px 0px 0px",
-        }}
-      >
-        <Typography variant="h6" fontWeight={600} color="white">
-          {header}
-        </Typography>
-      </Stack>
+      {header && (
+        <Stack
+          direction="row"
+          sx={{
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: primary,
+            p: 1,
+            borderRadius: "4px 4px 0px 0px",
+          }}
+        >
+          <Typography variant="h6" fontWeight={600} color="white">
+            {header}
+          </Typography>
+          {icon}
+        </Stack>
+      )}
       <Box sx={{ p: 1 }}>{children}</Box>
     </Stack>
-  </Paper>
-);
-
-const RightColumn = () => (
-  <Stack spacing={2} sx={{ width: "calc(37% - 32px)" }}>
-    <Section header="What are my skills?">{Skills}</Section>
-    <Section header="What is my degree?">
-      <Typography variant="body2">B.S. Mathematics</Typography>
-      <Typography variant="body2">ASU | 2018</Typography>
-      <Typography variant="body2">3.73 GPA | Magna Cum Laude</Typography>
-    </Section>
-    <Section header="What am I like?">
-      <PersonalityScores />
-    </Section>
-  </Stack>
+  </Box>
 );
 
 interface ExperiencesProps {
@@ -93,23 +105,39 @@ interface ExperiencesProps {
 }
 const Experiences = ({ experiences }: ExperiencesProps) =>
   experiences.map((e, index) => (
-    <Stack key={e.id} spacing={0.9}>
-      {index === 0 ? null : <Divider />}
-      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-        <Typography fontWeight={600} variant="body2">
+    <Stack key={e.id} spacing={1}>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{
+          alignItems: "center",
+          pt: index === 0 ? 0 : 1,
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography
+          fontWeight={600}
+          sx={{ color: primaryFull, fontSize: "16px" }}
+        >
           {e.company.name}
         </Typography>
-        <Divider orientation="vertical" sx={{ height: 12 }} />
-        <Typography variant="body2" fontWeight={600}>
-          {e.title}
-        </Typography>
-        <Divider orientation="vertical" sx={{ height: 12 }} />
-        <Typography variant="body2" fontWeight={600}>
-          {e.startDisplay} - {e.endDisplay ?? "Current"}
+        <Typography
+          variant="caption"
+          sx={{ color: primaryFull }}
+          fontWeight={600}
+        >
+          {e.title} | {e.startDisplay} - {e.endDisplay ?? "Present"}
         </Typography>
       </Stack>
       <Box>
-        <Typography variant="caption">{e.summary}</Typography>
+        {e.achievements.map((ach) => (
+          <BulletPoint
+            text={ach}
+            variant="caption"
+            color={primaryFull}
+            key={ach}
+          />
+        ))}
       </Box>
       {index === experiences.length - 1 ? null : <Divider />}
     </Stack>
@@ -117,23 +145,15 @@ const Experiences = ({ experiences }: ExperiencesProps) =>
 
 const experienceSubsets = chunkExperiences([...experiences].reverse());
 
-const PageOneExperiences = () => {
-  return (
-    <Section header="What have I done?">
-      <Experiences experiences={experienceSubsets[0]} />
-    </Section>
-  );
-};
-
-const LeftColumn = () => (
-  <Stack spacing={2} sx={{ width: "63%" }}>
-    <Section header="Who are you getting?">
+const PageOne = () => (
+  <Stack sx={{ p: 1 }} spacing={2}>
+    <Section header="">
       <Stack sx={{ alignItems: "center" }} direction="row" spacing={2}>
         <Avatar
           sx={{
             width: 84,
             height: 84,
-            border: "3px solid rgba(0, 100, 120, 0.5)",
+            border: `3px solid ${primary}`,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -144,7 +164,7 @@ const LeftColumn = () => (
           direction="row"
         >
           <Stack>
-            <Typography variant="h5" fontWeight={700}>
+            <Typography variant="h4" fontWeight={700} color={primaryFull}>
               Matthew Williamson
             </Typography>
             <Typography variant="body2">Fountain Hills, AZ</Typography>
@@ -159,93 +179,112 @@ const LeftColumn = () => (
         </Stack>
       </Stack>
     </Section>
-    <Section header="Why me?">
-      <Typography variant="body2">
-        I am an outgoing and energetic Senior Software Engineer with over 7 years of
-        professional experience building everything from SaaS web applications
-        in React/TypeScript to Node.js/C#.NET REST and GraphQL APIs to Electron
-        based desktop Git GUIs! I have passions for code quality, problem
-        solving, and mentorship. I lean slightly frontend, but prefer getting my
-        hands dirty in all areas of the tech stack. I believe that great
-        software engineers are not language experts, but instead are problem
-        solvers, communicators, and collaborators. I'm looking forward to
-        furthering my career by becoming either a Team Lead, Principal/Staff
-        Engineer, or Engineering Manager.
-      </Typography>
-    </Section>
-    <PageOneExperiences />
-  </Stack>
-);
-
-const PageOne = () => (
-  <Stack
-    spacing={2}
-    direction="row"
-    sx={{
-      p: 1,
-      width: "100%",
-    }}
-  >
-    <LeftColumn />
-    <RightColumn />
+    <Stack
+      spacing={2}
+      direction="row"
+      sx={{
+        width: "100%",
+      }}
+    >
+      <Stack spacing={2} sx={{ width: "70%" }}>
+        <Section
+          header="About Me"
+          icon={<AccountBoxOutlined sx={{ color: "white" }} />}
+        >
+          <Typography variant="caption">
+            I’m a Senior Software Engineer with 7+ years of experience building
+            high-quality SaaS web applications, REST APIs, and desktop tools.
+            I specialize in React, TypeScript, C#.NET, and Node.js. I thrive on solving
+            complex problems, improving code quality, and mentoring teams. My
+            focus is delivering solutions that are scalable, user-friendly, and
+            built to last. While I lean towards frontend, I excel across the
+            full stack, and I’m eager to grow into leadership roles like Team
+            Lead, Principal Engineer, or Engineering Manager.
+          </Typography>
+        </Section>
+        <Section
+          header="My Experiences"
+          icon={<WorkOutline sx={{ color: "white" }} />}
+        >
+          <Experiences experiences={experienceSubsets[0]} />
+        </Section>
+      </Stack>
+      <Stack spacing={2} sx={{ width: "30%" }}>
+        <Section
+          header="Top Skills"
+          icon={<TrendingUpOutlined sx={{ color: "white" }} />}
+        >
+          {TopSkills}
+        </Section>
+        <Section
+          header="Other Skills"
+          icon={<TrendingUpOutlined sx={{ color: "white" }} />}
+        >
+          {OtherSkills}
+        </Section>
+        <Section
+          header="My Education"
+          icon={<SchoolOutlined sx={{ color: "white" }} />}
+        >
+          <Typography variant="body2">B.S. Mathematics, 2018 ASU</Typography>
+          <Typography variant="body2">3.73 GPA, Magna Cum Laude</Typography>
+        </Section>
+      </Stack>
+    </Stack>
   </Stack>
 );
 
 const PageTwo = () => (
   <Stack spacing={2} sx={{ p: 1, mt: 1 }}>
     {experienceSubsets.slice(1).map((e, index) => (
-      <Section key={index} header="What else has he done?">
+      <Section
+        key={index}
+        header="My Experiences (Continued)"
+        icon={<WorkOutline sx={{ color: "white" }} />}
+      >
         <Experiences experiences={e} />
       </Section>
     ))}
-    <Section header="A Note to Reader...">
-      <Stack spacing={2}>
-        <Typography variant="body2">Dear Reader,</Typography>
+    <Section
+      header="Note to Reader"
+      icon={<EditOutlined sx={{ color: "white" }} />}
+    >
+      <Stack spacing={1.75}>
         <Typography variant="caption">
-          Thank you for reading this resume! If you find this in front of you,
-          it most likely means I'm highly interested in committing my skills,
-          experiences, drive, and energy to your team and products. I either saw
-          your job posting or know about your company and products and like what
-          I see. Hopefully this resume helps you feel the same way about me.
+          Thank you for reviewing my resume! If it's in front of you, I’m
+          excited to bring my skills, experience, and energy to your team. I’ve
+          either applied to your job or know your company and am eager to
+          contribute.
         </Typography>
-        <Typography variant="body2">
-          You should also know that what you have in front of you is not a
-          "normal" resume. It is actually a page from my personal web
-          application I custom wrote using Next.js, TypeScript, MUI (Material
-          UI), and React. You can find the main site here{" "}
-          <strong>https://matt-williamson.netlify.app</strong> or by using the
-          QR code above. The site is hosted using Vercel and CI/CD is configured to auto-deploy on commit to the repo found here <strong>https://github.com/matthew-williamson/my-resume-generator</strong>.
+        <Typography variant="caption">
+          This isn't a typical resume—it's a custom-built page from my personal
+          web app, developed using Next.js, TypeScript, MUI, and React. You can
+          explore the full site at https://matt-williamson.netlify.app or scan
+          the QR code above. The site is hosted on Vercel with CI/CD
+          auto-deployments from the repo at
+          https://github.com/matthew-williamson/my-resume-generator.
         </Typography>
-        <Box>
-          <Typography variant="body2">Thanks again,</Typography>
-          <Typography variant="body2">Matthew Williamson</Typography>
-        </Box>
+        <Stack>
+          <Typography variant="caption">Thanks again,</Typography>
+          <Typography
+            variant="caption"
+            sx={{ color: primaryFull }}
+          >
+            Matthew Williamson
+          </Typography>
+        </Stack>
       </Stack>
     </Section>
   </Stack>
 );
 
 export default function Page() {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const onPrint = useReactToPrint({
-    contentRef
-  });
-
-  useEffect(() => {
-    if (contentRef.current) {
-      onPrint();
-    }
-  }, [contentRef]);
-
   return (
-    <Stack ref={contentRef}>
+    <Stack>
       <style type="text/css">
         {`
-          body {
-            background-image: linear-gradient(to right, rgba(0, 100, 120, 0.25), rgba(255, 255, 255, 0.1));
-          }
-
           span, div, .MuiTypography-root {
+            letter-spacing: 0.03rem !important;
             font-family: Georgia, serif !important;
           }
 

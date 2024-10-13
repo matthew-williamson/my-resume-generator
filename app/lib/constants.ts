@@ -52,29 +52,17 @@ export const experiences: Experience[] = [
     id: 1,
     url: "https://carvana.com/",
     achievements: [
-      "Mentor junior and senior level software engineers",
-      "Participate in high level engineering strategy and design sessions",
-      "Collaborate with product and project management to turn loose requirements into reality",
-      "Continously iterate and improve upon our main NX monorepo",
-      "Level up QA/QE team members by teaching them TypeScript from the ground up",
-      "Full stack development on React/TypeScript web applications and C#.NET backend APIs and services",
-      "DevOps duties including instantiating new pipelines and CI/CD",
-      "Perform code reviews ensuring high quality coding standards and practices are adhered to",
-      "Implemented our first ever MFE host application",
+      "Lead development of SaaS apps using React/TypeScript, C#.NET microservices, and REST/GraphQL APIs.",
+      "Integrate 3rd-party/internal APIs and streamline application functionality.",
+      "Conduct code reviews to ensure high-quality, performant, and maintainable code.",
+      "Mentor engineers and QA, fostering skill growth across the full stack.",
+      "Collaborate with product teams to deliver features from wireframes to production.",
+      "Manage Azure DevOps CI/CD pipelines, NX monorepo setup, and Git workflows.",
+      "Implement automated tests (Playwright, Jest, MSW) for robust testing coverage.",
+      "Designed and launched our team's first Microfrontend architecture.",
+      "Optimize performance and resolve codebase inefficiencies.",
+      "Present team progress and key outcomes to leadership bi-weekly.",
     ],
-    summary: `
-      Design, build, deploy, and maintain SaaS React/TypeScript web applications, C#.NET microservices, and C#.NET REST/GraphQL APIs.
-      Integrate with 3rd party and internal APIs.
-      Conduct thorough code reviews across the stack to ensure robust and clean code ships.
-      Mentor and level up teammates across the stack, including QE.
-      Work with product/project management to turn loose wireframe mocks into reality.
-      Maintain Azure DevOps CI/CD pipelines and infrastructure.
-      Maintain NX monorepo infrastructure and provide guidance on Git best practices.
-      Write integration and unit test cases using Playwright, Jest, MSW, and more.
-      Designed and implemented our first ever Microfrontend Host Application.
-      Identify and solve bottlenecks, render performance issues, and areas to improve upon in our codebases.
-      Present bi-weekly team updates and demonstrations to leadership.
-    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -136,28 +124,16 @@ export const experiences: Experience[] = [
     id: 2,
     url: "https://savvytrader.com/",
     achievements: [
-      "Design, build, and maintain a greenfield portfolio sharing platform SaaS web application with React and TypeScript",
-      "Build and deploy mobile app versions with Capacitor JS",
-      "Build and maintain TypeScript and Node.js BE using Dynamo and SQL databases",
-      "Microservice architecture in the BE",
-      "AWS infrastructure (Lambda, API Gateway, CloudWatch, RDS, DynamoDB, S3, EventBridge, etc)",
-      "Architected multiple differentiator AI features using OpenAI/OpenAPI",
-      "Created one of the first 50 ChatGPT Plugins",
-      "Integrate with both internal and external APIs",
-      "Write highly reusable, robust, scalable, testable code",
-      "Data visualization and manipulation using Highcharts, Victory Charts",
+      "Founding engineer, led the development of SaaS web/mobile apps using React/TypeScript and Node.js.",
+      "Built and deployed mobile apps with Capacitor JS and responsive UIs across platforms.",
+      "Developed and maintained Node.js microservices with DynamoDB/SQL databases and event-driven architecture.",
+      "Architected AI-driven features using OpenAI/OpenAPI and created one of the first 50 ChatGPT Plugins.",
+      "Managed AWS infrastructure (Lambda, API Gateway, DynamoDB, S3, etc.) to support scalable systems.",
+      "Integrated 3rd-party FinTech APIs and internal APIs to enhance platform capabilities.",
+      "Built reusable, scalable, and testable code for high-performance systems.",
+      "Implemented real-time data visualization using Highcharts/Victory Charts, including a differentiating chart events system.",
+      "Played a key role in shaping product direction and engineering strategy at a fast-paced startup.",
     ],
-    summary: `
-      Design, build, deploy, and maintain SaaS React/TypeScript FinTech web and mobile applications, Node.js REST APIs, and DynamoDB/SQL databases.
-      Implement responsive UI for both web and mobile apps.
-      Founding engineer participating heavily in direction of company, products, and engineering.
-      Implemented one of the first 50 ChatGPT plugins, integrating our APIs to OpenAI.
-      Integrated with 3rd party FinTech APIs and internal APIs.
-      Built event driven systems and microservices in the Node.js BE.
-      Fast pace seed stage startup, wore numerous hats efficiently and effectively.
-      Used VictoryCharts and HighCharts to implement numerous real-time charting features.
-      Ideated and created the portfolio and symbol charting event system that gave us some feature parity with Trading View.
-    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -221,29 +197,16 @@ export const experiences: Experience[] = [
     id: 3,
     url: "https://www.imaginelearning.com/",
     achievements: [
-      "Build and maintain education SaaS web applications with React and TypeScript",
-      "Improved code quality by introducing team to Storybook, Prettier, Cypress, and more",
-      "Develop and maintain micro front-ends",
-      "Provide best practice guidance on Git, React, and TypeScript",
-      "Turn loose requirements and Figma mocks into reality",
-      "Integrate with GraphQL APIs and REST APIs",
-      "Create highly reusable, robust, scalable, testable code",
-      "Improve PR culture with thoughtful feedback and fostering a space for continued learning and growth",
-      "Mentor junior developers",
-      "Participate in high level architectural discussions about direction of engineering",
-      "Assist QA in Cypress automation development",
-      "Collaborate with product, management, and teammates to navigate new solutions and deadlines",
+      "Led development of education SaaS web applications using React/TypeScript and C#.NET REST/GraphQL APIs.",
+      "Improved code quality by introducing Storybook, Prettier, Cypress, and establishing best practices.",
+      "Built and maintained micro front-ends using single-spa and Webpack Module Federation.",
+      "Mentored developers on Git, React, TypeScript, and fostered a learning-focused PR culture.",
+      "Transformed loose Figma mocks and requirements into production-ready features.",
+      "Integrated with both GraphQL and REST APIs to deliver robust application functionality.",
+      "Guided offshore/nearshore engineers in developing reporting systems.",
+      "Collaborated in architectural discussions to shape the technical direction.",
+      "Assisted QA with Cypress automation, writing unit and integration tests to ensure code reliability.",
     ],
-    summary: `
-      Design, build, deploy, and maintain SaaS React/TypeScript web applications and C#.NET REST/GraphQL APIs.
-      Improve code quality and cleanliness by introducing Storybook, Prettier, Cypress, and more to team.
-      Primarily microfrontend architecture development using single-spa, webpack module federation, etc.
-      Mentor team on Git, React, and TypeScript.
-      Turn loose wireframe Figma mocks into reality. Integrate with GraphQL and REST APIs.
-      Write integration and unit tests.
-      Improve PR culture dramatically with thoughtful feedback and fostering a space for continued learning and growth.
-      Oversaw team of offshore and nearshore engineers in development of reporting systems.
-    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -305,29 +268,14 @@ export const experiences: Experience[] = [
     id: 4,
     url: "https://www.gitkraken.com/",
     achievements: [
-      "Built and maintained a world class Git GUI (desktop app) using React, JavaScript + Flow, Node.js, Electron, and TypeScript",
-      "Integrated with numerous Git provider APIs",
-      "Supported all 3 major OS (I had a dual boot Mac + Windows machine and a Linux machine)",
-      "Developed and maintained an extensive, multi-process spanning Redux system",
-      "Spearheaded refactor from async actions to Redux Saga",
-      "Contributed to design and development of a large scale rearchitecture from single main + single render process to single main + many render processes",
-      "Improved complex git tree traversal algorithm to improve efficiency by 25%",
-      "Mentored junior developers and interns",
-      "Left as one of the top 3 all time contributors",
+      "Built and maintained a cross-platform Git GUI desktop app using React, Node.js, Electron, and TypeScript.",
+      "Integrated with multiple Git hosting service APIs.",
+      "Led development of a multi-process Redux system and refactored async actions to Redux Saga.",
+      "Contributed to a large-scale rearchitecture, optimizing from single to multi-render processes.",
+      "Improved Git tree traversal efficiency by 25% through algorithm enhancements.",
+      "Mentored and onboarded engineers from intern roles to full-time positions.",
+      "Left as one of the top 3 all-time contributors by any metric (commits, lines added/removed, tickets closed, etc).",
     ],
-    summary: `
-      Design, build, deploy, and maintain a world class Git GUI desktop application using React, TypeScript, Node.js, and Electron.
-      Implement new functionality and maintain a Node.js REST API backend.
-      Onboard and mentor junior developers and interns into high contributing members of the team.
-      Left as one of the top 3 all time contributors from any measurable Git or tasking metric.
-      Spearheaded large scale refactoring from async actions, flux, and thunks to Redux Saga.
-      Developed a robust event driven multi-process spanning Redux system and a corresponding network request coordinator for API and network traffic.
-      Used AWS cloud solutions.
-      Integrated with numerous 3rd party Git hosting service and issue tracking APIs like GitHub, BitBucket, GitLab, Trello, Jira, and more.
-      Improved extremely complicated git tree traversal algorithm to improve graph rendering efficiency by 25%.
-      Ensured seamless delivery on all 3 OS (MacOS, Linux, and Windows).
-      Worked closely with QE to improve our integration testing using Cypress and Playwright.
-    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -391,20 +339,12 @@ export const experiences: Experience[] = [
     id: 5,
     url: "https://sandhills.com/",
     achievements: [
-      "Built and maintained SaaS web app and internal solutions with JavaScript, VB.NET, C#.NET, SQL, and MVC architectures",
-      "Mentored and onboarded multiple engineers",
-      "Developed an internal efficiency boosting Chrome Extension using JavaScript",
-      "Improved code review culture, office culture, and team bonding",
-      "Improved long running C# data manipulation service efficiency by 50%",
+      "Developed and maintained SaaS web apps using JavaScript, VB.NET, C#.NET, SQL, and MVC architectures.",
+      "Improved team efficiency with a custom Chrome extension, boosting productivity by over 80%.",
+      "Mentored and onboarded engineers from intern roles to full-time positions.",
+      "Enhanced a long-running asynchronous C# data manipulation service, increasing efficiency by 50%.",
+      "Fostered improvements in code review practices, team culture, and collaboration.",
     ],
-    summary: `
-      Design, build, deploy, and maintain SaaS VB.NET web applications and C#.NET REST APIs.
-      Extensive use of MVC architecture patterns.
-      Mentored and onboarded multiple engineers from intern to full time offers.
-      Developed a Chrome Browser Extension data scraping tool to boost efficiency of data miners by 80+%.
-      Fostered improve code review culture and team culture.
-      Refactored long running async C# data manipulation algorithm efficiency by 50%.
-    `,
     frontEndSkills: [
       Skill.JavaScript,
       Skill.MVC,
@@ -451,17 +391,12 @@ export const experiences: Experience[] = [
     company: CRC,
     id: 6,
     achievements: [
-      "Built and maintained code in C#.NET, SQL, and VB6",
-      "Customer facing updates and support",
-      "Fixed numerous field and internal bugs",
+      "Built, deployed, and maintained legacy VB6 desktop applications.",
+      "Used RDC to manually update and troubleshoot customer systems in real time.",
+      "Debugged and resolved numerous bugs in legacy software.",
+      "Maintained SQL databases and ensured data integrity.",
+      "Gained key insights into version control best practices with Git and TFS.",
     ],
-    summary: `
-      Build, deploy, and maintain legacy VB6 desktop applications.
-      Use RDC to manually update customer systems and troubleshoot real time.
-      Debugged and fixed countless bugs in the legacy software.
-      Learned importance of solid version controlling (I.E. Git or TFS).
-      Maintained SQL databases.
-    `,
     frontEndSkills: [Skill.VB6, Skill.HTML, Skill.CSS],
     backEndSkills: [Skill.ASPNET, Skill.SQL, Skill.StoredProcedures],
     generalTechnicalSkills: [Skill.CodeReviews],

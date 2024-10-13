@@ -39,7 +39,7 @@ export default function OccupationHistory() {
                       {e.title}
                     </Typography>
                     <Typography variant="caption">
-                      {e.startDisplay} - {e.endDisplay ?? "Current"}
+                      {e.startDisplay} - {e.endDisplay ?? "Present"}
                     </Typography>
                   </Stack>
                   {e.url ? (
