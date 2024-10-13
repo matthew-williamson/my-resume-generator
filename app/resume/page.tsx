@@ -4,9 +4,10 @@ import { Avatar, Box, Divider, Paper, Stack, Typography } from "@mui/material";
 import QRCode from "qrcode.react";
 import PersonalityScores from "../ui/PersonalityScores";
 import { experiences } from "../lib/constants";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { chunkExperiences } from "../lib/helpers";
 import { Experience } from "../lib/types";
+import { useReactToPrint } from 'react-to-print';
 
 interface SkillProps {
   label: string;
@@ -32,10 +33,12 @@ const skills = [
   { label: "Git", years: 6 },
   { label: "API Integration", years: 6 },
   { label: "Storybook", years: 4 },
-  { label: "Event Driven Architecture", years: 3 },
+  { label: "Event Driven", years: 3 },
   { label: "Microservices", years: 4 },
   { label: "Microfrontends", years: 2 },
   { label: "AWS/Azure DevOps", years: 4 },
+  { label: "Cloud Infrastructure", years: 4 },
+  { label: 'CSS/HTML', years: 8 }
 ];
 
 const Skill = ({ label, years }: SkillProps) => (
@@ -72,16 +75,14 @@ const Section = ({ header, children }: SectionProps) => (
 );
 
 const RightColumn = () => (
-  <Stack spacing={2}>
-    <Section header="What are his tech skills?">{Skills}</Section>
-    <Section header="What is his degree?">
-      <Typography variant="body2">
-        Bachelors of Science in Mathematics
-      </Typography>
-      <Typography variant="body2">Arizona State University | 2018</Typography>
+  <Stack spacing={2} sx={{ width: "calc(37% - 32px)" }}>
+    <Section header="What are my skills?">{Skills}</Section>
+    <Section header="What is my degree?">
+      <Typography variant="body2">B.S. Mathematics</Typography>
+      <Typography variant="body2">ASU | 2018</Typography>
       <Typography variant="body2">3.73 GPA | Magna Cum Laude</Typography>
     </Section>
-    <Section header="What is his personality?">
+    <Section header="What am I like?">
       <PersonalityScores />
     </Section>
   </Stack>
@@ -92,7 +93,7 @@ interface ExperiencesProps {
 }
 const Experiences = ({ experiences }: ExperiencesProps) =>
   experiences.map((e, index) => (
-    <Stack key={e.id} spacing={0.75}>
+    <Stack key={e.id} spacing={0.9}>
       {index === 0 ? null : <Divider />}
       <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
         <Typography fontWeight={600} variant="body2">
@@ -118,15 +119,15 @@ const experienceSubsets = chunkExperiences([...experiences].reverse());
 
 const PageOneExperiences = () => {
   return (
-    <Section header="What has he done?">
+    <Section header="What have I done?">
       <Experiences experiences={experienceSubsets[0]} />
     </Section>
   );
 };
 
 const LeftColumn = () => (
-  <Stack spacing={2} sx={{ width: "70%" }}>
-    <Section header="Who are we getting?">
+  <Stack spacing={2} sx={{ width: "63%" }}>
+    <Section header="Who are you getting?">
       <Stack sx={{ alignItems: "center" }} direction="row" spacing={2}>
         <Avatar
           sx={{
@@ -158,9 +159,9 @@ const LeftColumn = () => (
         </Stack>
       </Stack>
     </Section>
-    <Section header="Why him?">
-      <Typography variant="caption">
-        Outgoing and energetic Senior Software Engineer with nearly 8 years of
+    <Section header="Why me?">
+      <Typography variant="body2">
+        I am an outgoing and energetic Senior Software Engineer with over 7 years of
         professional experience building everything from SaaS web applications
         in React/TypeScript to Node.js/C#.NET REST and GraphQL APIs to Electron
         based desktop Git GUIs! I have passions for code quality, problem
@@ -182,6 +183,7 @@ const PageOne = () => (
     direction="row"
     sx={{
       p: 1,
+      width: "100%",
     }}
   >
     <LeftColumn />
@@ -202,14 +204,17 @@ const PageTwo = () => (
         <Typography variant="caption">
           Thank you for reading this resume! If you find this in front of you,
           it most likely means I'm highly interested in committing my skills,
-          experiences, drive, and energy to your team and products. I either saw your job
-          posting or know about your company and products and like what I see.
-          Hopefully this resume helps you feel the same way about me.
+          experiences, drive, and energy to your team and products. I either saw
+          your job posting or know about your company and products and like what
+          I see. Hopefully this resume helps you feel the same way about me.
         </Typography>
-        <Typography variant="caption">
-          You should also know that what you have in front of you is not a "normal" resume.
-          It is actually a page from my personal web application I custom wrote using Next.js, TypeScript, MUI (Material UI), and React.
-          You can find the main site here <strong>https://matt-williamson.netlify.app</strong> or by using the QR code above.
+        <Typography variant="body2">
+          You should also know that what you have in front of you is not a
+          "normal" resume. It is actually a page from my personal web
+          application I custom wrote using Next.js, TypeScript, MUI (Material
+          UI), and React. You can find the main site here{" "}
+          <strong>https://matt-williamson.netlify.app</strong> or by using the
+          QR code above. The site is hosted using Vercel and CI/CD is configured to auto-deploy on commit to the repo found here <strong>https://github.com/matthew-williamson/my-resume-generator</strong>.
         </Typography>
         <Box>
           <Typography variant="body2">Thanks again,</Typography>
@@ -221,12 +226,27 @@ const PageTwo = () => (
 );
 
 export default function Page() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const onPrint = useReactToPrint({
+    contentRef
+  });
+
+  useEffect(() => {
+    if (contentRef.current) {
+      onPrint();
+    }
+  }, [contentRef]);
+
   return (
-    <Stack>
+    <Stack ref={contentRef}>
       <style type="text/css">
         {`
           body {
             background-image: linear-gradient(to right, rgba(0, 100, 120, 0.25), rgba(255, 255, 255, 0.1));
+          }
+
+          span, div, .MuiTypography-root {
+            font-family: Georgia, serif !important;
           }
 
           @page {
@@ -239,6 +259,11 @@ export default function Page() {
           }
           
           @media {
+            print {
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+
             .page-break {
               page-break-after: always !important;
             }

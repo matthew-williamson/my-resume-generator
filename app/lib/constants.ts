@@ -47,7 +47,7 @@ export const experiences: Experience[] = [
   {
     startDate: new Date("04/1/2024"),
     startDisplay: "04/2024",
-    title: "Senior Software Engineer",
+    title: "Sr. Software Engineer",
     company: Carvana,
     id: 1,
     url: "https://carvana.com/",
@@ -72,6 +72,8 @@ export const experiences: Experience[] = [
       Maintain NX monorepo infrastructure and provide guidance on Git best practices.
       Write integration and unit test cases using Playwright, Jest, MSW, and more.
       Designed and implemented our first ever Microfrontend Host Application.
+      Identify and solve bottlenecks, render performance issues, and areas to improve upon in our codebases.
+      Present bi-weekly team updates and demonstrations to leadership.
     `,
     frontEndSkills: [
       Skill.React,
@@ -129,7 +131,7 @@ export const experiences: Experience[] = [
     startDisplay: "12/2022",
     endDate: new Date("04/1/2024"),
     endDisplay: "04/2024",
-    title: "Senior Software Engineer",
+    title: "Sr. Software Engineer",
     company: SavvyTrader,
     id: 2,
     url: "https://savvytrader.com/",
@@ -152,8 +154,9 @@ export const experiences: Experience[] = [
       Implemented one of the first 50 ChatGPT plugins, integrating our APIs to OpenAI.
       Integrated with 3rd party FinTech APIs and internal APIs.
       Built event driven systems and microservices in the Node.js BE.
-      Fast pace seed stage startup, wore numerous hats.
+      Fast pace seed stage startup, wore numerous hats efficiently and effectively.
       Used VictoryCharts and HighCharts to implement numerous real-time charting features.
+      Ideated and created the portfolio and symbol charting event system that gave us some feature parity with Trading View.
     `,
     frontEndSkills: [
       Skill.React,
@@ -213,7 +216,7 @@ export const experiences: Experience[] = [
     startDisplay: "03/2022",
     endDate: new Date("12/1/2022"),
     endDisplay: "12/2022",
-    title: "Senior Software Engineer",
+    title: "Sr. Software Engineer",
     company: ImagineLearning,
     id: 3,
     url: "https://www.imaginelearning.com/",
