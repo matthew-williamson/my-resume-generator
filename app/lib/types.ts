@@ -100,4 +100,5 @@ export interface Experience {
   softSkills: Skill[];
   id: number;
   url?: string;
+  summary?: string;
 }

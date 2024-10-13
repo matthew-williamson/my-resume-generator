@@ -1,13 +1,9 @@
-import { Box, Divider, Link, Stack, Tooltip, Typography } from "@mui/material";
+import { Divider, Link, Stack, Tooltip, Typography } from "@mui/material";
 
 import { experiences } from "../lib/constants";
 import CollapsibleSection from "./shared/CollapsibleSection";
 import BulletPoint from "./shared/BulletPoint";
-import {
-  HelpOutline,
-  OpenInNew,
-  QuestionMarkRounded,
-} from "@mui/icons-material";
+import { HelpOutline, OpenInNew } from "@mui/icons-material";
 
 export default function OccupationHistory() {
   return (

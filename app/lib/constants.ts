@@ -31,7 +31,7 @@ export const SandhillsPublishing: Company = {
 };
 
 export const CRC: Company = {
-  name: "CRC Information Systems",
+  name: "CRC Info Sys",
   location: Scottsdale,
 };
 
@@ -62,6 +62,17 @@ export const experiences: Experience[] = [
       "Perform code reviews ensuring high quality coding standards and practices are adhered to",
       "Implemented our first ever MFE host application",
     ],
+    summary: `
+      Design, build, deploy, and maintain SaaS React/TypeScript web applications, C#.NET microservices, and C#.NET REST/GraphQL APIs.
+      Integrate with 3rd party and internal APIs.
+      Conduct thorough code reviews across the stack to ensure robust and clean code ships.
+      Mentor and level up teammates across the stack, including QE.
+      Work with product/project management to turn loose wireframe mocks into reality.
+      Maintain Azure DevOps CI/CD pipelines and infrastructure.
+      Maintain NX monorepo infrastructure and provide guidance on Git best practices.
+      Write integration and unit test cases using Playwright, Jest, MSW, and more.
+      Designed and implemented our first ever Microfrontend Host Application.
+    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -134,6 +145,16 @@ export const experiences: Experience[] = [
       "Write highly reusable, robust, scalable, testable code",
       "Data visualization and manipulation using Highcharts, Victory Charts",
     ],
+    summary: `
+      Design, build, deploy, and maintain SaaS React/TypeScript FinTech web and mobile applications, Node.js REST APIs, and DynamoDB/SQL databases.
+      Implement responsive UI for both web and mobile apps.
+      Founding engineer participating heavily in direction of company, products, and engineering.
+      Implemented one of the first 50 ChatGPT plugins, integrating our APIs to OpenAI.
+      Integrated with 3rd party FinTech APIs and internal APIs.
+      Built event driven systems and microservices in the Node.js BE.
+      Fast pace seed stage startup, wore numerous hats.
+      Used VictoryCharts and HighCharts to implement numerous real-time charting features.
+    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -210,6 +231,16 @@ export const experiences: Experience[] = [
       "Assist QA in Cypress automation development",
       "Collaborate with product, management, and teammates to navigate new solutions and deadlines",
     ],
+    summary: `
+      Design, build, deploy, and maintain SaaS React/TypeScript web applications and C#.NET REST/GraphQL APIs.
+      Improve code quality and cleanliness by introducing Storybook, Prettier, Cypress, and more to team.
+      Primarily microfrontend architecture development using single-spa, webpack module federation, etc.
+      Mentor team on Git, React, and TypeScript.
+      Turn loose wireframe Figma mocks into reality. Integrate with GraphQL and REST APIs.
+      Write integration and unit tests.
+      Improve PR culture dramatically with thoughtful feedback and fostering a space for continued learning and growth.
+      Oversaw team of offshore and nearshore engineers in development of reporting systems.
+    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -281,6 +312,19 @@ export const experiences: Experience[] = [
       "Mentored junior developers and interns",
       "Left as one of the top 3 all time contributors",
     ],
+    summary: `
+      Design, build, deploy, and maintain a world class Git GUI desktop application using React, TypeScript, Node.js, and Electron.
+      Implement new functionality and maintain a Node.js REST API backend.
+      Onboard and mentor junior developers and interns into high contributing members of the team.
+      Left as one of the top 3 all time contributors from any measurable Git or tasking metric.
+      Spearheaded large scale refactoring from async actions, flux, and thunks to Redux Saga.
+      Developed a robust event driven multi-process spanning Redux system and a corresponding network request coordinator for API and network traffic.
+      Used AWS cloud solutions.
+      Integrated with numerous 3rd party Git hosting service and issue tracking APIs like GitHub, BitBucket, GitLab, Trello, Jira, and more.
+      Improved extremely complicated git tree traversal algorithm to improve graph rendering efficiency by 25%.
+      Ensured seamless delivery on all 3 OS (MacOS, Linux, and Windows).
+      Worked closely with QE to improve our integration testing using Cypress and Playwright.
+    `,
     frontEndSkills: [
       Skill.React,
       Skill.TypeScript,
@@ -350,6 +394,14 @@ export const experiences: Experience[] = [
       "Improved code review culture, office culture, and team bonding",
       "Improved long running C# data manipulation service efficiency by 50%",
     ],
+    summary: `
+      Design, build, deploy, and maintain SaaS VB.NET web applications and C#.NET REST APIs.
+      Extensive use of MVC architecture patterns.
+      Mentored and onboarded multiple engineers from intern to full time offers.
+      Developed a Chrome Browser Extension data scraping tool to boost efficiency of data miners by 80+%.
+      Fostered improve code review culture and team culture.
+      Refactored long running async C# data manipulation algorithm efficiency by 50%.
+    `,
     frontEndSkills: [
       Skill.JavaScript,
       Skill.MVC,
@@ -400,6 +452,13 @@ export const experiences: Experience[] = [
       "Customer facing updates and support",
       "Fixed numerous field and internal bugs",
     ],
+    summary: `
+      Build, deploy, and maintain legacy VB6 desktop applications.
+      Use RDC to manually update customer systems and troubleshoot real time.
+      Debugged and fixed countless bugs in the legacy software.
+      Learned importance of solid version controlling (I.E. Git or TFS).
+      Maintained SQL databases.
+    `,
     frontEndSkills: [Skill.VB6, Skill.HTML, Skill.CSS],
     backEndSkills: [Skill.ASPNET, Skill.SQL, Skill.StoredProcedures],
     generalTechnicalSkills: [Skill.CodeReviews],

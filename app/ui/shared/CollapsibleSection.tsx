@@ -19,7 +19,7 @@ export default function CollapsibleSection({
         backgroundColor: "#1A1A1A",
         borderRadius: 2,
         border: "1px solid rgba(255, 255, 255, 0.12)",
-        flex: 1
+        flex: 1,
       }}
     >
       <Stack
@@ -29,9 +29,9 @@ export default function CollapsibleSection({
           justifyContent: "space-between",
           cursor: "pointer",
           p: 2,
-          ':hover': {
-            opacity: 0.8
-          }
+          ":hover": {
+            opacity: 0.8,
+          },
         }}
         onClick={(e) => {
           e.preventDefault();

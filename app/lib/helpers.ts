@@ -53,3 +53,19 @@ export const calculateTimeBySkill = (
     },
     {} as Record<Skill, number>,
   );
+
+export const chunkExperiences = <T>(arr: T[]): T[][] => {
+  const result: T[][] = [];
+
+  if (arr.length <= 2) {
+    return [arr];
+  }
+
+  result.push([arr[0], arr[1]]);
+
+  for (let i = 2; i < arr.length; i += 4) {
+    result.push(arr.slice(i, i + 4));
+  }
+
+  return result;
+};
