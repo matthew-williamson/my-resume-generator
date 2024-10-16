@@ -5,7 +5,7 @@ import { Stack } from "@mui/material";
 import "./globals.scss";
 
 import Header from "./ui/Header";
-import OccupationHistory from "./ui/OccupationHistory";
+import Experiences from "./ui/Experiences";
 import AboutMe from "./ui/AboutMe";
 import BugInvaders from "./ui/games/BugInvaders";
 import SkillGraph from "./ui/SkillGraph";
@@ -22,12 +22,12 @@ export default function Page() {
       <Header />
       <AboutMe />
       <WorkplaceIdeals />
+      <Experiences />
+      <SkillGraph type={ChartType.FrontEnd} label="Front End Skill Graph" />
+      <SkillGraph type={ChartType.BackEnd} label="Back End Skill Graph" />
+      <SkillGraph type={ChartType.General} label="General Skill Graph" />
+      <SkillGraph type={ChartType.Soft} label="Soft Skill Graph" />
       <BugInvaders />
-      <SkillGraph type={ChartType.FrontEnd} label="Front End x Years" />
-      <SkillGraph type={ChartType.BackEnd} label="Back End x Years" />
-      <SkillGraph type={ChartType.General} label="General x Years" />
-      <SkillGraph type={ChartType.Soft} label="Soft x Years" />
-      <OccupationHistory />
     </Stack>
   );
 }

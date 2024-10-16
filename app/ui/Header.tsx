@@ -2,6 +2,7 @@ import { GitHub, LinkedIn, QrCode } from "@mui/icons-material";
 import { Avatar, Box, Link, Modal, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import QRCodeReact from "qrcode.react";
+import { THEME } from "../lib/theme";
 
 export default function Header() {
   const [showQRCode, setShowQRCode] = useState(false);
@@ -15,8 +16,8 @@ export default function Header() {
           pointerEvents: "none",
           height: 132,
           maxWidth: 1200,
+          backgroundColor: THEME.WHITE,
           width: "calc(100% - 32px)",
-          backgroundColor: "#262626",
           top: 0,
           zIndex: 1200,
         }}
@@ -39,10 +40,10 @@ export default function Header() {
             xs: "calc(100% - 66px)",
           },
           alignItems: "center",
-          backgroundColor: "#1A1A1A",
+          backgroundColor: THEME.WHITE,
           justifyContent: "space-between",
           borderRadius: 2,
-          border: "1px solid rgba(255, 255, 255, 0.12)",
+          border: `2px solid ${THEME.SECONDARY}`,
           p: 2,
           zIndex: 1200,
         }}
@@ -57,17 +58,21 @@ export default function Header() {
             sx={{
               width: 84,
               height: 84,
-              border: "1px solid #99CCFF",
+              border: `2px solid ${THEME.SECONDARY}`,
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="./matt_williamson.jpg" width={84} alt="matt headshot" />
           </Avatar>
           <Stack>
-            <Typography fontWeight={700} sx={{ color: "#99CCFF" }}>
+            <Typography
+              fontWeight={700}
+              sx={{ color: THEME.SECONDARY }}
+              variant="h6"
+            >
               Matthew Williamson
             </Typography>
-            <Typography variant="body2" color="rgba(190, 253, 200, 0.75)">
+            <Typography variant="body2" sx={{ color: THEME.SECONDARY }}>
               Senior Software Engineer
             </Typography>
             <Typography variant="caption">Scottsdale, AZ</Typography>
@@ -77,9 +82,9 @@ export default function Header() {
           <Link
             variant="caption"
             sx={{
-              color: "#99CCFF",
+              color: THEME.PRIMARY_FULL,
               cursor: "pointer",
-              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+              ":hover": { color: THEME.SECONDARY },
               display: "flex",
             }}
             href="https://www.linkedin.com/in/matthew-williamson-a63a88121/"
@@ -90,9 +95,9 @@ export default function Header() {
           <Link
             variant="caption"
             sx={{
-              color: "#99CCFF",
+              color: THEME.PRIMARY_FULL,
               cursor: "pointer",
-              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+              ":hover": { color: THEME.SECONDARY },
               display: "flex",
             }}
             href="https://github.com/matthew-williamson"
@@ -104,8 +109,8 @@ export default function Header() {
             sx={{
               fontSize: 30,
               cursor: "pointer",
-              color: "#99CCFF",
-              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+              color: THEME.PRIMARY_FULL,
+              ":hover": { color: THEME.SECONDARY },
             }}
             onClick={() => setShowQRCode(true)}
           />
@@ -124,7 +129,7 @@ export default function Header() {
               <Stack
                 sx={{
                   p: 4,
-                  backgroundColor: "rgba(26, 26, 26, 0.9)",
+                  backgroundColor: THEME.WHITE,
                   borderRadius: "8px",
                 }}
               >

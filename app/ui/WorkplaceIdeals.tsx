@@ -2,12 +2,13 @@ import { Stack, Typography } from "@mui/material";
 import CollapsibleSection from "./shared/CollapsibleSection";
 import BulletPoint from "./shared/BulletPoint";
 import Highlight from "./shared/Highlight";
+import { THEME } from "../lib/theme";
 
 export default function WorkplaceIdeals() {
   return (
     <CollapsibleSection
       header={
-        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
           Workplace Ideals
         </Typography>
       }

@@ -2,13 +2,14 @@
 import { Stack, Typography } from "@mui/material";
 import CollapsibleSection from "./shared/CollapsibleSection";
 import Highlight from "./shared/Highlight";
+import { THEME } from "../lib/theme";
 
 export default function AboutMe() {
   return (
     <CollapsibleSection
       open
       header={
-        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
           About
         </Typography>
       }
