@@ -18,6 +18,7 @@ export default function WorkplaceIdeals() {
           What I look for in my ideal workplace:
         </Typography>
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               <Highlight text="Collaborative" /> environment, I cannot level up
@@ -26,6 +27,7 @@ export default function WorkplaceIdeals() {
           }
         />
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               Ability to <Highlight text="mentor" /> developers and{" "}
@@ -34,6 +36,7 @@ export default function WorkplaceIdeals() {
           }
         />
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               License to <Highlight text="explore" /> and{" "}
@@ -43,6 +46,7 @@ export default function WorkplaceIdeals() {
           }
         />
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               <Highlight text="Fast paced" />, I have a startup mindset
@@ -50,6 +54,7 @@ export default function WorkplaceIdeals() {
           }
         />
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               Knowing the efforts me and my team are working on are{" "}
@@ -61,6 +66,7 @@ export default function WorkplaceIdeals() {
           }
         />
         <BulletPoint
+          color={THEME.PRIMARY}
           text={
             <>
               Teammates that <Highlight text="care" /> about themselves, about
@@ -69,7 +75,7 @@ export default function WorkplaceIdeals() {
             </>
           }
         />
-        <BulletPoint text={<Highlight text="Fun!" />} />
+        <BulletPoint color={THEME.PRIMARY} text={<Highlight text="Fun!" />} />
       </Stack>
     </CollapsibleSection>
   );

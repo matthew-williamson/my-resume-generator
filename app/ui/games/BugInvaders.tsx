@@ -80,9 +80,7 @@ const PayloadIndicator = ({ hasPayload }: { hasPayload?: boolean }) => (
     sx={{
       transform: "rotate(90deg)",
       fontSize: `${SPRITE_OFFSET / 2}px`,
-      color: hasPayload
-        ? THEME.PRIMARY_FULL
-        : THEME.GREY,
+      color: hasPayload ? THEME.PRIMARY_FULL : THEME.GREY,
     }}
   />
 );
@@ -112,7 +110,7 @@ const TopRow = ({
       <IconButton
         sx={{
           color: THEME.PRIMARY_FULL,
-          ":hover": { color: THEME.SECONDARY, cursor: 'pointer' },
+          ":hover": { color: THEME.SECONDARY, cursor: "pointer" },
         }}
         onClick={() => setPlaying(false)}
       >

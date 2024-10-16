@@ -32,14 +32,13 @@ export default function Experiences() {
                   direction="row"
                   sx={{ alignItems: "center", justifyContent: "space-between" }}
                 >
-                  <Typography fontWeight={700} sx={{ color: THEME.SECONDARY }}>
-                    {e.company.name}
-                  </Typography>
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: "center" }}
-                    spacing={1}
-                  >
+                  <Stack>
+                    <Typography
+                      fontWeight={700}
+                      sx={{ color: THEME.SECONDARY }}
+                    >
+                      {e.company.name}
+                    </Typography>
                     <Typography
                       variant="caption"
                       fontWeight={600}
@@ -47,31 +46,31 @@ export default function Experiences() {
                     >
                       {e.title} | {e.startDisplay} - {e.endDisplay ?? "Present"}
                     </Typography>
-                    {e.url ? (
-                      <Link
-                        href={e.url}
+                  </Stack>
+                  {e.url ? (
+                    <Link
+                      href={e.url}
+                      sx={{
+                        color: THEME.PRIMARY_FULL,
+                        cursor: "pointer",
+                        ":hover": { color: THEME.SECONDARY },
+                        display: "flex",
+                      }}
+                      target="_blank"
+                    >
+                      <OpenInNew sx={{ fontSize: "28px" }} />
+                    </Link>
+                  ) : (
+                    <Tooltip title="OUT OF BUSINESS">
+                      <ErrorOutline
                         sx={{
+                          fontSize: "30px",
                           color: THEME.PRIMARY_FULL,
                           cursor: "pointer",
-                          ":hover": { color: THEME.SECONDARY },
-                          display: "flex",
                         }}
-                        target="_blank"
-                      >
-                        <OpenInNew sx={{ fontSize: "28px" }} />
-                      </Link>
-                    ) : (
-                      <Tooltip title="OUT OF BUSINESS">
-                        <ErrorOutline
-                          sx={{
-                            fontSize: "30px",
-                            color: THEME.PRIMARY_FULL,
-                            cursor: "pointer",
-                          }}
-                        />
-                      </Tooltip>
-                    )}
-                  </Stack>
+                      />
+                    </Tooltip>
+                  )}
                 </Stack>
                 {/* <Divider sx={{ backgroundColor: THEME.SECONDARY }} /> */}
                 <Stack spacing={2} sx={{ pt: 1 }}>
@@ -79,7 +78,7 @@ export default function Experiences() {
                     <BulletPoint
                       key={`${e.company.name}-${e.id}-achievement-${index}`}
                       text={a}
-                      color={THEME.PRIMARY_FULL}
+                      color={THEME.PRIMARY}
                     />
                   ))}
                 </Stack>

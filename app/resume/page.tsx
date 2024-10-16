@@ -206,13 +206,13 @@ const PageOne = () => (
           icon={<AccountBoxOutlined sx={{ color: "white" }} />}
         >
           <Typography variant="caption">
-            I’m a Senior Software Engineer with 7+ years of experience building
+            I'm a Senior Software Engineer with 7+ years of experience building
             high-quality SaaS web applications, REST APIs, and desktop tools. I
             specialize in React, TypeScript, C#.NET, and Node.js. I thrive on
             solving complex problems, improving code quality, and mentoring
             teams. My focus is delivering solutions that are scalable,
             user-friendly, and built to last. While I lean towards frontend, I
-            excel across the full stack, and I’m eager to grow into leadership
+            excel across the full stack, and I'm eager to grow into leadership
             roles like Team Lead, Principal Engineer, or Engineering Manager.
           </Typography>
         </Section>
@@ -269,8 +269,8 @@ const PageTwo = () => (
     >
       <Stack spacing={1.75}>
         <Typography variant="caption">
-          Thank you for reviewing my resume! If it's in front of you, I’m
-          excited to bring my skills, experience, and energy to your team. I’ve
+          Thank you for reviewing my resume! If it's in front of you, I'm
+          excited to bring my skills, experience, and energy to your team. I've
           either applied to your job or know your company and am eager to
           contribute.
         </Typography>
