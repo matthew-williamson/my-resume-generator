@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, Divider, Paper, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Stack, Typography } from "@mui/material";
 import QRCode from "qrcode.react";
 import { experiences } from "../lib/constants";
 import { PropsWithChildren, ReactElement } from "react";
@@ -14,6 +14,7 @@ import {
   TrendingUpOutlined,
   WorkOutline,
 } from "@mui/icons-material";
+import { THEME } from "../lib/theme";
 
 const topSkills = [
   "React",
@@ -51,20 +52,31 @@ const otherSkills = [
   "Jira",
 ];
 
-const TopSkills = topSkills.map((skill) => (
-  <Typography variant="body2" key={skill}>
-    {skill}
-  </Typography>
-));
+const TopSkills = (
+  <Stack spacing={0.1}>
+    {topSkills.map((skill) => (
+      <BulletPoint
+        text={skill}
+        variant="caption"
+        color={THEME.SECONDARY}
+        key={skill}
+      />
+    ))}
+  </Stack>
+);
 
-const OtherSkills = otherSkills.map((skill) => (
-  <Typography variant="body2" key={skill}>
-    {skill}
-  </Typography>
-));
-
-const primary = "rgba(204, 102, 51, 0.75)";
-const primaryFull = "rgba(76, 100, 51, 1)";
+const OtherSkills = (
+  <Stack spacing={0.1}>
+    {otherSkills.map((skill) => (
+      <BulletPoint
+        text={skill}
+        variant="caption"
+        color={THEME.SECONDARY}
+        key={skill}
+      />
+    ))}
+  </Stack>
+);
 
 interface SectionProps extends PropsWithChildren {
   header: string;
@@ -74,7 +86,7 @@ const Section = ({ header, icon, children }: SectionProps) => (
   <Box
     sx={{
       borderRadius: "4px",
-      border: header ? "1px solid rgba(0, 0, 0, 0.1)" : `3px solid ${primary}`,
+      border: header ? `1px solid ${THEME.GREY}` : `3px solid ${THEME.PRIMARY}`,
     }}
   >
     <Stack>
@@ -84,7 +96,7 @@ const Section = ({ header, icon, children }: SectionProps) => (
           sx={{
             alignItems: "center",
             justifyContent: "space-between",
-            backgroundColor: primary,
+            backgroundColor: THEME.PRIMARY,
             p: 1,
             borderRadius: "4px 4px 0px 0px",
           }}
@@ -117,28 +129,28 @@ const Experiences = ({ experiences }: ExperiencesProps) =>
       >
         <Typography
           fontWeight={600}
-          sx={{ color: primaryFull, fontSize: "16px" }}
+          sx={{ color: THEME.SECONDARY, fontSize: "16px" }}
         >
           {e.company.name}
         </Typography>
         <Typography
           variant="caption"
-          sx={{ color: primaryFull }}
+          sx={{ color: THEME.SECONDARY }}
           fontWeight={600}
         >
           {e.title} | {e.startDisplay} - {e.endDisplay ?? "Present"}
         </Typography>
       </Stack>
-      <Box>
+      <Stack spacing={0.1}>
         {e.achievements.map((ach) => (
           <BulletPoint
             text={ach}
             variant="caption"
-            color={primaryFull}
+            color={THEME.SECONDARY}
             key={ach}
           />
         ))}
-      </Box>
+      </Stack>
       {index === experiences.length - 1 ? null : <Divider />}
     </Stack>
   ));
@@ -153,7 +165,7 @@ const PageOne = () => (
           sx={{
             width: 84,
             height: 84,
-            border: `3px solid ${primary}`,
+            border: `3px solid ${THEME.PRIMARY}`,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -164,14 +176,16 @@ const PageOne = () => (
           direction="row"
         >
           <Stack>
-            <Typography variant="h4" fontWeight={700} color={primaryFull}>
+            <Typography variant="h5" fontWeight={700} color={THEME.SECONDARY}>
               Matthew Williamson
             </Typography>
-            <Typography variant="body2">Fountain Hills, AZ</Typography>
-            <Typography variant="body2">
+            <Typography variant="caption">Fountain Hills, AZ</Typography>
+            <Typography variant="caption">
               https://matt-williamson.netlify.app
             </Typography>
-            <Typography variant="body2">mwilliamson.lloyd@gmail.com</Typography>
+            <Typography variant="caption">
+              mwilliamson.lloyd@gmail.com
+            </Typography>
           </Stack>
         </Stack>
         <Stack sx={{ mb: 1, mt: 1, alignItems: "center" }}>
@@ -193,13 +207,13 @@ const PageOne = () => (
         >
           <Typography variant="caption">
             I’m a Senior Software Engineer with 7+ years of experience building
-            high-quality SaaS web applications, REST APIs, and desktop tools.
-            I specialize in React, TypeScript, C#.NET, and Node.js. I thrive on solving
-            complex problems, improving code quality, and mentoring teams. My
-            focus is delivering solutions that are scalable, user-friendly, and
-            built to last. While I lean towards frontend, I excel across the
-            full stack, and I’m eager to grow into leadership roles like Team
-            Lead, Principal Engineer, or Engineering Manager.
+            high-quality SaaS web applications, REST APIs, and desktop tools. I
+            specialize in React, TypeScript, C#.NET, and Node.js. I thrive on
+            solving complex problems, improving code quality, and mentoring
+            teams. My focus is delivering solutions that are scalable,
+            user-friendly, and built to last. While I lean towards frontend, I
+            excel across the full stack, and I’m eager to grow into leadership
+            roles like Team Lead, Principal Engineer, or Engineering Manager.
           </Typography>
         </Section>
         <Section
@@ -226,8 +240,12 @@ const PageOne = () => (
           header="My Education"
           icon={<SchoolOutlined sx={{ color: "white" }} />}
         >
-          <Typography variant="body2">B.S. Mathematics, 2018 ASU</Typography>
-          <Typography variant="body2">3.73 GPA, Magna Cum Laude</Typography>
+          <Stack>
+            <Typography variant="caption">
+              B.S. Mathematics, 2018 ASU
+            </Typography>
+            <Typography variant="caption">3.73 GPA, Magna Cum Laude</Typography>
+          </Stack>
         </Section>
       </Stack>
     </Stack>
@@ -266,10 +284,7 @@ const PageTwo = () => (
         </Typography>
         <Stack>
           <Typography variant="caption">Thanks again,</Typography>
-          <Typography
-            variant="caption"
-            sx={{ color: primaryFull }}
-          >
+          <Typography variant="caption" sx={{ color: THEME.SECONDARY }}>
             Matthew Williamson
           </Typography>
         </Stack>

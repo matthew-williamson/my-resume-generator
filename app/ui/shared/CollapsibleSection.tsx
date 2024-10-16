@@ -1,3 +1,4 @@
+import { THEME } from "@/app/lib/theme";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Divider, IconButton, Stack } from "@mui/material";
 import { useState } from "react";
@@ -16,10 +17,10 @@ export default function CollapsibleSection({
   return (
     <Stack
       sx={{
-        backgroundColor: "#1A1A1A",
         borderRadius: 2,
-        border: "1px solid rgba(255, 255, 255, 0.12)",
+        border: `2px solid ${THEME.PRIMARY}`,
         flex: 1,
+        backgroundColor: THEME.WHITE,
       }}
     >
       <Stack
@@ -29,6 +30,7 @@ export default function CollapsibleSection({
           justifyContent: "space-between",
           cursor: "pointer",
           p: 2,
+          backgroundColor: THEME.PRIMARY,
           ":hover": {
             opacity: 0.8,
           },
@@ -42,9 +44,9 @@ export default function CollapsibleSection({
         {header}
         <IconButton
           sx={{
-            color: "#99CCFF",
+            color: THEME.WHITE,
             p: 0.25,
-            ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+            ":hover": { color: THEME.PRIMARY },
             height: 32,
           }}
         >
@@ -57,7 +59,6 @@ export default function CollapsibleSection({
       </Stack>
       {!isOpen ? null : (
         <>
-          <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.12)" }} />
           <Box sx={{ p: 2 }}>{children}</Box>
         </>
       )}

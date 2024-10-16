@@ -1,3 +1,4 @@
+import { THEME } from "@/app/lib/theme";
 import { Typography } from "@mui/material";
 
 export default function Highlight({ text }: { text: string }) {
@@ -5,8 +6,8 @@ export default function Highlight({ text }: { text: string }) {
     <Typography
       variant="body2"
       sx={{
-        color: "rgba(190, 253, 200, 0.75)",
-        backgroundColor: "rgba(153, 204, 255, 0.06)",
+        color: THEME.SECONDARY,
+        backgroundColor: THEME.PRIMARY_LIGHT,
         borderRadius: "4px",
         py: 0.15,
         px: 0.5,

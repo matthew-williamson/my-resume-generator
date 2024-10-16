@@ -21,6 +21,7 @@ import { ulid } from "ulid";
 import { isMobile } from "react-device-detect";
 import CollapsibleSection from "../shared/CollapsibleSection";
 import Highlight from "../shared/Highlight";
+import { THEME } from "@/app/lib/theme";
 
 interface SpriteData {
   id: string;
@@ -49,7 +50,7 @@ const Invader = ({ id, left, top }: SpriteData) => (
     id={id}
     className="invader-sprite"
     sx={{
-      color: "#FFCCCC",
+      color: "red",
       position: "absolute",
       left,
       top,
@@ -80,8 +81,8 @@ const PayloadIndicator = ({ hasPayload }: { hasPayload?: boolean }) => (
       transform: "rotate(90deg)",
       fontSize: `${SPRITE_OFFSET / 2}px`,
       color: hasPayload
-        ? "rgba(190, 253, 200, 1)"
-        : "rgba(255, 255, 255, 0.12)",
+        ? THEME.PRIMARY_FULL
+        : THEME.GREY,
     }}
   />
 );
@@ -102,7 +103,7 @@ const TopRow = ({
     sx={{
       justifyContent: "space-between",
       alignItems: "center",
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      backgroundColor: THEME.BLACK,
       px: 2,
       height: 48,
     }}
@@ -110,8 +111,8 @@ const TopRow = ({
     {playing ? (
       <IconButton
         sx={{
-          color: "#99CCFF !important",
-          ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+          color: THEME.PRIMARY_FULL,
+          ":hover": { color: THEME.SECONDARY, cursor: 'pointer' },
         }}
         onClick={() => setPlaying(false)}
       >
@@ -146,7 +147,7 @@ const BottomRow = ({
 
     return (
       <Stack direction="row" sx={{ alignItems: "center" }}>
-        <Typography fontWeight={700} variant="body2" color="#99CCFF">
+        <Typography fontWeight={700} variant="body2" color={THEME.PRIMARY_FULL}>
           Cannon:
         </Typography>
         {elements}
@@ -160,13 +161,13 @@ const BottomRow = ({
       sx={{
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        backgroundColor: THEME.BLACK,
         px: 2,
         height: 48,
       }}
     >
       <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-        <Typography fontWeight={700} variant="body2" color="#99CCFF">
+        <Typography fontWeight={700} variant="body2" color={THEME.PRIMARY_FULL}>
           Score: {score}
         </Typography>
         {payloadIndicators}
@@ -177,7 +178,7 @@ const BottomRow = ({
             <Typography
               variant="caption"
               fontWeight={700}
-              color="rgba(190, 253, 200, 1)"
+              color={THEME.PRIMARY_FULL}
             >
               Recharging...
             </Typography>
@@ -187,17 +188,17 @@ const BottomRow = ({
           {!volumeOff ? (
             <VolumeUp
               sx={{
-                color: "#99CCFF",
+                color: THEME.PRIMARY_FULL,
                 fontSize: "20px",
-                ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+                ":hover": { color: THEME.SECONDARY },
               }}
             />
           ) : (
             <VolumeOff
               sx={{
-                color: "#99CCFF",
+                color: THEME.PRIMARY_FULL,
                 fontSize: "20px",
-                ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+                ":hover": { color: THEME.SECONDARY },
               }}
             />
           )}
@@ -231,9 +232,9 @@ const BottomRow = ({
         >
           <HelpOutline
             sx={{
-              color: "#99CCFF",
+              color: THEME.PRIMARY_FULL,
               fontSize: "20px",
-              ":hover": { color: "rgba(190, 253, 200, 0.6)" },
+              ":hover": { color: THEME.SECONDARY },
             }}
           />
         </Tooltip>
@@ -645,7 +646,6 @@ const SpaceInvaders = () => {
             height: "100%",
             position: "absolute",
             width: "100%",
-            opacity: 0.4,
           }}
         ></Stack>
         {!playing ? (
@@ -674,11 +674,11 @@ const SpaceInvaders = () => {
             {!isMobile ? (
               <Button
                 sx={{
-                  color: "#99CCFF",
+                  color: THEME.PRIMARY_FULL,
                   width: "fit-content",
                   borderColor: "inherit",
                   ":hover": {
-                    color: "rgba(190, 253, 200, 0.6)",
+                    color: THEME.SECONDARY,
                     borderColor: "inherit",
                   },
                 }}
@@ -696,7 +696,7 @@ const SpaceInvaders = () => {
               </Button>
             ) : (
               <Stack sx={{ width: "66%" }}>
-                <Typography variant="body2" color="rgba(190, 253, 200, 1)">
+                <Typography variant="body2" color={THEME.PRIMARY_FULL}>
                   To play Bug Invaders, visit this site on a desktop browser!
                 </Typography>
               </Stack>
@@ -744,8 +744,8 @@ const SpaceInvaders = () => {
   return (
     <CollapsibleSection
       header={
-        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
-          Bug Invaders
+        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
+          Bug Invaders React Game
         </Typography>
       }
     >

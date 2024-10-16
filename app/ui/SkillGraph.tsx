@@ -28,6 +28,7 @@ import { VictoryBar } from "victory-bar";
 import { VictoryLabel } from "victory-core";
 import { VictoryTooltip } from "victory";
 import CollapsibleSection from "./shared/CollapsibleSection";
+import { THEME } from "../lib/theme";
 
 const Chart = ({
   type,
@@ -80,16 +81,16 @@ const Chart = ({
           <VictoryBar
             key={`${skill}-bar`}
             barWidth={barWidth}
-            style={{ data: { fill: "rgba(153, 204, 255, 0.5)" } }}
+            style={{ data: { fill: THEME.PRIMARY } }}
             data={[{ x: skill, y: timeBySkill[skill] }]}
             labelComponent={
               <VictoryTooltip
                 flyoutStyle={{
-                  stroke: "rgba(190, 253, 200, 0.16)",
-                  fill: "rgba(0, 0, 0, 0.16)",
+                  stroke: THEME.WHITE,
+                  fill: THEME.SECONDARY,
                 }}
                 style={{
-                  stroke: "rgba(190, 253, 200, 1)",
+                  stroke: THEME.WHITE,
                 }}
               />
             }
@@ -111,7 +112,6 @@ const Chart = ({
           right: 50,
         }}
         domainPadding={{ x: 40 }}
-        colorScale={"blue"}
         height={500}
         width={1000}
         animate={{ easing: "linear" }}
@@ -120,9 +120,9 @@ const Chart = ({
           dependentAxis
           tickFormat={(tick) => `${tick}`}
           style={{
-            tickLabels: { fill: "rgba(190, 253, 200, 0.75)" },
-            axis: { stroke: "rgba(190, 253, 200, 0.16)" },
-            grid: { stroke: "rgba(190, 253, 200, 0.16)", strokeWidth: 1.5 },
+            tickLabels: { fill: THEME.SECONDARY },
+            axis: { stroke: THEME.SECONDARY },
+            grid: { stroke: THEME.SECONDARY, strokeWidth: 1.5 },
           }}
         />
         <VictoryAxis
@@ -130,8 +130,8 @@ const Chart = ({
             <VictoryLabel verticalAnchor="middle" textAnchor="end" />
           }
           style={{
-            tickLabels: { fill: "rgba(190, 253, 200, 0.75)", angle: -80 },
-            axis: { stroke: "rgba(190, 253, 200, 0.16)" },
+            tickLabels: { fill: THEME.SECONDARY, angle: -80 },
+            axis: { stroke: THEME.SECONDARY },
           }}
         />
         {skillBars}
@@ -160,7 +160,7 @@ export default function SkillGraph({
   return (
     <CollapsibleSection
       header={
-        <Typography variant="h5" sx={{ color: "#99CCFF" }}>
+        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
           {label}
         </Typography>
       }
@@ -187,11 +187,14 @@ export default function SkillGraph({
           >
             <ToggleButton
               value="alpha"
-              sx={{ backgroundColor: "white", ":hover": { opacity: 0.9 } }}
+              sx={{ backgroundColor: THEME.PRIMARY_LIGHT }}
             >
               <SortByAlpha />
             </ToggleButton>
-            <ToggleButton value="years" sx={{ backgroundColor: "white" }}>
+            <ToggleButton
+              value="years"
+              sx={{ backgroundColor: THEME.PRIMARY_LIGHT }}
+            >
               <CalendarMonth />
             </ToggleButton>
           </ToggleButtonGroup>
