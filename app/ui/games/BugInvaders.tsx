@@ -654,7 +654,7 @@ const SpaceInvaders = () => {
             spacing={2}
           >
             {hasLost ? (
-              <Alert severity="error" icon={<></>}>
+              <Alert severity="error" icon={<></>} sx={{ zIndex: 1 }}>
                 <Stack spacing={1}>
                   <Typography fontWeight={700} variant="caption">
                     GAME OVER!
