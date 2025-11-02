@@ -9,6 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import {
+  ArrowBack,
+  ArrowForward,
   DragHandle,
   HelpOutline,
   Pause,
@@ -320,6 +322,11 @@ const SpaceInvaders = () => {
   const [payload, setPayload] = useState(FULL_PAYLOAD);
   const [volumeOff, setVolumeOff] = useState(false);
 
+  // Mobile touch control states
+  const mobileMovingLeft = useRef(false);
+  const mobileMovingRight = useRef(false);
+  const mobileFiring = useRef(false);
+
   useEffect(() => {
     if (!hasLost) {
       return;
@@ -428,6 +435,43 @@ const SpaceInvaders = () => {
       }
     };
 
+    // Mobile fire handler
+    const handleMobileFire = () => {
+      if (!playing || loopPayload === 0) {
+        return;
+      }
+
+      const playerBounds = playerSpriteRef.current?.getBoundingClientRect();
+      const gameWindowBounds = gameWindowRef.current?.getBoundingClientRect();
+
+      if (!playerBounds || !gameWindowBounds) {
+        return;
+      }
+
+      loopPayload -= 1;
+      setPayload(loopPayload);
+
+      setMissiles((prevMissiles) => [
+        ...prevMissiles,
+        {
+          id: ulid(),
+          left: playerBounds.x - gameWindowBounds.x + SPRITE_OFFSET / 2,
+          top: GAME_HEIGHT - 64 - MISSILE_OFFSET,
+        },
+      ]);
+
+      if (!volumeOff) {
+        const laserSound = new Audio("./laser.mp3");
+        laserSound.volume = 0.1;
+        laserSound.play();
+        setTimeout(() => {
+          laserSound.pause();
+        }, 500);
+      }
+
+      mobileFiring.current = false;
+    };
+
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
@@ -443,6 +487,11 @@ const SpaceInvaders = () => {
 
     // This is the actual game loop
     const gameLoop: NodeJS.Timeout = setInterval(() => {
+      // Check if mobile fire button was pressed
+      if (mobileFiring.current) {
+        handleMobileFire();
+      }
+
       let addInvader = loopMSTimer === 0;
       // Before we do anything, see if we've hit enough time to add a new invader
       if (loopMSTimer < GAME_UPDATE_RATE_IN_MS * 150) {
@@ -507,14 +556,14 @@ const SpaceInvaders = () => {
         setRoundScore((prevScore) => prevScore + scoreModifier);
       }
 
-      // Handle player sprite movement
-      if (moveLeft) {
+      // Handle player sprite movement (keyboard or mobile touch)
+      if (moveLeft || mobileMovingLeft.current) {
         setPlayerPosition((prevPosition) =>
           prevPosition - HORIZONTAL_MOVE_SPEED >= LEFT_BOUND
             ? prevPosition - HORIZONTAL_MOVE_SPEED
             : LEFT_BOUND
         );
-      } else if (moveRight) {
+      } else if (moveRight || mobileMovingRight.current) {
         const { width = 0 } =
           gameWindowRef.current?.getBoundingClientRect() || {};
         setPlayerPosition((prevPosition) =>
@@ -670,35 +719,39 @@ const SpaceInvaders = () => {
                 </Stack>
               </Alert>
             ) : null}
-            {!isMobile ? (
-              <Button
-                sx={{
-                  color: THEME.PRIMARY_FULL,
-                  width: "fit-content",
+            <Button
+              sx={{
+                color: THEME.PRIMARY_FULL,
+                width: "fit-content",
+                borderColor: "inherit",
+                ":hover": {
+                  color: THEME.SECONDARY,
                   borderColor: "inherit",
-                  ":hover": {
-                    color: THEME.SECONDARY,
-                    borderColor: "inherit",
-                  },
-                }}
-                variant="outlined"
-                onClick={() => {
-                  if (hasLost) {
-                    setRoundScore(0);
-                  }
+                },
+              }}
+              variant="outlined"
+              onClick={() => {
+                if (hasLost) {
+                  setRoundScore(0);
+                }
 
-                  setHasLost(false);
-                  setPlaying(true);
+                setHasLost(false);
+                setPlaying(true);
+              }}
+            >
+              PLAY{hasLost ? " AGAIN" : ""}
+            </Button>
+            {isMobile && (
+              <Typography
+                variant="caption"
+                sx={{
+                  color: THEME.SECONDARY,
+                  opacity: 0.7,
+                  textAlign: "center",
                 }}
               >
-                PLAY{hasLost ? " AGAIN" : ""}
-              </Button>
-            ) : (
-              <Stack sx={{ width: "66%" }}>
-                <Typography variant="body2" color={THEME.PRIMARY_FULL}>
-                  To play Bug Invaders, visit this site on a desktop browser!
-                </Typography>
-              </Stack>
+                Use the touch controls below to play!
+              </Typography>
             )}
           </Stack>
         ) : null}
@@ -737,6 +790,75 @@ const SpaceInvaders = () => {
         volumeOff={volumeOff}
         setVolumeOff={setVolumeOff}
       />
+      {isMobile && playing && (
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            pt: 2,
+          }}
+        >
+          <IconButton
+            onTouchStart={() => {
+              mobileMovingLeft.current = true;
+            }}
+            onTouchEnd={() => {
+              mobileMovingLeft.current = false;
+            }}
+            sx={{
+              backgroundColor: "rgba(129, 212, 250, 0.15)",
+              border: "1px solid rgba(129, 212, 250, 0.3)",
+              color: THEME.SECONDARY,
+              width: 64,
+              height: 64,
+              "&:active": {
+                backgroundColor: "rgba(129, 212, 250, 0.3)",
+              },
+            }}
+          >
+            <ArrowBack fontSize="large" />
+          </IconButton>
+          <IconButton
+            onTouchStart={() => {
+              mobileFiring.current = true;
+            }}
+            sx={{
+              backgroundColor: "rgba(255, 183, 77, 0.15)",
+              border: "1px solid rgba(255, 183, 77, 0.3)",
+              color: THEME.PRIMARY_FULL,
+              width: 64,
+              height: 64,
+              "&:active": {
+                backgroundColor: "rgba(255, 183, 77, 0.3)",
+              },
+            }}
+          >
+            <RocketLaunch fontSize="large" />
+          </IconButton>
+          <IconButton
+            onTouchStart={() => {
+              mobileMovingRight.current = true;
+            }}
+            onTouchEnd={() => {
+              mobileMovingRight.current = false;
+            }}
+            sx={{
+              backgroundColor: "rgba(129, 212, 250, 0.15)",
+              border: "1px solid rgba(129, 212, 250, 0.3)",
+              color: THEME.SECONDARY,
+              width: 64,
+              height: 64,
+              "&:active": {
+                backgroundColor: "rgba(129, 212, 250, 0.3)",
+              },
+            }}
+          >
+            <ArrowForward fontSize="large" />
+          </IconButton>
+        </Stack>
+      )}
     </Stack>
   );
 

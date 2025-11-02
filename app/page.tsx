@@ -69,7 +69,8 @@ export default function Page() {
   return (
     <Stack
       gap={4}
-      p={4}
+      px={2}
+      py={4}
       sx={{ maxWidth: 1200, mx: "auto", position: "relative" }}
     >
       <Header />
