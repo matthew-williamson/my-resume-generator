@@ -9,8 +9,8 @@ import ExperienceSkills from "./ExperienceSkills";
 export default function Experiences() {
   const getAccentColor = (index: number) => {
     const colors = [
-      "rgba(129, 212, 250, 0.08)", // cyan
-      "rgba(255, 183, 77, 0.08)", // amber
+      "rgba(129, 212, 250, 0.15)", // cyan
+      "rgba(255, 183, 77, 0.15)", // amber
     ];
     return colors[index % colors.length];
   };

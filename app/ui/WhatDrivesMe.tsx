@@ -13,7 +13,7 @@ export default function WhatDrivesMe() {
         backgroundColor: THEME.BLACK,
         p: 2,
         border: "1px solid rgba(129, 212, 250, 0.2)",
-        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(129, 212, 250, 0.08) 100%)`,
+        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(129, 212, 250, 0.15) 100%)`,
       }}
     >
       <Typography variant="body2">

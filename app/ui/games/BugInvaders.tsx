@@ -146,11 +146,24 @@ const BottomRow = ({
     }
 
     return (
-      <Stack direction="row" sx={{ alignItems: "center" }}>
+      <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
         <Typography fontWeight={700} variant="body2" color={THEME.PRIMARY_FULL}>
           Cannon:
         </Typography>
         {elements}
+        {payload < FULL_PAYLOAD && (
+          <Typography
+            variant="caption"
+            sx={{
+              color: THEME.SECONDARY,
+              fontSize: "0.65rem",
+              opacity: 0.8,
+              fontStyle: "italic",
+            }}
+          >
+            ⚡
+          </Typography>
+        )}
       </Stack>
     );
   }, [payload]);
@@ -174,17 +187,6 @@ const BottomRow = ({
         {payloadIndicators}
       </Stack>
       <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-        <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.25}>
-          {payload < FULL_PAYLOAD ? (
-            <Typography
-              variant="caption"
-              fontWeight={700}
-              color={THEME.PRIMARY_FULL}
-            >
-              Recharging...
-            </Typography>
-          ) : null}
-        </Stack>
         <IconButton onClick={() => setVolumeOff(!volumeOff)}>
           {!volumeOff ? (
             <VolumeUp
@@ -795,31 +797,54 @@ const SpaceInvaders = () => {
           direction="row"
           spacing={2}
           sx={{
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
-            pt: 2,
+            pt: 3,
+            px: 2,
           }}
         >
-          <IconButton
-            onTouchStart={() => {
-              mobileMovingLeft.current = true;
-            }}
-            onTouchEnd={() => {
-              mobileMovingLeft.current = false;
-            }}
-            sx={{
-              backgroundColor: "rgba(129, 212, 250, 0.15)",
-              border: "1px solid rgba(129, 212, 250, 0.3)",
-              color: THEME.SECONDARY,
-              width: 64,
-              height: 64,
-              "&:active": {
-                backgroundColor: "rgba(129, 212, 250, 0.3)",
-              },
-            }}
-          >
-            <ArrowBack fontSize="large" />
-          </IconButton>
+          <Stack direction="row" spacing={2}>
+            <IconButton
+              onTouchStart={() => {
+                mobileMovingLeft.current = true;
+              }}
+              onTouchEnd={() => {
+                mobileMovingLeft.current = false;
+              }}
+              sx={{
+                backgroundColor: "rgba(129, 212, 250, 0.15)",
+                border: "1px solid rgba(129, 212, 250, 0.3)",
+                color: THEME.SECONDARY,
+                width: 64,
+                height: 64,
+                "&:active": {
+                  backgroundColor: "rgba(129, 212, 250, 0.3)",
+                },
+              }}
+            >
+              <ArrowBack fontSize="large" />
+            </IconButton>
+            <IconButton
+              onTouchStart={() => {
+                mobileMovingRight.current = true;
+              }}
+              onTouchEnd={() => {
+                mobileMovingRight.current = false;
+              }}
+              sx={{
+                backgroundColor: "rgba(129, 212, 250, 0.15)",
+                border: "1px solid rgba(129, 212, 250, 0.3)",
+                color: THEME.SECONDARY,
+                width: 64,
+                height: 64,
+                "&:active": {
+                  backgroundColor: "rgba(129, 212, 250, 0.3)",
+                },
+              }}
+            >
+              <ArrowForward fontSize="large" />
+            </IconButton>
+          </Stack>
           <IconButton
             onTouchStart={() => {
               mobileFiring.current = true;
@@ -837,26 +862,6 @@ const SpaceInvaders = () => {
           >
             <RocketLaunch fontSize="large" />
           </IconButton>
-          <IconButton
-            onTouchStart={() => {
-              mobileMovingRight.current = true;
-            }}
-            onTouchEnd={() => {
-              mobileMovingRight.current = false;
-            }}
-            sx={{
-              backgroundColor: "rgba(129, 212, 250, 0.15)",
-              border: "1px solid rgba(129, 212, 250, 0.3)",
-              color: THEME.SECONDARY,
-              width: 64,
-              height: 64,
-              "&:active": {
-                backgroundColor: "rgba(129, 212, 250, 0.3)",
-              },
-            }}
-          >
-            <ArrowForward fontSize="large" />
-          </IconButton>
         </Stack>
       )}
     </Stack>
@@ -871,7 +876,7 @@ const SpaceInvaders = () => {
         backgroundColor: THEME.BLACK,
         p: 2,
         border: "1px solid rgba(255, 183, 77, 0.2)",
-        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(255, 183, 77, 0.08) 100%)`,
+        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(255, 183, 77, 0.15) 100%)`,
       }}
     >
       <Stack spacing={2}>

@@ -10,6 +10,7 @@ import AboutMe from "./ui/AboutMe";
 import BugInvaders from "./ui/games/BugInvaders";
 import WhatDrivesMe from "./ui/WhatDrivesMe";
 import SkillRadar from "./ui/SkillRadar";
+import GridBackground from "./ui/GridBackground";
 import { THEME } from "./lib/theme";
 
 const SectionHeader = ({
@@ -67,27 +68,30 @@ const SectionHeader = ({
 
 export default function Page() {
   return (
-    <Stack
-      gap={4}
-      px={2}
-      py={4}
-      sx={{ maxWidth: 1200, mx: "auto", position: "relative" }}
-    >
-      <Header />
-      <SectionHeader text="About Me" color="cyan" />
+    <>
+      <GridBackground />
       <Stack
         gap={4}
-        sx={{ width: "100%", flexDirection: { xs: "column", md: "row" } }}
+        px={2}
+        py={4}
+        sx={{ maxWidth: 1200, mx: "auto", position: "relative" }}
       >
-        <AboutMe />
-        <SkillRadar />
+        <Header />
+        <SectionHeader text="About Me" color="cyan" />
+        <Stack
+          gap={4}
+          sx={{ width: "100%", flexDirection: { xs: "column", md: "row" } }}
+        >
+          <AboutMe />
+          <SkillRadar />
+        </Stack>
+        <SectionHeader text="What I'm Looking For" color="amber" />
+        <WhatDrivesMe />
+        <SectionHeader text="Bug Invaders React Game" color="cyan" />
+        <BugInvaders />
+        <SectionHeader text="Experiences" color="amber" />
+        <Experiences />
       </Stack>
-      <SectionHeader text="What I'm Looking For" color="amber" />
-      <WhatDrivesMe />
-      <SectionHeader text="Bug Invaders React Game" color="cyan" />
-      <BugInvaders />
-      <SectionHeader text="Experiences" color="amber" />
-      <Experiences />
-    </Stack>
+    </>
   );
 }
