@@ -20,7 +20,7 @@ export default function CollapsibleSection({
         borderRadius: 2,
         border: `2px solid ${THEME.PRIMARY}`,
         flex: 1,
-        backgroundColor: THEME.WHITE,
+        backgroundColor: THEME.BACKGROUND,
       }}
     >
       <Stack
@@ -44,7 +44,7 @@ export default function CollapsibleSection({
         {header}
         <IconButton
           sx={{
-            color: THEME.WHITE,
+            color: THEME.BACKGROUND,
             p: 0.25,
             ":hover": { color: THEME.PRIMARY },
             height: 32,

@@ -101,7 +101,7 @@ const Section = ({ header, icon, children }: SectionProps) => (
             borderRadius: "4px 4px 0px 0px",
           }}
         >
-          <Typography variant="h6" fontWeight={600} color="white">
+          <Typography variant="h6" fontWeight={600}>
             {header}
           </Typography>
           {icon}
@@ -203,7 +203,7 @@ const PageOne = () => (
       <Stack spacing={2} sx={{ width: "70%" }}>
         <Section
           header="About Me"
-          icon={<AccountBoxOutlined sx={{ color: "white" }} />}
+          icon={<AccountBoxOutlined sx={{  }} />}
         >
           <Typography variant="caption">
             I'm a Senior Software Engineer with 7+ years of experience building
@@ -218,7 +218,7 @@ const PageOne = () => (
         </Section>
         <Section
           header="My Experiences"
-          icon={<WorkOutline sx={{ color: "white" }} />}
+          icon={<WorkOutline sx={{  }} />}
         >
           <Experiences experiences={experienceSubsets[0]} />
         </Section>
@@ -226,19 +226,19 @@ const PageOne = () => (
       <Stack spacing={2} sx={{ width: "30%" }}>
         <Section
           header="Top Skills"
-          icon={<TrendingUpOutlined sx={{ color: "white" }} />}
+          icon={<TrendingUpOutlined sx={{  }} />}
         >
           {TopSkills}
         </Section>
         <Section
           header="Other Skills"
-          icon={<TrendingUpOutlined sx={{ color: "white" }} />}
+          icon={<TrendingUpOutlined sx={{  }} />}
         >
           {OtherSkills}
         </Section>
         <Section
           header="My Education"
-          icon={<SchoolOutlined sx={{ color: "white" }} />}
+          icon={<SchoolOutlined sx={{  }} />}
         >
           <Stack>
             <Typography variant="caption">
@@ -258,14 +258,14 @@ const PageTwo = () => (
       <Section
         key={index}
         header="My Experiences (Continued)"
-        icon={<WorkOutline sx={{ color: "white" }} />}
+        icon={<WorkOutline sx={{  }} />}
       >
         <Experiences experiences={e} />
       </Section>
     ))}
     <Section
       header="Note to Reader"
-      icon={<EditOutlined sx={{ color: "white" }} />}
+      icon={<EditOutlined sx={{  }} />}
     >
       <Stack spacing={1.75}>
         <Typography variant="caption">

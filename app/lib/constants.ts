@@ -5,29 +5,40 @@ import _ from "lodash";
 const Scottsdale = "Scottsdale, AZ";
 const Tempe = "Tempe, AZ";
 
+export const Caring: Company = {
+  name: "Caring",
+  location: Scottsdale,
+  logo: "https://logo.clearbit.com/caring.com",
+};
+
 export const Carvana: Company = {
   name: "Carvana",
   location: Tempe,
+  logo: "https://logo.clearbit.com/carvana.com",
 };
 
 export const ImagineLearning: Company = {
   name: "Imagine Learning",
   location: Scottsdale,
+  logo: "https://logo.clearbit.com/imaginelearning.com",
 };
 
 export const SavvyTrader: Company = {
   name: "Savvy Trader",
   location: Scottsdale,
+  logo: "https://logo.clearbit.com/savvytrader.com",
 };
 
 export const GitKraken: Company = {
   name: "GitKraken",
   location: Scottsdale,
+  logo: "https://logo.clearbit.com/gitkraken.com",
 };
 
 export const SandhillsPublishing: Company = {
   name: "Sandhills Publishing",
   location: Scottsdale,
+  logo: "https://logo.clearbit.com/sandhills.com",
 };
 
 export const CRC: Company = {
@@ -45,11 +56,65 @@ export const bigFivePersonalityScores = [
 
 export const experiences: Experience[] = [
   {
+    startDate: new Date("01/13/2025"),
+    startDisplay: "01/2025",
+    title: "Technical Lead",
+    company: Caring,
+    id: 1,
+    url: "https://caring.com/",
+    achievements: [
+      "Lead technical direction for Next.js web application development.",
+      "Work directly with product to translate Figma designs into actionable Jira tickets.",
+      "Guide engineering team through sprint planning and execution.",
+      "Build features using React, TypeScript, and Next.js on the frontend.",
+      "Contribute to Node.js backend services and API development.",
+      "Mentor team members and conduct code reviews to maintain code quality.",
+      "Collaborate cross-functionally to deliver customer-facing features.",
+    ],
+    frontEndSkills: [
+      Skill.React,
+      Skill.TypeScript,
+      Skill.NextJS,
+      Skill.ChakraUI,
+      Skill.Playwright,
+      Skill.EndToEndTesting,
+      Skill.Figma,
+    ],
+    backEndSkills: [
+      Skill.NodeJS,
+      Skill.PostgreSQL,
+      Skill.Snowflake,
+      Skill.SegmentEvents,
+      Skill.ABTesting,
+    ],
+    generalTechnicalSkills: [
+      Skill.AWS,
+      Skill.GitHub,
+      Skill.Git,
+      Skill.CICD,
+      Skill.CodeReviews,
+      Skill.SprintPlanning,
+      Skill.Jira,
+    ],
+    softSkills: [
+      Skill.Leadership,
+      Skill.Mentorship,
+      Skill.TeamworkandCollaboration,
+      Skill.Communication,
+      Skill.ProblemSolving,
+      Skill.TimeManagement,
+      Skill.Adaptability,
+      Skill.ContinuousLearning,
+    ],
+  },
+  {
     startDate: new Date("04/1/2024"),
     startDisplay: "04/2024",
+    endDate: new Date("01/13/2025"),
+    endDisplay: "01/2025",
     title: "Sr. Software Engineer",
     company: Carvana,
-    id: 1,
+    id: 2,
     url: "https://carvana.com/",
     achievements: [
       "Lead development of SaaS apps using React/TypeScript, C#.NET microservices, and REST/GraphQL APIs.",
@@ -121,7 +186,7 @@ export const experiences: Experience[] = [
     endDisplay: "04/2024",
     title: "Sr. Software Engineer",
     company: SavvyTrader,
-    id: 2,
+    id: 3,
     url: "https://savvytrader.com/",
     achievements: [
       "Founding engineer, led the development of SaaS web/mobile apps using React/TypeScript and Node.js.",
@@ -194,7 +259,7 @@ export const experiences: Experience[] = [
     endDisplay: "12/2022",
     title: "Sr. Software Engineer",
     company: ImagineLearning,
-    id: 3,
+    id: 4,
     url: "https://www.imaginelearning.com/",
     achievements: [
       "Led development of education SaaS web applications using React/TypeScript and C#.NET REST/GraphQL APIs.",
@@ -265,7 +330,7 @@ export const experiences: Experience[] = [
     endDisplay: "03/2022",
     title: "Software Engineer II",
     company: GitKraken,
-    id: 4,
+    id: 5,
     url: "https://www.gitkraken.com/",
     achievements: [
       "Built and maintained a cross-platform Git GUI desktop app using React, Node.js, Electron, and TypeScript.",
@@ -336,7 +401,7 @@ export const experiences: Experience[] = [
     endDisplay: "08/2019",
     title: "Software Engineer",
     company: SandhillsPublishing,
-    id: 5,
+    id: 6,
     url: "https://sandhills.com/",
     achievements: [
       "Developed and maintained SaaS web apps using JavaScript, VB.NET, C#.NET, SQL, and MVC architectures.",
@@ -389,7 +454,7 @@ export const experiences: Experience[] = [
     endDisplay: "03/2018",
     title: "Software Engineer",
     company: CRC,
-    id: 6,
+    id: 7,
     achievements: [
       "Built, deployed, and maintained legacy VB6 desktop applications.",
       "Used RDC to manually update and troubleshoot customer systems in real time.",

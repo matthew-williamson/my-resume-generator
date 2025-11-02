@@ -1,6 +1,7 @@
 export interface Company {
   name: string;
   location: string;
+  logo?: string;
 }
 
 export enum Skill {
@@ -77,6 +78,13 @@ export enum Skill {
   Playwright = "Playwright",
   AzureDevops = "Azure Devops",
   NX = "NX",
+  PostgreSQL = "PostgreSQL",
+  Snowflake = "Snowflake",
+  SegmentEvents = "Segment Events",
+  ABTesting = "A/B Testing",
+  GitHub = "GitHub",
+  SprintPlanning = "Sprint Planning",
+  ChakraUI = "Chakra UI",
 }
 
 export enum ChartType {

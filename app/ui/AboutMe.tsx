@@ -1,56 +1,56 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Stack, Typography } from "@mui/material";
-import CollapsibleSection from "./shared/CollapsibleSection";
 import Highlight from "./shared/Highlight";
 import { THEME } from "../lib/theme";
 
 export default function AboutMe() {
   return (
-    <CollapsibleSection
-      open
-      header={
-        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
-          About
-        </Typography>
-      }
+    <Stack
+      spacing={2}
+      sx={{
+        color: THEME.WHITE,
+        borderRadius: 2,
+        backgroundColor: THEME.BLACK,
+        p: 2,
+      }}
     >
-      <Stack spacing={2}>
-        <Typography variant="body2">
-          Welcome to my <Highlight text="living resume" />!
-        </Typography>
-        <Typography variant="body2">
-          My name is <Highlight text="Matthew Williamson" />.
-        </Typography>
-        <Typography variant="body2">
-          I am an outgoing and energetic{" "}
-          <Highlight text="Senior Full Stack Software Engineer" /> with{" "}
-          <Highlight text="7 years of professional experience" /> building
-          everything from <Highlight text="SaaS web apps" /> at scale, to world
-          class <Highlight text="Git GUI desktop apps" />, to{" "}
-          <Highlight text="internal only systems" />. I have a passion for{" "}
-          <Highlight text="code quality" />, <Highlight text="testing" />, and{" "}
-          <Highlight text="best practices" />.
-        </Typography>
-        <Typography variant="body2">
-          My immediate goal is to become a{" "}
-          <Highlight text="Software Engineering Manager" />. The most satisfied
-          I feel from work is when I get to{" "}
-          <Highlight text="help my teammates level up" />. I place a high value
-          on <Highlight text="collaborative" /> environments.
-        </Typography>
-        <Typography variant="body2">
-          I consider myself a professional <Highlight text="problem solver" />{" "}
-          more than any specific type of engineer. My tech stack of choice to
-          tackle problems and provide solutions would include{" "}
-          <Highlight text="TypeScript and/or JavaScript, React, Node, Cloud Infrastructure like AWS or Azure, SQL and/or NoSQL, and Git" />
-          .
-        </Typography>
-        <Typography variant="body2">
-          I built this living resume from scratch using{" "}
-          <Highlight text="React, Next.js, TypeScript, MUI, CSS, HTML, and Victory Charts" />
-          .
-        </Typography>
-      </Stack>
-    </CollapsibleSection>
+      <Typography variant="body2">
+        Welcome to my <Highlight text="living resume" />! I'm{" "}
+        <Highlight text="Matthew Williamson" />, and I've spent the last{" "}
+        <Highlight text="8+ years" /> building software that people actually
+        use. <Highlight text="SaaS web apps" /> serving thousands of users, the{" "}
+        <Highlight text="GitKraken desktop app" /> used by developers worldwide,
+        internal tools that keep businesses running. You name it.
+      </Typography>
+      <Typography variant="body2">
+        I'm a <Highlight text="Technical Lead" /> who cares a lot about{" "}
+        <Highlight text="clean code" /> and <Highlight text="testing" />. But
+        what really gets me going is <Highlight text="solving hard problems" />{" "}
+        and <Highlight text="helping people grow" />. Watching someone level up
+        after a good code review or pairing session is the best part of my job.
+      </Typography>
+      <Typography variant="body2">
+        My next step is moving into <Highlight text="engineering leadership" />.
+        Whether that's <Highlight text="Team Lead" />,{" "}
+        <Highlight text="Principal Engineer" />, or{" "}
+        <Highlight text="Engineering Manager" />, I want to be somewhere I can
+        make an impact both technically and by helping the people around me get
+        better.
+      </Typography>
+      <Typography variant="body2">
+        Tech wise, I'm a <Highlight text="problem solver" /> before anything
+        else. Not really attached to any specific stack. My usual tools are{" "}
+        <Highlight text="TypeScript" />, <Highlight text="React" />,{" "}
+        <Highlight text="Node.js" />, <Highlight text="AWS or Azure" />, and
+        whatever database fits the problem (<Highlight text="SQL or NoSQL" />
+        ). I can work across the full stack but I do lean more frontend.
+      </Typography>
+      <Typography variant="body2">
+        I built this site from scratch with{" "}
+        <Highlight text="Next.js, TypeScript, React, MUI, and Victory Charts" />
+        . Figured if I'm going to have a resume, might as well make it
+        interesting.
+      </Typography>
+    </Stack>
   );
 }

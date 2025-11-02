@@ -86,11 +86,11 @@ const Chart = ({
             labelComponent={
               <VictoryTooltip
                 flyoutStyle={{
-                  stroke: THEME.WHITE,
+                  stroke: THEME.BACKGROUND,
                   fill: THEME.SECONDARY,
                 }}
                 style={{
-                  stroke: THEME.WHITE,
+                  stroke: THEME.BACKGROUND,
                 }}
               />
             }
@@ -160,7 +160,7 @@ export default function SkillGraph({
   return (
     <CollapsibleSection
       header={
-        <Typography variant="h5" sx={{ color: THEME.WHITE }}>
+        <Typography variant="h5" sx={{ color: THEME.BACKGROUND }}>
           {label}
         </Typography>
       }
