@@ -13,27 +13,27 @@ const SkillChip = ({ skill, type }: { skill: Skill; type: string }) => {
     switch (type) {
       case "frontend":
         return {
-          bg: THEME.PRIMARY,
-          text: THEME.BLACK,
-          border: THEME.PRIMARY_FULL,
+          bg: "rgba(255, 183, 77, 0.15)",
+          text: THEME.PRIMARY_FULL,
+          border: "rgba(255, 183, 77, 0.3)",
         };
       case "backend":
         return {
-          bg: THEME.SECONDARY,
-          text: THEME.BLACK,
-          border: THEME.SECONDARY,
+          bg: "rgba(129, 212, 250, 0.15)",
+          text: THEME.SECONDARY,
+          border: "rgba(129, 212, 250, 0.3)",
         };
       case "general":
         return {
-          bg: THEME.PRIMARY_LIGHT,
-          text: THEME.WHITE,
-          border: THEME.PRIMARY,
+          bg: "rgba(255, 255, 255, 0.05)",
+          text: "rgba(255, 255, 255, 0.7)",
+          border: "rgba(255, 255, 255, 0.2)",
         };
       default:
         return {
-          bg: THEME.PRIMARY_LIGHT,
-          text: THEME.WHITE,
-          border: THEME.PRIMARY,
+          bg: "rgba(255, 255, 255, 0.05)",
+          text: "rgba(255, 255, 255, 0.7)",
+          border: "rgba(255, 255, 255, 0.2)",
         };
     }
   };
@@ -48,15 +48,14 @@ const SkillChip = ({ skill, type }: { skill: Skill; type: string }) => {
         backgroundColor: colors.bg,
         color: colors.text,
         fontSize: "0.7rem",
-        fontWeight: 600,
+        fontWeight: 400,
         height: 24,
         borderRadius: 1.5,
-        border: `1.5px solid ${colors.border}`,
-        boxShadow: `0 2px 4px rgba(0,0,0,0.2)`,
+        border: `1px solid ${colors.border}`,
         transition: "all 0.2s ease",
         "&:hover": {
-          transform: "translateY(-2px)",
-          boxShadow: `0 4px 8px rgba(0,0,0,0.3)`,
+          backgroundColor: colors.bg,
+          opacity: 0.8,
         },
         "& .MuiChip-label": {
           px: 1.5,
@@ -77,7 +76,6 @@ export default function ExperienceSkills({
         display: "flex",
         flexWrap: "wrap",
         gap: 1,
-        pt: 1.5,
       }}
     >
       {frontEndSkills.map((skill, index) => (

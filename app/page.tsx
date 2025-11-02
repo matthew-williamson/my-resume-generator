@@ -12,45 +12,58 @@ import WhatDrivesMe from "./ui/WhatDrivesMe";
 import SkillRadar from "./ui/SkillRadar";
 import { THEME } from "./lib/theme";
 
-const SectionHeader = ({ text }: { text: string }) => (
-  <Stack
-    direction="row"
-    spacing={2}
-    sx={{
-      alignItems: "center",
-      width: "100%",
-      py: 2,
-    }}
-  >
+const SectionHeader = ({
+  text,
+  color = "cyan",
+}: {
+  text: string;
+  color?: "cyan" | "amber";
+}) => {
+  const lineColor = color === "cyan" ? THEME.SECONDARY : THEME.PRIMARY_FULL;
+  const glowColor =
+    color === "cyan" ? "rgba(129, 212, 250, 0.3)" : "rgba(255, 183, 77, 0.3)";
+
+  return (
     <Stack
+      direction="row"
+      spacing={2}
       sx={{
-        flex: 1,
-        height: "1px",
-        backgroundColor: THEME.SECONDARY,
-        opacity: 0.2,
-      }}
-    />
-    <Typography
-      variant="h5"
-      sx={{
-        color: THEME.SECONDARY,
-        textAlign: "center",
-        fontWeight: 300,
-        letterSpacing: 1,
+        alignItems: "center",
+        width: "100%",
+        py: 2,
       }}
     >
-      {text}
-    </Typography>
-    <Stack
-      sx={{
-        flex: 1,
-        height: "1px",
-        backgroundColor: THEME.SECONDARY,
-        opacity: 0.2,
-      }}
-    />
-  </Stack>
-);
+      <Stack
+        sx={{
+          flex: 1,
+          height: "1px",
+          background: `linear-gradient(to right, transparent, ${lineColor})`,
+          opacity: 0.3,
+        }}
+      />
+      <Typography
+        variant="h5"
+        sx={{
+          color: lineColor,
+          textAlign: "center",
+          fontWeight: 300,
+          letterSpacing: 1,
+          textShadow: `0 0 20px ${glowColor}`,
+        }}
+      >
+        {text}
+      </Typography>
+      <Stack
+        sx={{
+          flex: 1,
+          height: "1px",
+          background: `linear-gradient(to left, transparent, ${lineColor})`,
+          opacity: 0.3,
+        }}
+      />
+    </Stack>
+  );
+};
 
 export default function Page() {
   return (
@@ -60,7 +73,7 @@ export default function Page() {
       sx={{ maxWidth: 1200, mx: "auto", position: "relative" }}
     >
       <Header />
-      <SectionHeader text="About Me" />
+      <SectionHeader text="About Me" color="cyan" />
       <Stack
         gap={4}
         sx={{ width: "100%", flexDirection: { xs: "column", md: "row" } }}
@@ -68,11 +81,11 @@ export default function Page() {
         <AboutMe />
         <SkillRadar />
       </Stack>
-      <SectionHeader text="What I'm Looking For" />
+      <SectionHeader text="What I'm Looking For" color="amber" />
       <WhatDrivesMe />
-      <SectionHeader text="Bug Invaders React Game" />
+      <SectionHeader text="Bug Invaders React Game" color="cyan" />
       <BugInvaders />
-      <SectionHeader text="Experiences" />
+      <SectionHeader text="Experiences" color="amber" />
       <Experiences />
     </Stack>
   );

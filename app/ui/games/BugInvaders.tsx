@@ -748,6 +748,8 @@ const SpaceInvaders = () => {
         borderRadius: 2,
         backgroundColor: THEME.BLACK,
         p: 2,
+        border: "1px solid rgba(255, 183, 77, 0.2)",
+        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(255, 183, 77, 0.08) 100%)`,
       }}
     >
       <Stack spacing={2}>

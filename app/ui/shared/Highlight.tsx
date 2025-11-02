@@ -7,10 +7,11 @@ export default function Highlight({ text }: { text: string }) {
       variant="body2"
       sx={{
         color: THEME.SECONDARY,
-        backgroundColor: THEME.PRIMARY_LIGHT,
+        backgroundColor: "rgba(129, 212, 250, 0.15)",
         borderRadius: "4px",
         py: 0.15,
         px: 0.5,
+        fontWeight: 400,
       }}
       component={"span"}
     >

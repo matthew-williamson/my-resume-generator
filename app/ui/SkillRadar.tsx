@@ -38,6 +38,8 @@ export default function SkillRadar() {
         backgroundColor: THEME.BLACK,
         minWidth: 320,
         p: 2,
+        border: "1px solid rgba(255, 183, 77, 0.2)",
+        background: `linear-gradient(135deg, ${THEME.BLACK} 0%, rgba(255, 183, 77, 0.08) 100%)`,
       }}
     >
       <Stack sx={{ alignItems: "center", width: "100%" }}>

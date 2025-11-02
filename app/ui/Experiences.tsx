@@ -7,9 +7,17 @@ import { THEME } from "../lib/theme";
 import ExperienceSkills from "./ExperienceSkills";
 
 export default function Experiences() {
+  const getAccentColor = (index: number) => {
+    const colors = [
+      "rgba(129, 212, 250, 0.08)", // cyan
+      "rgba(255, 183, 77, 0.08)", // amber
+    ];
+    return colors[index % colors.length];
+  };
+
   return (
     <Stack gap={4}>
-      {[...experiences].reverse().map((e) => {
+      {[...experiences].reverse().map((e, index) => {
         return (
           <Stack
             key={`${e.company.name}-experience-card-${e.id}`}
@@ -19,6 +27,14 @@ export default function Experiences() {
               borderRadius: 2,
               backgroundColor: THEME.BLACK,
               p: 2,
+              border: `1px solid ${
+                index % 2 === 0
+                  ? "rgba(129, 212, 250, 0.2)"
+                  : "rgba(255, 183, 77, 0.2)"
+              }`,
+              background: `linear-gradient(135deg, ${
+                THEME.BLACK
+              } 0%, ${getAccentColor(index)} 100%)`,
             }}
           >
             <Stack
@@ -34,7 +50,16 @@ export default function Experiences() {
                       width: 48,
                       height: 48,
                       backgroundColor: "#FFFFFF",
-                      border: `2px solid ${THEME.SECONDARY}`,
+                      border: `2px solid ${
+                        index % 2 === 0
+                          ? "rgba(129, 212, 250, 0.3)"
+                          : "rgba(255, 183, 77, 0.3)"
+                      }`,
+                      boxShadow: `0 0 20px ${
+                        index % 2 === 0
+                          ? "rgba(129, 212, 250, 0.2)"
+                          : "rgba(255, 183, 77, 0.2)"
+                      }`,
                       p: 0.5,
                     }}
                     variant="rounded"
@@ -49,7 +74,7 @@ export default function Experiences() {
                     fontWeight={600}
                     color={THEME.SECONDARY}
                   >
-                    {e.title} | {e.startDisplay} - {e.endDisplay ?? "Present"}
+                    {e.title} • {e.startDisplay} - {e.endDisplay ?? "Present"}
                   </Typography>
                 </Stack>
               </Stack>
