@@ -83,9 +83,7 @@ const Section = ({ header, icon, children }: SectionProps) => (
   <Box
     sx={{
       borderRadius: 2,
-      border: header
-        ? `2px solid rgba(129, 212, 250, 0.3)`
-        : `1px solid ${THEME.SECONDARY}`,
+      border: `1px solid ${THEME.SECONDARY}`,
       backgroundColor: "#FFFFFF",
     }}
   >
@@ -94,17 +92,15 @@ const Section = ({ header, icon, children }: SectionProps) => (
         <Stack
           direction="row"
           sx={{
+            backgroundColor: THEME.SECONDARY,
+            color: THEME.WHITE,
             alignItems: "center",
             justifyContent: "space-between",
             borderBottom: `1px solid rgba(129, 212, 250, 0.3)`,
             p: 1,
           }}
         >
-          <Typography
-            variant="h6"
-            fontWeight={600}
-            sx={{ color: THEME.SECONDARY }}
-          >
+          <Typography variant="h6" fontWeight={600}>
             {header}
           </Typography>
           {icon && <Box sx={{ color: THEME.SECONDARY }}>{icon}</Box>}
@@ -153,7 +149,9 @@ const Experiences = ({ experiences }: ExperiencesProps) =>
     </Stack>
   ));
 
-const experienceSubsets = chunkExperiences([...experiences].reverse());
+const experienceSubsets = chunkExperiences(
+  [...experiences].reverse().slice(0, experiences.length - 1)
+);
 
 const PageOne = () => (
   <Stack sx={{ p: 1 }} spacing={2}>
@@ -254,17 +252,14 @@ const PageTwo = () => (
     <Section header="Note to Reader" icon={<EditOutlined />}>
       <Stack spacing={1.75}>
         <Typography variant="caption" sx={{ color: "#000000" }}>
-          Thanks for checking out my resume! If you're reading this, I'm excited
-          to bring my skills and energy to your team. I've either applied to
-          your job or know your company and I'm eager to contribute.
+          Thanks for checking out my resume! I'm excited to bring my skills and
+          energy to your team.
         </Typography>
         <Typography variant="caption" sx={{ color: "#000000" }}>
-          This isn't a typical resume. It's a custom page from my personal web
-          app built with Next.js, TypeScript, MUI, and React. You can check out
-          the full site at https://matt-williamson.netlify.app or scan the QR
-          code above. The site is hosted on Vercel with CI/CD auto-deployments
-          from the repo at
-          https://github.com/matthew-williamson/my-resume-generator.
+          This resume is a custom page from my personal web app built with
+          Next.js, TypeScript, and MUI. Check out the full site at{" "}
+          <strong>matt-williamson.netlify.app</strong> or scan the QR code
+          above.
         </Typography>
         <Stack>
           <Typography variant="caption" sx={{ color: "#000000" }}>

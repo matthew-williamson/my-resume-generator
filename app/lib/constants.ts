@@ -70,6 +70,9 @@ export const experiences: Experience[] = [
       "Contribute to Node.js backend services and API development.",
       "Mentor team members and conduct code reviews to maintain code quality.",
       "Collaborate cross-functionally to deliver customer-facing features.",
+      "Lead E2E Testing strategy and implementation using Playwright.",
+      "Full stack development, including frontend, backend, and database work.",
+      "Focus on CWV and performance optimization.",
     ],
     frontEndSkills: [
       Skill.React,
@@ -268,7 +271,6 @@ export const experiences: Experience[] = [
       "Mentored developers on Git, React, TypeScript, and fostered a learning-focused PR culture.",
       "Transformed loose Figma mocks and requirements into production-ready features.",
       "Integrated with both GraphQL and REST APIs to deliver robust application functionality.",
-      "Guided offshore/nearshore engineers in developing reporting systems.",
       "Collaborated in architectural discussions to shape the technical direction.",
       "Assisted QA with Cypress automation, writing unit and integration tests to ensure code reliability.",
     ],
@@ -406,9 +408,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Developed and maintained SaaS web apps using JavaScript, VB.NET, C#.NET, SQL, and MVC architectures.",
       "Improved team efficiency with a custom Chrome extension, boosting productivity by over 80%.",
-      "Mentored and onboarded engineers from intern roles to full-time positions.",
       "Enhanced a long-running asynchronous C# data manipulation service, increasing efficiency by 50%.",
-      "Fostered improvements in code review practices, team culture, and collaboration.",
     ],
     frontEndSkills: [
       Skill.JavaScript,
@@ -457,9 +457,7 @@ export const experiences: Experience[] = [
     id: 7,
     achievements: [
       "Built, deployed, and maintained legacy VB6 desktop applications.",
-      "Used RDC to manually update and troubleshoot customer systems in real time.",
-      "Debugged and resolved numerous bugs in legacy software.",
-      "Maintained SQL databases and ensured data integrity.",
+      "Debugged and resolved bugs in legacy software and maintained SQL databases.",
       "Gained key insights into version control best practices with Git and TFS.",
     ],
     frontEndSkills: [Skill.VB6, Skill.HTML, Skill.CSS],
