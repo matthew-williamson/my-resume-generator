@@ -32,9 +32,9 @@ export default function AboutMe() {
         after a good code review or pairing session is the best part of my job.
       </Typography>
       <Typography variant="body2">
-        My next step is moving into <Highlight text="engineering leadership" />.
-        Whether that's <Highlight text="Team Lead" />,{" "}
-        <Highlight text="Principal Engineer" />, or{" "}
+        I'm looking to grow deeper into{" "}
+        <Highlight text="engineering leadership" />. Whether that's{" "}
+        <Highlight text="Principal Engineer" /> or{" "}
         <Highlight text="Engineering Manager" />, I want to be somewhere I can
         make an impact both technically and by helping the people around me get
         better.
@@ -45,7 +45,7 @@ export default function AboutMe() {
         <Highlight text="TypeScript" />, <Highlight text="React" />,{" "}
         <Highlight text="Node.js" />, <Highlight text="AWS or Azure" />, and
         whatever database fits the problem (<Highlight text="SQL or NoSQL" />
-        ). I can work across the full stack but I do lean more frontend.
+        ). I work comfortably across the <Highlight text="full stack" />.
       </Typography>
       <Typography variant="body2">
         I built this site from scratch with{" "}

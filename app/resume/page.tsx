@@ -22,32 +22,29 @@ const topSkills = [
   "JavaScript",
   "Node.js",
   "C#/.NET",
-  "Git",
-  "API Integration",
   "REST APIs",
-  "Integration Testing",
-  "Unit Testing",
+  "GraphQL",
+  "Git",
+  "Jest/Cypress/Playwright",
   "Storybook",
-  "SaaS Web Apps",
-  "Responsive UI",
   "Leadership/Mentorship",
+  "Code Reviews",
 ];
 
 const otherSkills = [
-  "Electron Desktop Apps",
-  "GraphQL",
-  "SQL/NoSQL",
-  "Microservices",
-  "Event-Driven Systems",
-  "Microfrontends",
-  "Azure DevOps Cloud",
-  "AWS Cloud",
+  "Next.js",
   "Redux/Redux Saga",
-  "Data Visualization/Graphing",
-  "Mobile App Development",
-  "Responsive UI",
+  "SQL/NoSQL/DynamoDB",
+  "Microservices",
+  "Event-Driven Architecture",
+  "Microfrontends",
+  "AWS",
+  "Azure DevOps",
+  "Electron Desktop Apps",
+  "Mobile Apps (Capacitor)",
+  "Data Visualization",
   "Chrome Extensions",
-  "Code Reviews",
+  "Webpack/NX",
   "Figma",
   "Jira",
 ];
@@ -85,8 +82,11 @@ interface SectionProps extends PropsWithChildren {
 const Section = ({ header, icon, children }: SectionProps) => (
   <Box
     sx={{
-      borderRadius: "4px",
-      border: header ? `1px solid ${THEME.GREY}` : `3px solid ${THEME.PRIMARY}`,
+      borderRadius: 2,
+      border: header
+        ? `2px solid rgba(129, 212, 250, 0.3)`
+        : `1px solid ${THEME.SECONDARY}`,
+      backgroundColor: "#FFFFFF",
     }}
   >
     <Stack>
@@ -96,15 +96,18 @@ const Section = ({ header, icon, children }: SectionProps) => (
           sx={{
             alignItems: "center",
             justifyContent: "space-between",
-            backgroundColor: THEME.PRIMARY,
+            borderBottom: `1px solid rgba(129, 212, 250, 0.3)`,
             p: 1,
-            borderRadius: "4px 4px 0px 0px",
           }}
         >
-          <Typography variant="h6" fontWeight={600}>
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            sx={{ color: THEME.SECONDARY }}
+          >
             {header}
           </Typography>
-          {icon}
+          {icon && <Box sx={{ color: THEME.SECONDARY }}>{icon}</Box>}
         </Stack>
       )}
       <Box sx={{ p: 1 }}>{children}</Box>
@@ -135,20 +138,15 @@ const Experiences = ({ experiences }: ExperiencesProps) =>
         </Typography>
         <Typography
           variant="caption"
-          sx={{ color: THEME.SECONDARY }}
+          sx={{ color: "#000000" }}
           fontWeight={600}
         >
-          {e.title} | {e.startDisplay} - {e.endDisplay ?? "Present"}
+          {e.title} • {e.startDisplay} - {e.endDisplay ?? "Present"}
         </Typography>
       </Stack>
       <Stack spacing={0.1}>
         {e.achievements.map((ach) => (
-          <BulletPoint
-            text={ach}
-            variant="caption"
-            color={THEME.SECONDARY}
-            key={ach}
-          />
+          <BulletPoint text={ach} variant="caption" color="#000000" key={ach} />
         ))}
       </Stack>
       {index === experiences.length - 1 ? null : <Divider />}
@@ -165,7 +163,7 @@ const PageOne = () => (
           sx={{
             width: 84,
             height: 84,
-            border: `3px solid ${THEME.PRIMARY}`,
+            border: `2px solid ${THEME.SECONDARY}`,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -179,11 +177,13 @@ const PageOne = () => (
             <Typography variant="h5" fontWeight={700} color={THEME.SECONDARY}>
               Matthew Williamson
             </Typography>
-            <Typography variant="caption">Fountain Hills, AZ</Typography>
-            <Typography variant="caption">
+            <Typography variant="caption" sx={{ color: "#000000" }}>
+              Fountain Hills, AZ
+            </Typography>
+            <Typography variant="caption" sx={{ color: "#000000" }}>
               https://matt-williamson.netlify.app
             </Typography>
-            <Typography variant="caption">
+            <Typography variant="caption" sx={{ color: "#000000" }}>
               mwilliamson.lloyd@gmail.com
             </Typography>
           </Stack>
@@ -201,50 +201,38 @@ const PageOne = () => (
       }}
     >
       <Stack spacing={2} sx={{ width: "70%" }}>
-        <Section
-          header="About Me"
-          icon={<AccountBoxOutlined sx={{  }} />}
-        >
-          <Typography variant="caption">
-            I'm a Senior Software Engineer with 7+ years of experience building
-            high-quality SaaS web applications, REST APIs, and desktop tools. I
-            specialize in React, TypeScript, C#.NET, and Node.js. I thrive on
-            solving complex problems, improving code quality, and mentoring
-            teams. My focus is delivering solutions that are scalable,
-            user-friendly, and built to last. While I lean towards frontend, I
-            excel across the full stack, and I'm eager to grow into leadership
-            roles like Team Lead, Principal Engineer, or Engineering Manager.
+        <Section header="About Me" icon={<AccountBoxOutlined />}>
+          <Typography variant="caption" sx={{ color: "#000000" }}>
+            I'm a Technical Lead with 8+ years building software people actually
+            use. I care a lot about clean code, testing, and solving hard
+            problems, but what really gets me going is helping people grow. I'm
+            looking to go deeper into engineering leadership (Principal Engineer
+            or Engineering Manager) where I can make an impact both technically
+            and by helping the people around me get better. Tech wise, I'm a
+            problem solver before anything else. My usual tools are TypeScript,
+            React, Node.js, C#/.NET, and AWS or Azure. I work comfortably across
+            the full stack.
           </Typography>
         </Section>
-        <Section
-          header="My Experiences"
-          icon={<WorkOutline sx={{  }} />}
-        >
+        <Section header="My Experiences" icon={<WorkOutline />}>
           <Experiences experiences={experienceSubsets[0]} />
         </Section>
       </Stack>
       <Stack spacing={2} sx={{ width: "30%" }}>
-        <Section
-          header="Top Skills"
-          icon={<TrendingUpOutlined sx={{  }} />}
-        >
+        <Section header="Top Skills" icon={<TrendingUpOutlined />}>
           {TopSkills}
         </Section>
-        <Section
-          header="Other Skills"
-          icon={<TrendingUpOutlined sx={{  }} />}
-        >
+        <Section header="Other Skills" icon={<TrendingUpOutlined />}>
           {OtherSkills}
         </Section>
-        <Section
-          header="My Education"
-          icon={<SchoolOutlined sx={{  }} />}
-        >
+        <Section header="My Education" icon={<SchoolOutlined />}>
           <Stack>
-            <Typography variant="caption">
+            <Typography variant="caption" sx={{ color: "#000000" }}>
               B.S. Mathematics, 2018 ASU
             </Typography>
-            <Typography variant="caption">3.73 GPA, Magna Cum Laude</Typography>
+            <Typography variant="caption" sx={{ color: "#000000" }}>
+              3.73 GPA, Magna Cum Laude
+            </Typography>
           </Stack>
         </Section>
       </Stack>
@@ -258,33 +246,34 @@ const PageTwo = () => (
       <Section
         key={index}
         header="My Experiences (Continued)"
-        icon={<WorkOutline sx={{  }} />}
+        icon={<WorkOutline />}
       >
         <Experiences experiences={e} />
       </Section>
     ))}
-    <Section
-      header="Note to Reader"
-      icon={<EditOutlined sx={{  }} />}
-    >
+    <Section header="Note to Reader" icon={<EditOutlined />}>
       <Stack spacing={1.75}>
-        <Typography variant="caption">
-          Thank you for reviewing my resume! If it's in front of you, I'm
-          excited to bring my skills, experience, and energy to your team. I've
-          either applied to your job or know your company and am eager to
-          contribute.
+        <Typography variant="caption" sx={{ color: "#000000" }}>
+          Thanks for checking out my resume! If you're reading this, I'm excited
+          to bring my skills and energy to your team. I've either applied to
+          your job or know your company and I'm eager to contribute.
         </Typography>
-        <Typography variant="caption">
-          This isn't a typical resume—it's a custom-built page from my personal
-          web app, developed using Next.js, TypeScript, MUI, and React. You can
-          explore the full site at https://matt-williamson.netlify.app or scan
-          the QR code above. The site is hosted on Vercel with CI/CD
-          auto-deployments from the repo at
+        <Typography variant="caption" sx={{ color: "#000000" }}>
+          This isn't a typical resume. It's a custom page from my personal web
+          app built with Next.js, TypeScript, MUI, and React. You can check out
+          the full site at https://matt-williamson.netlify.app or scan the QR
+          code above. The site is hosted on Vercel with CI/CD auto-deployments
+          from the repo at
           https://github.com/matthew-williamson/my-resume-generator.
         </Typography>
         <Stack>
-          <Typography variant="caption">Thanks again,</Typography>
-          <Typography variant="caption" sx={{ color: THEME.SECONDARY }}>
+          <Typography variant="caption" sx={{ color: "#000000" }}>
+            Thanks again,
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{ color: THEME.SECONDARY, fontWeight: 600 }}
+          >
             Matthew Williamson
           </Typography>
         </Stack>
@@ -295,9 +284,13 @@ const PageTwo = () => (
 
 export default function Page() {
   return (
-    <Stack>
+    <Stack sx={{ backgroundColor: "#FFFFFF" }}>
       <style type="text/css">
         {`
+          body {
+            background-color: #FFFFFF !important;
+          }
+
           span, div, .MuiTypography-root {
             letter-spacing: 0.03rem !important;
             font-family: Georgia, serif !important;
@@ -306,12 +299,12 @@ export default function Page() {
           @page {
             margin: 0;
             padding: 0;
-            
+
             .page-break {
               page-break-after: always !important;
             }
           }
-          
+
           @media {
             print {
               -webkit-print-color-adjust: exact;
